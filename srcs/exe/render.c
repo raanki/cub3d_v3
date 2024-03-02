@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 21:05:47 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 21:45:12 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,9 +192,15 @@ void	hook(t_game *game, double move_x, double move_y)
 			texPos += step;
 			//printf("text %d sizetext %d\n\n",(texNum), TILE_SIZE * texY + texX);
 			int color = game->sprite[(texNum)]->pixel_colors[TILE_SIZE * texY + texX];
-			// if(game->side == 1)
-			// 	color = (color >> 1) &8355711;
 			game->buffer[y][x] = color;
+		}
+		for(int y = 0; y < drawStart; y++)
+		{
+			game->buffer[y][x] = COLOR_FLOOR;
+		}
+		for(int y = drawEnd; y < SCREEN_HEIGHT; y++)
+		{
+			game->buffer[y][x] = COLOR_CEILLING;
 		}
 		x++;
 	}
