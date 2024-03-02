@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 21:45:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 21:53:34 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_mlx_key(int key, void *gam)
     //rotate to the right
     if (key == 65363)
     {
-      //both camera direction and camera plane must be rotated
       double oldDirX = game->player->dir_x;
       game->player->dir_x = game->player->dir_x * cos(-rotSpeed) - game->player->dir_y  * sin(-rotSpeed);
       game->player->dir_y  = oldDirX * sin(-rotSpeed) + game->player->dir_y  * cos(-rotSpeed);
@@ -55,7 +54,6 @@ int	ft_mlx_key(int key, void *gam)
     //rotate to the left
     if (key == XK_a || key == 65361)
     {
-      //both camera direction and camera plane must be rotated
       double oldDirX = game->player->dir_x;
       game->player->dir_x = game->player->dir_x * cos(rotSpeed) - game->player->dir_y * sin(rotSpeed);
       game->player->dir_y = oldDirX * sin(rotSpeed) + game->player->dir_y * cos(rotSpeed);
@@ -64,23 +62,25 @@ int	ft_mlx_key(int key, void *gam)
       game->player->plan_y = oldPlaneX * sin(rotSpeed) + game->player->plan_y * cos(rotSpeed);
     }
 
-    //moove left
-    if (key == XK_q ||key == 113)
-    {
-      int x = (int)(game->player->plyr_x + game->player->dir_x * moveSpeed);
-		  int y = (int)(game->player->plyr_y);
-      
-      	
-      // if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_x * moveSpeed)]) == false)
-	  		game->player->plyr_y -= game->player->dir_y * moveSpeed + stepSide;
-		
-      // if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * moveSpeed)]) == false)
-	  		// game->player->plyr_y += game->player->dir_y * moveSpeed;
-    }
+    //move left
+if (key == XK_d || key == 100)
+{
+    double moveX = game->player->dir_y * stepSide;
+    double moveY = -game->player->dir_x * stepSide;
+    if(char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
+        game->player->plyr_x += moveX;
+    if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
+        game->player->plyr_y += moveY;
+}
 
-    //moove rigt
-    if (key == XK_d ||key == 100)
-    {
-      game->player->plyr_y += game->player->dir_y * moveSpeed + stepSide;
-    }
+//move right
+if (key == XK_q || key == 113)
+{
+    double moveX = -game->player->dir_y * stepSide;
+    double moveY = game->player->dir_x * stepSide;
+    if(char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
+        game->player->plyr_x += moveX;
+    if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
+        game->player->plyr_y += moveY;
+}
 }

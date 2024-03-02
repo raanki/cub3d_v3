@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 20:40:32 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 21:47:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int init_map(t_game *game) {
 	map->map2d[24] = NULL;
 	map->w_map = mapWidth;
 	map->h_map = mapHeight;
+	game->color_ceilling = COLOR_CEILLING;
+	game->color_floor = COLOR_FLOOR;
 	player = malloc(sizeof(t_player));
 	if (player == NULL)
 	{

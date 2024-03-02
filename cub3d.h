@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 21:43:59 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 21:46:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ typedef struct s_game
     int stepY;
     int side;
 	int hit;
+	int color_ceilling;
+	int color_floor;
 	
 }	t_game;
 
