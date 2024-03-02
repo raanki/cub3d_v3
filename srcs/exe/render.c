@@ -6,12 +6,40 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 21:53:07 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 22:28:10 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
+double nor_angle(double angle) // normalize the angle
+{
+ if (angle < 0)
+  angle += (2 * M_PI);
+ if (angle > (2 * M_PI))
+  angle -= (2 * M_PI);
+ return (angle);
+}
+
+int which_wall(t_game *game, double ray_angle, int side)
+{
+    ray_angle = nor_angle(ray_angle); // Normalize the angle
+
+    if (side == 0)
+    {
+        if (ray_angle > 0 && ray_angle < M_PI)
+            return 2; // South wall
+        else
+            return 3; // North wall
+    }
+    else
+    {
+        if (ray_angle > M_PI / 2 && ray_angle < 3 * M_PI / 2)
+            return 0; // West wall
+        else
+            return 1; // East wall
+    }
+}
 
 void my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
@@ -132,7 +160,9 @@ void	hook(t_game *game, double move_x, double move_y)
 			drawEnd = SCREEN_HEIGHT - 1;
 
 
-		int texNum = char_to_int(game->map->map2d[game->map_player_x][game->map_player_y]) - 1; //1 subtracted from it so that texture 0 can be used!
+		// int texNum = char_to_int(game->map->map2d[game->map_player_x][game->map_player_y]) - 1; //1 subtracted from it so that texture 0 can be used!
+		
+		int texNum = which_wall(game, game->ray_dir_x, game->side);
 
 		double wallX; //where exactly the wall was hit
 		if(game->side == 0)

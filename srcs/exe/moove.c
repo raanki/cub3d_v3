@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 21:53:34 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 22:14:04 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_mlx_key(int key, void *gam)
 	double moveSpeed = 1.0;
 	double rotSpeed = 0.1;
   double stepSide = 0.3;
-  
 	//move forward if no wall in front of you
 	if (key == XK_w || key == 122)
     {
