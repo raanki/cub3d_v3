@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 22:22:48 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 22:31:00 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@
 #define COLOR_FLOOR 0x0000FF
 # define M_PI 3.14159265358979323846 
 # define TILE_SIZE 64
-# define SPRITE_WEST "sprites/one.xpm"
-# define SPRITE_EAST "sprites/two.xpm"
-# define SPRITE_NORTH "sprites/four.xpm"
-# define SPRITE_SOUTH "sprites/three.xpm"
+# define SPRITE_WEST "sprites/sky-blue.xpm"
+# define SPRITE_EAST "sprites/dark.xpm"
+# define SPRITE_NORTH "sprites/brown.xpm"
+# define SPRITE_SOUTH "sprites/grey.xpm"
 
 //*****************************************************************
 //*****************************************************************
