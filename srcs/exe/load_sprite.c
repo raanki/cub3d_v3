@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 22:58:56 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 23:10:53 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ void	load_sprite(t_game *game)
 	sprite_paths[1] = SPRITE_EAST;
 	sprite_paths[2] = SPRITE_NORTH;
 	sprite_paths[3] = SPRITE_SOUTH;
-    game->sprite = malloc(sizeof(t_sprite *) * 4);
+    game->sprite = calloc(4, sizeof(t_sprite *));
     if (!game->sprite){
         free_game(game);
         exit(EXIT_FAILURE);
     }
+    
 	while (i < 4)
 	{
 		game->sprite[i] = calloc(1, sizeof(t_sprite));
@@ -41,7 +42,7 @@ void	load_sprite(t_game *game)
 		game->sprite[i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p, sprite_paths[i], &width, &height);
 		if (!game->sprite[i]->img)
 		{
-			printf("Error load sprite : %s\n", sprite_paths[i]);
+			printf("Error load sprite : %s sur le i = %d\n", sprite_paths[i], i);
 			free_game(game);
 			exit(EXIT_FAILURE);
 		}

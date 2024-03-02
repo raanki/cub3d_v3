@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:32 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 22:58:50 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 23:13:54 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,20 @@ void	free_game(t_game *game)
 		i = 0;
 		while (i < 4)
 		{
+			printf("sprite[%d] = %p\n", i , game->sprite[i]);
+			if (!game->sprite[i]) {
+				i++;
+				continue;
+			}
+			printf("i = %d mlx_p %p et sprite img %p\n", i, game->mlx->mlx_p, game->sprite[i]->img);
 			free(game->sprite[i]->pixel_colors);
-			mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
-			free(game->sprite[i++]);
+			if (game->sprite[i]->img) {
+				mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
+			}
+			if (game->sprite[i]) {
+				free(game->sprite[i]);
+			}
+			i++;
 		}
 		free(game->sprite);
 	}
