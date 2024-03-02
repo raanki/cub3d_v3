@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:01:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 19:10:56 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	start_the_game(t_game *game)
 	
 	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	mlx->img = mlx_new_image(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT);
+	load_sprite(game);
 	mlx_loop_hook(mlx->mlx_p, &game_loop, game);
 	mlx_hook(game->mlx->win_p, KeyRelease, KeyReleaseMask, &ft_reles, game);
 	mlx_hook(mlx->win_p, KeyPress, KeyPressMask, ft_mlx_key, game);

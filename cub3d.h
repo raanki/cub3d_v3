@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:02:06 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 19:16:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,26 @@
 # include "./minilibx-linux/mlx_int.h"
 #include <stdbool.h>
 
-
+//****************************************************************
+//****************************************************************
+//******************************** DEFINES ***********************
+//****************************************************************
+//****************************************************************
 
 #define mapWidth 24 
 #define mapHeight 24 
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 480
+# define SPRITE_WEST "sprites/one.xpm"
+# define SPRITE_EAST "sprites/two.xpm"
+# define SPRITE_NORTH "sprites/four.xpm"
+# define SPRITE_SOUTH "sprites/three.xpm"
 
+//*****************************************************************
+//*****************************************************************
+//******************************* STUCTURES ***********************
+//*****************************************************************
+//*****************************************************************
 
 typedef struct s_map
 {
@@ -66,12 +79,24 @@ typedef struct s_mlx
 	int		endian;
 }	t_mlx;
 
+typedef struct s_sprite
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_sprite;
+
 
 typedef struct s_game
 {
 	t_map *map;
 	t_player *player;
 	t_mlx *mlx;
+	t_sprite	**sprite;
 	double camera_x;
 	double camera_y;
 	double ray_dir_x;
@@ -90,6 +115,19 @@ typedef struct s_game
 	
 }	t_game;
 
+
+//************************************************************
+//************************************************************
+//**************************** FUNCTIONS *********************
+//************************************************************
+//************************************************************
+
+//************************************************************
+//************************* EXE ******************************
+//************************************************************
+
+void	load_sprite(t_game *game);
+void draw_sprite_column(t_game *game, int screen_x, int start, int end, int sprite_x, int which);
 void	free_game(t_game *game);
 int	ft_reles(int key, t_game *game);
 int	ft_exit(void *param);
