@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:13:15 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 19:29:44 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	load_sprite(t_game *game)
 	int		height;
 	char	*sprite_paths[4];
 	int		i;
-
+    int     y;
+    int     x;
+    int pixel;
+    
 	i = 0;
+    y = 0;
 	sprite_paths[0] = SPRITE_WEST;
 	sprite_paths[1] = SPRITE_EAST;
 	sprite_paths[2] = SPRITE_NORTH;
@@ -40,10 +44,29 @@ void	load_sprite(t_game *game)
 			free_game(game);
 			exit(EXIT_FAILURE);
 		}
+        if (width != TILE_SIZE || height != TILE_SIZE) {
+            printf("Erreur lors du chargement du sprite (bad size) : %s\n", sprite_paths[i]);
+			free_game(game);
+            exit(EXIT_FAILURE);
+        }
 		game->sprite[i]->addr = mlx_get_data_addr(game->sprite[i]->img, &game->sprite[i]->bits_per_pixel,
 				&game->sprite[i]->line_length, &game->sprite[i]->endian);
 		game->sprite[i]->width = width;
 		game->sprite[i]->height = height;
+
+        y = 0;
+        while (y < TILE_SIZE)
+        {
+            x = 0;
+            while (x < TILE_SIZE)
+            {
+                pixel = *(int*)(game->sprite[i]->addr + (y * game->sprite[i]->line_length + x * (game->sprite[i]->bits_per_pixel / 8)));
+                game->sprite[i]->pixel_colors[y * TILE_SIZE + x] = pixel;
+                x++;
+            }
+            y++;
+        }
+        
 		i++;
 	}
 }

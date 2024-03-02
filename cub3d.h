@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:16:38 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 19:28:15 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 #define mapHeight 24 
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 480
+# define TILE_SIZE 64
 # define SPRITE_WEST "sprites/one.xpm"
 # define SPRITE_EAST "sprites/two.xpm"
 # define SPRITE_NORTH "sprites/four.xpm"
@@ -88,6 +89,7 @@ typedef struct s_sprite
 	int		endian;
 	int		width;
 	int		height;
+	int     pixel_colors[TILE_SIZE * TILE_SIZE]; 
 }	t_sprite;
 
 
