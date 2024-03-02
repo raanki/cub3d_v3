@@ -1,0 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
+/*   Updated: 2024/03/02 17:47:37 by ranki            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+//****************************************************************
+//****************************************************************
+//******************************* INCLUDES ***********************
+//****************************************************************
+//****************************************************************
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <math.h>
+# include <string.h>
+# include "./minilibx-linux/mlx.h"
+# include "./minilibx-linux/mlx_int.h"
+
+
+
+#define mapWidth 24 
+#define mapHeight 24 
+#define SCREEN_WIDTH 640 
+#define SCREEN_HEIGHT 480
+
+
+typedef struct s_map
+{
+	char	**map2d;
+	double		p_x;
+	double		p_y;
+	int		w_map;
+	int		h_map;
+	double  time;
+	double old_time;
+	
+}	t_map;
+
+typedef struct s_player
+{
+	double		plyr_x;
+	double		plyr_y;
+    double     dir_x;
+    double     dir_y;
+    double     plan_x;
+    double     plan_y;
+	
+}	t_player;
+
+typedef struct s_mlx
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	void	*mlx_p;
+	void	*win_p;
+	int		endian;
+}	t_mlx;
+
+
+typedef struct s_game
+{
+	t_map *map;
+	t_player *player;
+	t_mlx *mlx;
+	double camera_x;
+	double camera_y;
+	double ray_dir_x;
+	double ray_dir_y;
+	int map_player_x;
+	int map_player_y;
+	double sideDistX;
+    double sideDistY;
+	double deltaDistX;
+    double deltaDistY;
+    double perpWallDist;
+	int stepX;
+    int stepY;
+    int side;
+	int hit;
+	
+}	t_game;
+
