@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 23:10:53 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 23:17:13 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	load_sprite(t_game *game)
 		game->sprite[i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p, sprite_paths[i], &width, &height);
 		if (!game->sprite[i]->img)
 		{
-			printf("Error load sprite : %s sur le i = %d\n", sprite_paths[i], i);
+			printf("Error load sprite : %s\n", sprite_paths[i]);
 			free_game(game);
 			exit(EXIT_FAILURE);
 		}
