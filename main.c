@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:13 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 17:47:50 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 18:36:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ int init_map(t_game *game) {
     map->map2d[22] = strdup("10044444000000000000000001");
     map->map2d[23] = strdup("1111111111111111111111111");
 	map->map2d[24] = NULL;
-	map->p_y = 22;
-	map->p_x = 12;
-	map->time = 0;
-	map->old_time = 0;
 	map->w_map = mapWidth;
 	map->h_map = mapHeight;
 	player = malloc(sizeof(t_player));
@@ -103,7 +99,7 @@ t_game	*game_instance(void)
 
 void my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
-    if (x >= 0 && x < SCREEN_HEIGHT && y >= 0 && y < SCREEN_WIDTH)
+    if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
     {
         char    *dst;
 
@@ -222,7 +218,7 @@ void	hook(t_game *game, double move_x, double move_y)
 			case 1:  color = 0xFF0000;  break; //red
 			case 2:  color = 0x00FF00;  break; //green
 			case 3:  color = 0x0000FF;   break; //blue
-			case 4:  color = 0xFFFFFF;  break; //white
+			case 4:  color = 0x00FFFF;  break; //cyan
 			default: color = 0xFFFF00; break; //yellow
 		}
 
@@ -275,43 +271,53 @@ void	free_game(t_game *game)
 
 int	ft_mlx_key(int key, void *gam)
 {
-	// //move forward if no wall in front of you
-	// if (key == XK_w || key == 122)
-    // {
-    //   if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
-    //   if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
-    // }
+	t_game * game = (t_game *)gam;
+	double moveSpeed = 1.0;
+	double rotSpeed = 0.1;
+	//move forward if no wall in front of you
+	if (key == XK_w || key == 122)
+    {
+		int x = (int)(game->player->plyr_x + game->player->dir_x * moveSpeed);
+		int y = (int)(game->player->plyr_y);
+      	if(char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
+	  		game->player->plyr_x += game->player->dir_x * moveSpeed;
+		
+      	if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * moveSpeed)]) == false)
+	  		game->player->plyr_y += game->player->dir_y * moveSpeed;
+    }
 	
-    // //move backwards if no wall behind you
-    // if (key == XK_s || key == 115)
-    // {
-    //   if(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
-    //   if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
-    // }
+    //move backwards if no wall behind you
+    if (key == XK_s || key == 115)
+    {
+      if(char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
+	  	game->player->plyr_x  -= game->player->dir_x  * moveSpeed;
+      if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * moveSpeed)] == false))
+	  	game->player->plyr_y -= game->player->dir_y  * moveSpeed;
+    }
 
-    // //rotate to the right
-    // if (key == XK_d || key == 100)
-    // {
-    //   //both camera direction and camera plane must be rotated
-    //   double oldDirX = dirX;
-    //   dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-    //   dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-    //   double oldPlaneX = planeX;
-    //   planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-    //   planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-    // }
+    //rotate to the right
+    if (key == XK_d || key == 65363)
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = game->player->dir_x;
+      game->player->dir_x = game->player->dir_x * cos(-rotSpeed) - game->player->dir_y  * sin(-rotSpeed);
+      game->player->dir_y  = oldDirX * sin(-rotSpeed) + game->player->dir_y  * cos(-rotSpeed);
+      double oldPlaneX = game->player->plan_x;
+      game->player->plan_x = game->player->plan_x * cos(-rotSpeed) - game->player->plan_y * sin(-rotSpeed);
+      game->player->plan_y = oldPlaneX * sin(-rotSpeed) + game->player->plan_y * cos(-rotSpeed);
+    }
 	
-    // //rotate to the left
-    // if (key == XK_a || key == 113)
-    // {
-    //   //both camera direction and camera plane must be rotated
-    //   double oldDirX = dirX;
-    //   dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-    //   dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-    //   double oldPlaneX = planeX;
-    //   planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-    //   planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-    // }
+    //rotate to the left
+    if (key == XK_a || key == 65361)
+    {
+      //both camera direction and camera plane must be rotated
+      double oldDirX = game->player->dir_x;
+      game->player->dir_x = game->player->dir_x * cos(rotSpeed) - game->player->dir_y * sin(rotSpeed);
+      game->player->dir_y = oldDirX * sin(rotSpeed) + game->player->dir_y * cos(rotSpeed);
+      double oldPlaneX = game->player->plan_x;
+      game->player->plan_x = game->player->plan_x * cos(rotSpeed) - game->player->plan_y * sin(rotSpeed);
+      game->player->plan_y = oldPlaneX * sin(rotSpeed) + game->player->plan_y * cos(rotSpeed);
+    }
 }
 
 void	start_the_game(t_game *game)

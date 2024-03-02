@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 17:47:37 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 18:17:12 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <string.h>
 # include "./minilibx-linux/mlx.h"
 # include "./minilibx-linux/mlx_int.h"
+#include <stdbool.h>
 
 
 
@@ -36,8 +37,6 @@
 typedef struct s_map
 {
 	char	**map2d;
-	double		p_x;
-	double		p_y;
 	int		w_map;
 	int		h_map;
 	double  time;
