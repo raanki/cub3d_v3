@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
+#    By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/03 18:04:05 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/03 19:11:13 by mklimina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,11 @@ srcs/exe/load_sprite.c\
 \
 srcs/parsing/parsing_map.c\
 \
+srcs/gnl/get_next_line.c\
+\
+srcs/gnl/get_next_line_utils.c
 
+ 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
