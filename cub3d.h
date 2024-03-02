@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 18:17:12 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 19:02:06 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,3 +90,14 @@ typedef struct s_game
 	
 }	t_game;
 
+void	free_game(t_game *game);
+int	ft_reles(int key, t_game *game);
+int	ft_exit(void *param);
+int char_to_int(char c);
+t_game	*game_instance(void);
+void	start_the_game(t_game *game);
+int init_map(t_game *game);
+int	ft_mlx_key(int key, void *gam);
+int	game_loop(void);
+void	hook(t_game *game, double move_x, double move_y);
+void my_mlx_pixel_put(t_game *game, int x, int y, int color);

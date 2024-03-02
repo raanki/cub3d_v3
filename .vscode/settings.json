@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "main.C": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "init_game.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

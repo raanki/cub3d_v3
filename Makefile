@@ -6,13 +6,23 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/02 16:46:28 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/02 19:00:49 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d 
 
 SRC = main.c \
+srcs/exe/init_game.c\
+\
+srcs/exe/render.c\
+\
+srcs/exe/moove.c\
+\
+srcs/exe/utils.c\
+\
+srcs/exe/free.c\
+\
 
 OBJ = $(SRC:.c=.o)
 

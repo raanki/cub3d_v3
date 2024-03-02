@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 12:47:13 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 18:58:59 by ranki            ###   ########.fr       */
+/*   Created: 2024/03/02 18:57:32 by ranki             #+#    #+#             */
+/*   Updated: 2024/03/02 19:01:37 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../cub3d.h"
 
-int main(int argc, char **argv) {
-    
-	t_game	*game;
-	
-	game = game_instance();
-	init_map(game);
-	start_the_game(game);
-    return 0;
+int	ft_exit(void *param)
+{
+
+	exit(0);
+}
+
+void	free_game(t_game *game)
+{
+
+}
+
+int	ft_reles(int key, t_game *game)
+{
+
 }
