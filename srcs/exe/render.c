@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:01:29 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 19:49:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,23 +128,43 @@ void	hook(t_game *game, double move_x, double move_y)
 		if(drawEnd >= SCREEN_HEIGHT)
 			drawEnd = SCREEN_HEIGHT - 1;
 
-		int color;
-		switch(char_to_int(game->map->map2d[game->map_player_x][game->map_player_y]))
-		{
-			case 1:  color = 0xFF0000;  break; //red
-			case 2:  color = 0x00FF00;  break; //green
-			case 3:  color = 0x0000FF;   break; //blue
-			case 4:  color = 0x00FFFF;  break; //cyan
-			default: color = 0xFFFF00; break; //yellow
-		}
+		int pitch = 100;
 
-		// if (side == 1)
-		// {
-		// 	color = color / 2;
-		// }
+		//texturing calculations
+		int texNum = game->map->map2d[game->map_player_x][game->map_player_y] - 1; //1 subtracted from it so that texture 0 can be used!
 
-		verLine(game, x, drawStart, drawEnd, color);
+		//calculate value of wallX
+		double wallX; //where exactly the wall was hit
+		if(game->side == 0)
+			wallX = game->player->plyr_y + game->perpWallDist * game->ray_dir_y;
+		else
+			wallX = game->player->plyr_x + game->perpWallDist * game->ray_dir_x;
+		wallX -= floor((wallX));
+
+		//x coordinate on the texture
+		int texX = (int)(wallX * (double)(TILE_SIZE));
 		
+		if(game->side == 0 && game->ray_dir_x > 0)
+			texX = TILE_SIZE - texX - 1;
+		if(game->side == 1 && game->ray_dir_y < 0)
+			texX = TILE_SIZE - texX - 1;
+
+		// TODO: an integer-only bresenham or DDA like algorithm could make the texture coordinate stepping faster
+		// How much to increase the texture coordinate per screen pixel
+		double step = 1.0 * TILE_SIZE / lineHeight;
+		// Starting texture coordinate
+		double texPos = (drawStart - pitch - SCREEN_HEIGHT / 2 + lineHeight / 2) * step;
+		for(int y = drawStart; y < drawEnd; y++)
+		{
+			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+			int texY = (int)texPos &(TILE_SIZE - 1);
+			texPos += step;
+			printf("sizetext %d\n\n",TILE_SIZE * texY + texX);
+			// int color = game->sprite[texNum]->pixel_colors[TILE_SIZE * texY + texX];
+			// if(game->side == 1)
+			// 	color = (color >> 1) &8355711;
+			// game->buffer[y][x] = color;
+		}
 		x++;
 	}
 	//printf("exit loop\n");

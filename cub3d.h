@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:28:15 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 19:51:04 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_sprite
 	int		endian;
 	int		width;
 	int		height;
-	int     pixel_colors[TILE_SIZE * TILE_SIZE]; 
+	int     *pixel_colors;
 }	t_sprite;
 
 
@@ -99,6 +99,7 @@ typedef struct s_game
 	t_player *player;
 	t_mlx *mlx;
 	t_sprite	**sprite;
+	int		buffer[SCREEN_HEIGHT + 1][SCREEN_HEIGHT + 1];
 	double camera_x;
 	double camera_y;
 	double ray_dir_x;
