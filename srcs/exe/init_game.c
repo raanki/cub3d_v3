@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 21:47:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 22:58:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@ int init_map(t_game *game) {
 	map = calloc(1, sizeof(t_map));
 
 	if (!map)
-		exit(0);
+	{
+		free_game(game);
+		exit(EXIT_FAILURE);
+	}
+
 	game->map = map;
 
 	map->map2d = calloc(mapWidth + 1, sizeof(char *));
 	if (!map->map2d)
-		exit(0);
+	{
+		free_game(game);
+		exit(EXIT_FAILURE);
+	}
 	map->map2d[0] = strdup("1111111111111111111111111");
     map->map2d[1] = strdup("1000000000000000000000001");
     map->map2d[2] = strdup("1000000000000000000000001");
@@ -77,11 +84,11 @@ void	start_the_game(t_game *game)
 
 	mlx = calloc(1, sizeof(t_mlx));
 	if (!mlx)
-		exit(0);
+		exit(EXIT_FAILURE);
 	game->mlx = mlx;
 	game->mlx->mlx_p = mlx_init();
 	if (!game->mlx->mlx_p) {
-		exit (0);
+		exit (EXIT_FAILURE);
 	}
 	
 	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");

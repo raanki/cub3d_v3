@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 20:56:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 22:58:56 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	load_sprite(t_game *game)
 	sprite_paths[3] = SPRITE_SOUTH;
     game->sprite = malloc(sizeof(t_sprite *) * 4);
     if (!game->sprite){
-        exit(0);
+        free_game(game);
+        exit(EXIT_FAILURE);
     }
 	while (i < 4)
 	{
@@ -40,12 +41,12 @@ void	load_sprite(t_game *game)
 		game->sprite[i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p, sprite_paths[i], &width, &height);
 		if (!game->sprite[i]->img)
 		{
-			printf("Erreur lors du chargement du sprite : %s\n", sprite_paths[i]);
+			printf("Error load sprite : %s\n", sprite_paths[i]);
 			free_game(game);
 			exit(EXIT_FAILURE);
 		}
         if (width != TILE_SIZE || height != TILE_SIZE) {
-            printf("Erreur lors du chargement du sprite (bad size) : %s\n", sprite_paths[i]);
+            printf("Error (bad size) : %s\n", sprite_paths[i]);
 			free_game(game);
             exit(EXIT_FAILURE);
         }
@@ -55,7 +56,8 @@ void	load_sprite(t_game *game)
 		game->sprite[i]->height = height;
 		game->sprite[i]->pixel_colors = malloc(sizeof(int) * (TILE_SIZE * TILE_SIZE + 1));
         if(!game->sprite[i]->pixel_colors) {
-            exit(0);
+            free_game(game);
+            exit(EXIT_FAILURE);
         }
 
         y = 0;

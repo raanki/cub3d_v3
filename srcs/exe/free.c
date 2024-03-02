@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:32 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 22:21:17 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 22:58:50 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,65 @@
 
 int	ft_exit(void *param)
 {
+	t_game *game = (t_game *)param;
+	free_game(game);
+	exit(EXIT_SUCCESS);
+}
 
-	exit(0);
+void	free_mlx(t_game *game)
+{
+	if (game->mlx)
+	{
+		if (game->mlx->img)
+			mlx_destroy_image(game->mlx->mlx_p, game->mlx->img);
+		if (game->mlx->win_p)
+		{
+			mlx_clear_window(game->mlx->mlx_p, game->mlx->win_p);
+			mlx_destroy_window(game->mlx->mlx_p, game->mlx->win_p);
+		}
+		if (game->mlx->mlx_p)
+		{
+			mlx_destroy_display(game->mlx->mlx_p);
+			free(game->mlx->mlx_p);
+		}
+		free(game->mlx);
+	}
 }
 
 void	free_game(t_game *game)
 {
+	int	i;
 
+	i = 0;
+	while (game && game->map && game->map->map2d && game->map->map2d[i])
+		free(game->map->map2d[i++]);
+	if (game->map && game->map->map2d)
+		free(game->map->map2d);
+	if (game->map)
+		free(game->map);
+	if (game->player)
+		free(game->player);
+	if (game->sprite)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			free(game->sprite[i]->pixel_colors);
+			mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
+			free(game->sprite[i++]);
+		}
+		free(game->sprite);
+	}
+	free_mlx(game);
+	free(game);
 }
 
 int	ft_reles(int key, t_game *game)
 {
 	if (key == 65307)
 	{
-		exit(0);
+		free_game(game);
+		exit(EXIT_SUCCESS);
 	}
 }
 

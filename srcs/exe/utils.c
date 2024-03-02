@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:01:20 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 22:59:02 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_game	*game_instance(void)
 	{
 		game_instance = calloc(1, sizeof(t_game));
 		if (!game_instance)
-			exit(0);
+			exit(EXIT_FAILURE);
 		game_instance->map = NULL;
 		game_instance->player = NULL;
 	}
