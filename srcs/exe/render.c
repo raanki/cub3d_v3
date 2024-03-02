@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:49:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 21:05:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,37 @@ void verLine(t_game *game, int x, int start, int end, int color)
         y++;
     }
 }
+
+void draw_buffer(t_game *game)
+{
+
+    int x, y;
+
+    // y = 0;
+    // while (y < SCREEN_HEIGHT)
+    // {
+    //     x = 0;
+    //     while (x < SCREEN_WIDTH)
+    //     {
+    //         my_mlx_pixel_put(game, x, y, game->buffer[y][x]);
+    //         x++;
+    //     }
+    //     y++;
+    // }
+
+	x = 0;
+    while (x < SCREEN_WIDTH)
+    {
+        y = 0;
+        while (y < SCREEN_HEIGHT)
+        {
+            my_mlx_pixel_put(game, x, y, game->buffer[y][x]);
+            y++;
+        }
+        x++;
+    }
+}
+
 
 
 void	hook(t_game *game, double move_x, double move_y)
@@ -115,23 +146,23 @@ void	hook(t_game *game, double move_x, double move_y)
 			game->perpWallDist = (game->sideDistY - game->deltaDistY);
 
 		//printf("perpWallDist %f\n\n", perpWallDist);
+		int pitch = 100;
 	  
 	  	int lineHeight = (int)(SCREEN_HEIGHT / game->perpWallDist);
 		
-		int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
+		int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2 + pitch;
 
 		if(drawStart < 0)
 			drawStart = 0;
 			
-		int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+		int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2 + pitch;
 		
 		if(drawEnd >= SCREEN_HEIGHT)
 			drawEnd = SCREEN_HEIGHT - 1;
 
-		int pitch = 100;
 
 		//texturing calculations
-		int texNum = game->map->map2d[game->map_player_x][game->map_player_y] - 1; //1 subtracted from it so that texture 0 can be used!
+		int texNum = char_to_int(game->map->map2d[game->map_player_x][game->map_player_y]) - 1; //1 subtracted from it so that texture 0 can be used!
 
 		//calculate value of wallX
 		double wallX; //where exactly the wall was hit
@@ -157,16 +188,17 @@ void	hook(t_game *game, double move_x, double move_y)
 		for(int y = drawStart; y < drawEnd; y++)
 		{
 			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-			int texY = (int)texPos &(TILE_SIZE - 1);
+			int texY = (int)texPos & (TILE_SIZE - 1);
 			texPos += step;
-			printf("sizetext %d\n\n",TILE_SIZE * texY + texX);
-			// int color = game->sprite[texNum]->pixel_colors[TILE_SIZE * texY + texX];
+			//printf("text %d sizetext %d\n\n",(texNum), TILE_SIZE * texY + texX);
+			int color = game->sprite[(texNum)]->pixel_colors[TILE_SIZE * texY + texX];
 			// if(game->side == 1)
 			// 	color = (color >> 1) &8355711;
-			// game->buffer[y][x] = color;
+			game->buffer[y][x] = color;
 		}
 		x++;
 	}
+
 	//printf("exit loop\n");
 }
 
@@ -180,7 +212,9 @@ int	game_loop(void)
 	game->mlx->addr = mlx_get_data_addr(game->mlx->img,
 			&game->mlx->bits_per_pixel, &game->mlx->line_length,
 			&game->mlx->endian);
+	for(int y = 0; y < SCREEN_HEIGHT; y++) for(int x = 0; x < SCREEN_WIDTH; x++) game->buffer[y][x] = 0;
 	hook(game, 0, 0);
+	draw_buffer(game);
 
 
 	mlx_put_image_to_window(game->mlx->mlx_p, game->mlx->win_p,

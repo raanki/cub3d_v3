@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:51:04 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 21:05:06 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 #define mapWidth 24 
 #define mapHeight 24 
-#define SCREEN_WIDTH 640 
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1950 
+#define SCREEN_HEIGHT 800
 # define TILE_SIZE 64
 # define SPRITE_WEST "sprites/one.xpm"
 # define SPRITE_EAST "sprites/two.xpm"
@@ -99,7 +99,7 @@ typedef struct s_game
 	t_player *player;
 	t_mlx *mlx;
 	t_sprite	**sprite;
-	int		buffer[SCREEN_HEIGHT + 1][SCREEN_HEIGHT + 1];
+	int		buffer[SCREEN_HEIGHT + 1][SCREEN_WIDTH + 1];
 	double camera_x;
 	double camera_y;
 	double ray_dir_x;

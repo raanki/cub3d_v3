@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 19:51:55 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/02 20:56:00 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	load_sprite(t_game *game)
 				&game->sprite[i]->line_length, &game->sprite[i]->endian);
 		game->sprite[i]->width = width;
 		game->sprite[i]->height = height;
-		game->sprite[i]->pixel_colors = malloc(TILE_SIZE * TILE_SIZE + 1);
+		game->sprite[i]->pixel_colors = malloc(sizeof(int) * (TILE_SIZE * TILE_SIZE + 1));
         if(!game->sprite[i]->pixel_colors) {
             exit(0);
         }
