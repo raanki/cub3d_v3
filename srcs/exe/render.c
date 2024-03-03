@@ -6,23 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 11:58:52 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 12:59:35 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-void	verLine(t_game *game, int x, int start, int end, int color)
-{
-	int	y;
-
-	y = start;
-	while (y <= end)
-	{
-		my_mlx_pixel_put(game, x, y, color);
-		y++;
-	}
-}
 
 void	draw_buffer(t_game *game)
 {
