@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:43:59 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 18:17:17 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,19 @@ void	moove_up(int key, t_game *game)
 	if (key == XK_w || key == 122)
 	{
 
-		printf("x = %d et y = %d\n", (int)(game->player->plyr_x + game->player->dir_x *game->moveSpeed - game->sure_mode),(int)(game->player->plyr_y  - 0.5) );
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * game->moveSpeed - game->sure_mode)][(int)(game->player->plyr_y )]) == 0)
+		// printf("x = %d et y = %d\n", (int)(game->player->plyr_x + game->player->dir_x *game->moveSpeed - game->sure_mode),(int)(game->player->plyr_y) );
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * game->moveSpeed - game->sure_mode)][(int)(game->player->plyr_y )]) == 0
+			&& (game->player->plyr_x + game->player->dir_x * game->moveSpeed) < game->map->h_map - 1)
+		{
 			game->player->plyr_x += game->player->dir_x * game->moveSpeed;
+			// printf("pos x est devenu : %f\n", game->player->plyr_x);
+		}
 
 		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * game->moveSpeed)]) == 0)
+		{
 			game->player->plyr_y += game->player->dir_y * game->moveSpeed;
+			// printf("pos x est devenu : %f\n", game->player->plyr_x);
+		}
 	}
 }
 

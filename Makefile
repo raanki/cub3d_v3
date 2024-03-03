@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/03 14:10:20 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/03 18:04:05 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ srcs/exe/utils.c\
 srcs/exe/free.c\
 \
 srcs/exe/load_sprite.c\
+\
+srcs/parsing/parsing_map.c\
 \
 
 OBJ = $(SRC:.c=.o)
