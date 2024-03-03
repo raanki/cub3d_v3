@@ -32,8 +32,8 @@
 //****************************************************************
 //****************************************************************
 
-#define mapWidth 24 
-#define mapHeight 24 
+#define MAP_WIDTH 24
+#define MAP_HEIGHT 24
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 480
 #define COLOR_CEILLING 0x00FF00
@@ -106,25 +106,25 @@ typedef struct s_game
 	double		ray_dir_y;
 	int			map_player_x;
 	int			map_player_y;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	double		wallX;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	double		wall_x;
 	int			pitch;
-	int			stepX;
-	int			stepY;
+	int			step_x;
+	int			step_y;
 	int			side;
-	int			lineHeight;
+	int			line_height;
 	int			hit;
-	int			drawStart;
-	int			drawEnd;
-	int			texNum;
-	int			texX;
-	int			texY;
+	int			draw_start;
+	int			draw_end;
+	int			tex_num;
+	int			tex_x;
+	int			tex_y;
 	double		step;
-	double		texPos;
+	double		tex_pos;
 	int			color;
 	int			color_ceilling;
 	int			color_floor;

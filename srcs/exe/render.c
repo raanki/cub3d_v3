@@ -46,21 +46,21 @@ void	hook_draw_sprite(t_game *game, int x)
 {
 	int	y;
 	int	color;
-	int	texY;
+	int	tex_y;
 
-	y = game->drawStart - 1;
-	while (++y < game->drawEnd)
+	y = game->draw_start - 1;
+	while (++y < game->draw_end)
 	{
-		texY = (int)game->texPos & (TILE_SIZE - 1);
-		game->texPos += game->step;
-		color = game->sprite[(game->texNum)]->pixel_colors
-		[TILE_SIZE * texY + game->texX];
+		tex_y = (int)game->tex_pos & (TILE_SIZE - 1);
+		game->tex_pos += game->step;
+		color = game->sprite[(game->tex_num)]->pixel_colors
+		[TILE_SIZE * tex_y + game->tex_x];
 		game->buffer[y][x] = color;
 	}
 	y = -1;
-	while (++y < game->drawStart)
+	while (++y < game->draw_start)
 		game->buffer[y][x] = game->color_floor;
-	y = game->drawEnd - 1;
+	y = game->draw_end - 1;
 	while (++y < SCREEN_HEIGHT)
 		game->buffer[y][x] = game->color_ceilling;
 }

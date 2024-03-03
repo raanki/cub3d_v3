@@ -24,7 +24,7 @@ int	init_map(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	game->map = map;
-	map->map2d = calloc(mapWidth + 1, sizeof(char *));
+	map->map2d = calloc(MAP_WIDTH + 1, sizeof(char *));
 	if (!map->map2d)
 	{
 		free_game(game);
@@ -55,8 +55,8 @@ int	init_map(t_game *game)
     map->map2d[22] = strdup("10000000000000000000000001");
     map->map2d[23] = strdup("1111111111111111111111111");
 	map->map2d[24] = NULL;
-	map->w_map = mapWidth;
-	map->h_map = mapHeight;
+	map->w_map = MAP_WIDTH;
+	map->h_map = MAP_HEIGHT;
 	game->color_ceilling = COLOR_CEILLING;
 	game->color_floor = COLOR_FLOOR;
 	player = malloc(sizeof(t_player));
