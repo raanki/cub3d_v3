@@ -6,90 +6,95 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 22:28:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 09:13:02 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-double nor_angle(double angle) // normalize the angle
+double	nor_angle(double angle) // normalize the angle
 {
- if (angle < 0)
-  angle += (2 * M_PI);
- if (angle > (2 * M_PI))
-  angle -= (2 * M_PI);
- return (angle);
+	if (angle < 0)
+		angle += (2 * M_PI);
+	if (angle > (2 * M_PI))
+		angle -= (2 * M_PI);
+	return (angle);
 }
 
-int which_wall(t_game *game, double ray_angle, int side)
+/*
+0: West wall
+1: East wall
+2: South wall
+3: North wall
+*/
+int	which_wall(t_game *game, double ray_angle, int side)
 {
-    ray_angle = nor_angle(ray_angle); // Normalize the angle
-
-    if (side == 0)
-    {
-        if (ray_angle > 0 && ray_angle < M_PI)
-            return 2; // South wall
-        else
-            return 3; // North wall
-    }
-    else
-    {
-        if (ray_angle > M_PI / 2 && ray_angle < 3 * M_PI / 2)
-            return 0; // West wall
-        else
-            return 1; // East wall
-    }
+	ray_angle = nor_angle(ray_angle);
+	if (side == 0)
+	{
+		if (ray_angle > 0 && ray_angle < M_PI)
+			return (2);
+		else
+			return (3);
+	}
+	else
+	{
+		if (ray_angle > M_PI / 2 && ray_angle < 3 * M_PI / 2)
+			return (0);
+		else
+			return (1);
+	}
 }
 
-void my_mlx_pixel_put(t_game *game, int x, int y, int color)
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
-    if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
-    {
-        char    *dst;
+	char	*dst;
 
-        dst = game->mlx->addr + (y * game->mlx->line_length + x * (game->mlx->bits_per_pixel / 8));
-        *(unsigned int*)dst = color;
-    }
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
+	{
+		dst = game->mlx->addr
+			+ (y * game->mlx->line_length
+				+ x * (game->mlx->bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
-
-void verLine(t_game *game, int x, int start, int end, int color)
+void	verLine(t_game *game, int x, int start, int end, int color)
 {
-    int y;
+	int	y;
 
-    y = start;
-    while (y <= end)
-    {
-        my_mlx_pixel_put(game, x, y, color);
-        y++;
-    }
+	y = start;
+	while (y <= end)
+	{
+		my_mlx_pixel_put(game, x, y, color);
+		y++;
+	}
 }
 
-void draw_buffer(t_game *game)
+void	draw_buffer(t_game *game)
 {
-
-    int x, y;
+	int	x;
+	int	y;
 
 	x = 0;
-    while (x < SCREEN_WIDTH)
-    {
-        y = 0;
-        while (y < SCREEN_HEIGHT)
-        {
-            my_mlx_pixel_put(game, x, y, game->buffer[y][x]);
-            y++;
-        }
-        x++;
-    }
+	while (x < SCREEN_WIDTH)
+	{
+		y = 0;
+		while (y < SCREEN_HEIGHT)
+		{
+			my_mlx_pixel_put(game, x, y, game->buffer[y][x]);
+			y++;
+		}
+		x++;
+	}
 }
-
-
 
 void	hook(t_game *game, double move_x, double move_y)
 {
-	int x = 0;
+	int	x;
 
-	while(x < SCREEN_WIDTH)
+	x = 0;
+	while (x < SCREEN_WIDTH)
 	{
 		game->hit = 0;
 		game->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
@@ -99,7 +104,8 @@ void	hook(t_game *game, double move_x, double move_y)
 		game->map_player_y = (int)(game->player->plyr_y);
 		game->deltaDistX = (game->ray_dir_x == 0) ? 1e30 : fabs(1 / game->ray_dir_x);
 		game->deltaDistY = (game->ray_dir_y == 0) ? 1e30 : fabs(1 / game->ray_dir_y);
-		
+
+
 		if (game->ray_dir_x < 0) 
 		{ 
 			game->stepX = -1; 
@@ -142,7 +148,7 @@ void	hook(t_game *game, double move_x, double move_y)
 
 		if(game->side == 0)
 			game->perpWallDist = (game->sideDistX - game->deltaDistX); 
-      	else
+	  	else
 			game->perpWallDist = (game->sideDistY - game->deltaDistY);
 
 		int pitch = 100;
