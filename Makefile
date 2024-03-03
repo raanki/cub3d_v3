@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/03 10:47:38 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/03 14:10:20 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ srcs/exe/load_sprite.c\
 OBJ = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Iminilibx-linux
-LDFLAGS = -Lminilibx-linux -Wall -Werror -Wextra
+CFLAGS = -Iminilibx-linux -Wall -Werror -Wextra
+LDFLAGS = -Lminilibx-linux
 LDLIBS = -lmlx -lbsd -lXext -lX11 -lm
 
 .SILENT:

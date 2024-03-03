@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 08:48:21 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:12:16 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int	init_map(t_game *game)
+void	init_map(t_game *game)
 {
 	t_map		*map;
 	t_player	*player;
@@ -62,7 +62,8 @@ int	init_map(t_game *game)
 	player = malloc(sizeof(t_player));
 	if (player == NULL)
 	{
-		return (0);
+		free_game(game);
+		exit(0);
 	}
 	player->dir_x = -1;
 	player->dir_y = 0;

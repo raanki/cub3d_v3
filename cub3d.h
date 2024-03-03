@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 10:56:05 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:12:58 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int		ft_exit(void *param);
 int		char_to_int(char c);
 t_game	*game_instance(void);
 void	start_the_game(t_game *game);
-int		init_map(t_game *game);
+void	init_map(t_game *game);
 int		ft_mlx_key(int key, void *gam);
 int		game_loop(void);
 void	hook(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 12:20:18 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:13:43 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,5 @@ int	ft_reles(int key, t_game *game)
 		free_game(game);
 		exit(EXIT_SUCCESS);
 	}
+	return (0);
 }

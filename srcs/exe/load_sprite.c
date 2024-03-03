@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:09:22 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:14:22 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	manage_sprite(t_game *game, char *sprite_paths[4])
 
 void	load_sprite(t_game *game)
 {
-	int		width;
-	int		height;
 	char	*sprite_paths[4];
 
 	sprite_paths[0] = SPRITE_WEST;
