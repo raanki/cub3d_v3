@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:20:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 15:00:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	ft_free_game(t_game *game)
 				i++;
 				continue ;
 			}
-			free(game->sprite[i]->pixel_colors);
+			if (game->sprite[i]->pixel_colors)
+				free(game->sprite[i]->pixel_colors);
 			if (game->sprite[i]->img)
 				mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
 			if (game->sprite[i])

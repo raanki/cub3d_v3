@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:21:39 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 15:01:53 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
+	game->sprite[*i]->pixel_colors = NULL;
 	game->sprite[*i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p,
 			sprite_paths[*i], &width, &height);
 	if ((!game->sprite[*i]->img) || (width != TILE_SIZE || height != TILE_SIZE))
 	{
-		printf("Error sprite : %s\n", sprite_paths[*i]);
+		ft_e_str("sprite");
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
@@ -68,8 +69,8 @@ void	ft_manage_sprite(t_game *game, char *sprite_paths[4])
 	while (i < 4)
 	{
 		ft_manage_create_sprite(game, &i, sprite_paths);
-		game->sprite[i]->pixel_colors = malloc(sizeof(int)
-				* (TILE_SIZE * TILE_SIZE + 1));
+		game->sprite[i]->pixel_colors = calloc(sizeof(int),
+				(TILE_SIZE * TILE_SIZE + 1));
 		if (!game->sprite[i]->pixel_colors)
 		{
 			ft_free_game(game);
@@ -95,4 +96,18 @@ void	ft_load_sprite(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	ft_manage_sprite(game, sprite_paths);
+}
+
+void	ft_e_str(char *s)
+{
+	int	size;
+
+	size = 0;
+	while (s[size] != '\0')
+	{
+		size++;
+	}
+	write(2, "Error\n", 6);
+	write(2, s, size);
+	write(2, "\n", 1);
 }

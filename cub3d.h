@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:35:53 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 15:03:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void	ft_hook_init_loop(t_game *game, int x);
 void	ft_hook_target_draw(t_game *game);
 void	ft_hook_find_text_x_y(t_game *game);
 void	*ft_calloc(size_t count, size_t size);
+void	ft_e_str(char *s);
 
 //************************************************************
 //************************* PARSING **************************
