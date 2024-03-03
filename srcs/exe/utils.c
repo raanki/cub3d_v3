@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 10:54:49 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 11:46:48 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	which_wall(t_game *game, double ray_angle, int side)
 	}
 	else
 	{
-		if (ray_angle > M_PI / 2 && ray_angle < 3 * M_PI / 2)
+		if (game->ray_dir_y > 0)
 			return (0);
 		else
 			return (1);

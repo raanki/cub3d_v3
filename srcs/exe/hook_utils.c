@@ -101,7 +101,7 @@ void	hook_target_draw(t_game *game)
 }
 
 //texNum = char_to_int(game->map->map2d
-//[game->map_player_x][game->map_player_y]) - 1; 
+//[game->map_player_x][game->map_player_y]) - 1;
 void	hook_find_text_x_y(t_game *game)
 {
 	game->texNum = which_wall(game, game->ray_dir_x, game->side);
