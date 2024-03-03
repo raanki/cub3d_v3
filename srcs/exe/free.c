@@ -61,7 +61,6 @@ void	ft_free_game(t_game *game)
 	ft_free_map(game, &i);
 	if (game->sprite)
 	{
-		i = 0;
 		while (i < 4)
 		{
 			if (!game->sprite[i])

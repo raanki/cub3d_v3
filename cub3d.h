@@ -127,6 +127,10 @@ typedef struct s_game
 	int			color;
 	int			color_ceilling;
 	int			color_floor;
+	double		moveSpeed;
+	double		sure_mode;
+	double		rotSpeed;
+	double		stepSide;
 }	t_game;
 
 //************************************************************

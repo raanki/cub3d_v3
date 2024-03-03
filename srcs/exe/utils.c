@@ -35,7 +35,7 @@ t_game	*ft_game_instance(void)
 	return (game_instance);
 }
 
-double	ft_nor_angle(double angle) // normalize the angle
+double	ft_nor_angle(double angle)
 {
 	if (angle < 0)
 		angle += (2 * M_PI);
