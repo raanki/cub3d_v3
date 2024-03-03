@@ -6,28 +6,24 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 22:58:38 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 08:48:21 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
+int	init_map(t_game *game)
+{
+	t_map		*map;
+	t_player	*player;
 
-int init_map(t_game *game) {
-	t_map	*map;
-	t_player *player;
-
-	
 	map = calloc(1, sizeof(t_map));
-
 	if (!map)
 	{
 		free_game(game);
 		exit(EXIT_FAILURE);
 	}
-
 	game->map = map;
-
 	map->map2d = calloc(mapWidth + 1, sizeof(char *));
 	if (!map->map2d)
 	{
@@ -66,7 +62,7 @@ int init_map(t_game *game) {
 	player = malloc(sizeof(t_player));
 	if (player == NULL)
 	{
-		return 0;
+		return (0);
 	}
 	player->dir_x = -1;
 	player->dir_y = 0;
@@ -87,11 +83,12 @@ void	start_the_game(t_game *game)
 		exit(EXIT_FAILURE);
 	game->mlx = mlx;
 	game->mlx->mlx_p = mlx_init();
-	if (!game->mlx->mlx_p) {
+	if (!game->mlx->mlx_p)
+	{
 		exit (EXIT_FAILURE);
 	}
-	
-	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
+	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH,
+			SCREEN_HEIGHT, "Cub3D");
 	mlx->img = mlx_new_image(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT);
 	load_sprite(game);
 	mlx_loop_hook(mlx->mlx_p, &game_loop, game);
@@ -99,5 +96,4 @@ void	start_the_game(t_game *game)
 	mlx_hook(mlx->win_p, KeyPress, KeyPressMask, ft_mlx_key, game);
 	mlx_hook(mlx->win_p, 33, 1L << 17, ft_exit, game);
 	mlx_loop(mlx->mlx_p);
-	
 }
