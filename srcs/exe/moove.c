@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:22:02 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:43:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 int	ft_mlx_key(int key, void *gam)
 {
 	t_game	*game = (t_game *)gam;
-	double	moveSpeed = 1.0;
+	double	moveSpeed = 0.2;
+	double	sure_mode = 0.5;
 	double	rotSpeed = 0.1;
 	double	stepSide = 0.3;
 	
 	//move forward if no wall in front of you
 	if (key == XK_w || key == 122)
 	{
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
+
+		// printf("x = %d et y = %d\n", (int)(game->player->plyr_x + game->player->dir_x * moveSpeed - sure_mode),(int)(game->player->plyr_y  - 0.5) );
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * moveSpeed - sure_mode)][(int)(game->player->plyr_y )]) == 0)
 			game->player->plyr_x += game->player->dir_x * moveSpeed;
 
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * moveSpeed)]) == false)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * moveSpeed)]) == 0)
 			game->player->plyr_y += game->player->dir_y * moveSpeed;
 	}
 		//move backwards if no wall behind you
 	if (key == XK_s || key == 115)
 	{
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * moveSpeed + sure_mode)][(int)(game->player->plyr_y + sure_mode)]) == 0)
 			game->player->plyr_x  -= game->player->dir_x  * moveSpeed;
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * moveSpeed)] == false))
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * moveSpeed)] == 0))
 			game->player->plyr_y -= game->player->dir_y  * moveSpeed;
 	}
 		//rotate to the right
