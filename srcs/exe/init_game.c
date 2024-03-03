@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:27:15 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 18:25:10 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,14 @@ void	ft_init_map(t_game *game)
 	map->map2d[10] = strdup("1000000000000000000000001");
 	map->map2d[11] = strdup("1000000000000000000000001");
 	map->map2d[12] = strdup("1000000000000000000000001");
+    map->map2d[14] = strdup("1000000000000000000000001");
 	map->map2d[13] = strdup("1000000000000000000000001");
-	map->map2d[14] = strdup("1000000000000000000000001");
-	map->map2d[15] = strdup("1000000000000000000000001");
-	map->map2d[16] = strdup("10000000000000000000000001");
-	map->map2d[17] = strdup("10000000000000000000000001");
-	map->map2d[18] = strdup("10000000000000000000000001");
-	map->map2d[19] = strdup("10000000000000000000000001");
-	map->map2d[20] = strdup("10000000000000000000000001");
-	map->map2d[21] = strdup("1000000000000000000000001");
-	map->map2d[22] = strdup("10000000000000000000000001");
-	map->map2d[23] = strdup("1111111111111111111111111");
-	map->map2d[24] = NULL;
+    map->map2d[15] = strdup("1000000000000000000000001");
+    map->map2d[16] = strdup("10000000000000000000000001");
+    map->map2d[17] = strdup("10000000000000000000000001");
+    map->map2d[18] = strdup("10000000000000000000000001");
+    map->map2d[19] = strdup("1111111111111111111111111");
+	map->map2d[20] = NULL;
 	map->w_map = MAP_WIDTH;
 	map->h_map = MAP_HEIGHT;
 	game->color_ceilling = COLOR_CEILLING;
@@ -67,10 +63,10 @@ void	ft_init_map(t_game *game)
 	}
 	player->dir_x = -1;
 	player->dir_y = 0;
-	player->plyr_x = 22;
-	player->plyr_y = 12;
+	player->plyr_x = PLAYER_START_X;
+	player->plyr_y = PLAYER_START_Y;
 	player->plan_x = 0;
-	player->plan_y = 0.66;
+	player->plan_y = FOV;
 	game->map = map;
 	game->player = player;
 	game->delta_dist_x = 0;

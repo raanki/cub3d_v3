@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 15:03:20 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 18:24:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@
 //****************************************************************
 
 #define MAP_WIDTH 24
-#define MAP_HEIGHT 24
+#define MAP_HEIGHT 20
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 480
 #define COLOR_CEILLING 0x00FF00
 #define COLOR_FLOOR 0x0000FF
 #define M_PI 3.14159265358979323846 
 #define TILE_SIZE 64
+#define FOV 0.66
+#define PLAYER_START_X 15
+#define PLAYER_START_Y 12
 #define SPRITE_WEST "sprites/sky-blue.xpm"
 #define SPRITE_EAST "sprites/dark.xpm"
 #define SPRITE_NORTH "sprites/brown.xpm"
