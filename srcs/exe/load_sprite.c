@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 09:01:13 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:09:22 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,6 @@ void	manage_color_sprite(t_game *game, int *i)
 	int	y;
 	int	pixel;
 
-	game->sprite[*i]->pixel_colors = malloc(sizeof(int)
-			* (TILE_SIZE * TILE_SIZE + 1));
-	if (!game->sprite[*i]->pixel_colors)
-	{
-		free_game(game);
-		exit(EXIT_FAILURE);
-	}
 	y = 0;
 	while (y < TILE_SIZE)
 	{
