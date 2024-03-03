@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:13:43 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:20:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	ft_exit(void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	free_game(game);
+	ft_free_game(game);
 	exit(EXIT_SUCCESS);
 }
 
-void	free_mlx(t_game *game)
+void	ft_free_mlx(t_game *game)
 {
 	if (game->mlx)
 	{
@@ -41,7 +41,7 @@ void	free_mlx(t_game *game)
 	}
 }
 
-void	free_map(t_game *game, int *i)
+void	ft_free_map(t_game *game, int *i)
 {
 	while (game && game->map && game->map->map2d && game->map->map2d[*i])
 		free(game->map->map2d[(*i)++]);
@@ -53,12 +53,12 @@ void	free_map(t_game *game, int *i)
 		free(game->player);
 }
 
-void	free_game(t_game *game)
+void	ft_free_game(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	free_map(game, &i);
+	ft_free_map(game, &i);
 	if (game->sprite)
 	{
 		i = 0;
@@ -78,7 +78,7 @@ void	free_game(t_game *game)
 		}
 		free(game->sprite);
 	}
-	free_mlx(game);
+	ft_free_mlx(game);
 	free(game);
 }
 
@@ -86,7 +86,7 @@ int	ft_reles(int key, t_game *game)
 {
 	if (key == 65307)
 	{
-		free_game(game);
+		ft_free_game(game);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:13:14 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:22:02 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ int	ft_mlx_key(int key, void *gam)
 	//move forward if no wall in front of you
 	if (key == XK_w || key == 122)
 	{
-		if(char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
 			game->player->plyr_x += game->player->dir_x * moveSpeed;
 
-		if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * moveSpeed)]) == false)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * moveSpeed)]) == false)
 			game->player->plyr_y += game->player->dir_y * moveSpeed;
 	}
 		//move backwards if no wall behind you
 	if (key == XK_s || key == 115)
 	{
-		if(char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * moveSpeed)][(int)(game->player->plyr_y)]) == false)
 			game->player->plyr_x  -= game->player->dir_x  * moveSpeed;
-		if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * moveSpeed)] == false))
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * moveSpeed)] == false))
 			game->player->plyr_y -= game->player->dir_y  * moveSpeed;
 	}
 		//rotate to the right
@@ -62,9 +62,9 @@ int	ft_mlx_key(int key, void *gam)
 	{
 		double	moveX = game->player->dir_y * stepSide;
     	double	moveY = -game->player->dir_x * stepSide;
-			if(char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
+			if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
 				game->player->plyr_x += moveX;
-			if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
+			if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
 				game->player->plyr_y += moveY;
 	}
 
@@ -73,9 +73,9 @@ int	ft_mlx_key(int key, void *gam)
 	{
 		double	moveX = -game->player->dir_y * stepSide;
     	double	moveY = game->player->dir_x * stepSide;
-		if(char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
 			game->player->plyr_x += moveX;
-		if(char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
 			game->player->plyr_y += moveY;
 	}
 	return (0);

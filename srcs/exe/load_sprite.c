@@ -6,21 +6,21 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:14:22 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:21:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
+void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 {
 	int		width;
 	int		height;
 
-	game->sprite[*i] = calloc(1, sizeof(t_sprite));
+	game->sprite[*i] = ft_calloc(1, sizeof(t_sprite));
 	if (!game->sprite)
 	{
-		free_game(game);
+		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	game->sprite[*i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p,
@@ -28,7 +28,7 @@ void	manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 	if ((!game->sprite[*i]->img) || (width != TILE_SIZE || height != TILE_SIZE))
 	{
 		printf("Error sprite : %s\n", sprite_paths[*i]);
-		free_game(game);
+		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	game->sprite[*i]->addr = mlx_get_data_addr(game->sprite[*i]->img,
@@ -38,7 +38,7 @@ void	manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 	game->sprite[*i]->height = height;
 }
 
-void	manage_color_sprite(t_game *game, int *i)
+void	ft_manage_color_sprite(t_game *game, int *i)
 {
 	int	x;
 	int	y;
@@ -60,27 +60,27 @@ void	manage_color_sprite(t_game *game, int *i)
 	}
 }
 
-void	manage_sprite(t_game *game, char *sprite_paths[4])
+void	ft_manage_sprite(t_game *game, char *sprite_paths[4])
 {
 	int		i;
 
 	i = 0;
 	while (i < 4)
 	{
-		manage_create_sprite(game, &i, sprite_paths);
+		ft_manage_create_sprite(game, &i, sprite_paths);
 		game->sprite[i]->pixel_colors = malloc(sizeof(int)
 				* (TILE_SIZE * TILE_SIZE + 1));
 		if (!game->sprite[i]->pixel_colors)
 		{
-			free_game(game);
+			ft_free_game(game);
 			exit(EXIT_FAILURE);
 		}
-		manage_color_sprite(game, &i);
+		ft_manage_color_sprite(game, &i);
 		i++;
 	}
 }
 
-void	load_sprite(t_game *game)
+void	ft_load_sprite(t_game *game)
 {
 	char	*sprite_paths[4];
 
@@ -88,11 +88,11 @@ void	load_sprite(t_game *game)
 	sprite_paths[1] = SPRITE_EAST;
 	sprite_paths[2] = SPRITE_NORTH;
 	sprite_paths[3] = SPRITE_SOUTH;
-	game->sprite = calloc(4, sizeof(t_sprite *));
+	game->sprite = ft_calloc(4, sizeof(t_sprite *));
 	if (!game->sprite)
 	{
-		free_game(game);
+		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	manage_sprite(game, sprite_paths);
+	ft_manage_sprite(game, sprite_paths);
 }

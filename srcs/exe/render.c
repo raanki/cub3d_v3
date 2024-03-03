@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 12:59:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:23:10 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	draw_buffer(t_game *game)
+void	ft_draw_buffer(t_game *game)
 {
 	int	x;
 	int	y;
@@ -23,14 +23,14 @@ void	draw_buffer(t_game *game)
 		y = 0;
 		while (y < SCREEN_HEIGHT)
 		{
-			my_mlx_pixel_put(game, x, y, game->buffer[y][x]);
+			ft_my_mlx_pixel_put(game, x, y, game->buffer[y][x]);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	hook_draw_sprite(t_game *game, int x)
+void	ft_hook_draw_sprite(t_game *game, int x)
 {
 	int	y;
 	int	color;
@@ -53,36 +53,36 @@ void	hook_draw_sprite(t_game *game, int x)
 		game->buffer[y][x] = game->color_ceilling;
 }
 
-void	hook(t_game *game)
+void	ft_hook(t_game *game)
 {
 	int	x;
 
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
-		hook_init_loop(game, x);
-		hook_init_side_dist(game);
-		hook_find_hit(game);
-		hook_target_draw(game);
-		hook_find_text_x_y(game);
-		hook_draw_sprite(game, x);
+		ft_hook_init_loop(game, x);
+		ft_hook_init_side_dist(game);
+		ft_hook_find_hit(game);
+		ft_hook_target_draw(game);
+		ft_hook_find_text_x_y(game);
+		ft_hook_draw_sprite(game, x);
 		x++;
 	}
 }
 
-int	game_loop(void)
+int	ft_game_loop(void)
 {
 	t_game	*game;
 
-	game = game_instance();
+	game = ft_game_instance();
 	mlx_destroy_image(game->mlx->mlx_p, game->mlx->img);
 	game->mlx->img = mlx_new_image(game->mlx->mlx_p,
 			SCREEN_WIDTH, SCREEN_HEIGHT);
 	game->mlx->addr = mlx_get_data_addr(game->mlx->img,
 			&game->mlx->bits_per_pixel, &game->mlx->line_length,
 			&game->mlx->endian);
-	hook(game);
-	draw_buffer(game);
+	ft_hook(game);
+	ft_draw_buffer(game);
 	mlx_put_image_to_window(game->mlx->mlx_p, game->mlx->win_p,
 		game->mlx->img, 0, 0);
 	return (0);

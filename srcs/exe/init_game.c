@@ -6,28 +6,28 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:12:16 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:27:15 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	init_map(t_game *game)
+void	ft_init_map(t_game *game)
 {
 	t_map		*map;
 	t_player	*player;
 
-	map = calloc(1, sizeof(t_map));
+	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 	{
-		free_game(game);
+		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	game->map = map;
-	map->map2d = calloc(MAP_WIDTH + 1, sizeof(char *));
+	map->map2d = ft_calloc(MAP_WIDTH + 1, sizeof(char *));
 	if (!map->map2d)
 	{
-		free_game(game);
+		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	map->map2d[0] = strdup("1111111111111111111111111");
@@ -62,7 +62,7 @@ void	init_map(t_game *game)
 	player = malloc(sizeof(t_player));
 	if (player == NULL)
 	{
-		free_game(game);
+		ft_free_game(game);
 		exit(0);
 	}
 	player->dir_x = -1;
@@ -73,13 +73,15 @@ void	init_map(t_game *game)
 	player->plan_y = 0.66;
 	game->map = map;
 	game->player = player;
+	game->delta_dist_x = 0;
+	game->delta_dist_y = 0;
 }
 
-void	start_the_game(t_game *game)
+void	ft_start_the_game(t_game *game)
 {
 	t_mlx	*mlx;
 
-	mlx = calloc(1, sizeof(t_mlx));
+	mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	game->mlx = mlx;
@@ -91,10 +93,35 @@ void	start_the_game(t_game *game)
 	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH,
 			SCREEN_HEIGHT, "Cub3D");
 	mlx->img = mlx_new_image(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT);
-	load_sprite(game);
-	mlx_loop_hook(mlx->mlx_p, &game_loop, game);
+	ft_load_sprite(game);
+	mlx_loop_hook(mlx->mlx_p, &ft_game_loop, game);
 	mlx_hook(game->mlx->win_p, KeyRelease, KeyReleaseMask, &ft_reles, game);
 	mlx_hook(mlx->win_p, KeyPress, KeyPressMask, ft_mlx_key, game);
 	mlx_hook(mlx->win_p, 33, 1L << 17, ft_exit, game);
 	mlx_loop(mlx->mlx_p);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (i < n)
+	{
+		*(char *)(s + i) = 0;
+		i++;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count);
+	return (ptr);
 }

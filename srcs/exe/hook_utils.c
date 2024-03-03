@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 10:52:30 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 14:26:05 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	hook_init_loop(t_game *game, int x)
+void	ft_hook_init_loop(t_game *game, int x)
 {
 	game->hit = 0;
 	game->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
@@ -32,7 +32,7 @@ void	hook_init_loop(t_game *game, int x)
 		game->delta_dist_y = fabs(1 / game->ray_dir_y);
 }
 
-void	hook_init_side_dist(t_game *game)
+void	ft_hook_init_side_dist(t_game *game)
 {
 	if (game->ray_dir_x < 0)
 	{
@@ -60,7 +60,7 @@ void	hook_init_side_dist(t_game *game)
 	}
 }
 
-void	hook_find_hit(t_game *game)
+void	ft_hook_find_hit(t_game *game)
 {
 	while (game->hit == 0)
 	{
@@ -76,7 +76,7 @@ void	hook_find_hit(t_game *game)
 			game->map_player_y += game->step_y;
 			game->side = 1 ;
 		}
-		if (char_to_int(game->map->map2d
+		if (ft_char_to_int(game->map->map2d
 				[game->map_player_x][game->map_player_y]) > 0)
 		{
 			game->hit = 1;
@@ -84,7 +84,7 @@ void	hook_find_hit(t_game *game)
 	}
 }
 
-void	hook_target_draw(t_game *game)
+void	ft_hook_target_draw(t_game *game)
 {
 	if (game->side == 0)
 		game->perp_wall_dist = (game->side_dist_x - game->delta_dist_x);
@@ -102,9 +102,9 @@ void	hook_target_draw(t_game *game)
 
 //tex_num = char_to_int(game->map->map2d
 //[game->map_player_x][game->map_player_y]) - 1;
-void	hook_find_text_x_y(t_game *game)
+void	ft_hook_find_text_x_y(t_game *game)
 {
-	game->tex_num = which_wall(game, game->ray_dir_x, game->side);
+	game->tex_num = ft_which_wall(game, game->ray_dir_x, game->side);
 	if (game->side == 0)
 		game->wall_x = game->player->plyr_y
 			+ game->perp_wall_dist * game->ray_dir_y;
