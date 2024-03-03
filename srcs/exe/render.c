@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 09:13:02 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 10:25:29 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,115 +89,133 @@ void	draw_buffer(t_game *game)
 	}
 }
 
-void	hook(t_game *game, double move_x, double move_y)
+void	hook_init_loop(t_game *game, int x)
+{
+	game->hit = 0;
+	game->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
+	game->ray_dir_x = game->player->dir_x
+		+ game->player->plan_x * game->camera_x;
+	game->ray_dir_y = game->player->dir_y
+		+ game->player->plan_y * game->camera_x;
+	game->map_player_x = (int)(game->player->plyr_x);
+	game->map_player_y = (int)(game->player->plyr_y);
+	game->deltaDistX = (game->ray_dir_x == 0) ? 1e30 : fabs(1 / game->ray_dir_x);
+	game->deltaDistY = (game->ray_dir_y == 0) ? 1e30 : fabs(1 / game->ray_dir_y);
+}
+
+void	hook_init_side_dist(t_game *game)
+{
+	if (game->ray_dir_x < 0)
+	{
+		game->stepX = -1;
+		game->sideDistX = (game->player->plyr_x
+				- (double)game->map_player_x) * game->deltaDistX;
+	}
+	else
+	{
+		game->stepX = 1;
+		game->sideDistX = ((double)game->map_player_x + 1.0
+				- game->player->plyr_x) * game->deltaDistX;
+	}
+	if (game->ray_dir_y < 0)
+	{
+		game->stepY = -1;
+		game->sideDistY = (game->player->plyr_y
+				- game->map_player_y) * game->deltaDistY;
+	}
+	else
+	{
+		game->stepY = 1;
+		game->sideDistY = (game->map_player_y + 1.0
+				- game->player->plyr_y) * game->deltaDistY;
+	}
+}
+
+void	hook_find_hit(t_game *game)
+{
+	while (game->hit == 0)
+	{
+		if (game->sideDistX < game->sideDistY)
+		{
+			game->sideDistX += game->deltaDistX;
+			game->map_player_x += game->stepX;
+			game->side = 0 ;
+		}
+		else
+		{
+			game->sideDistY += game->deltaDistY;
+			game->map_player_y += game->stepY;
+			game->side = 1 ;
+		}
+		if (char_to_int(game->map->map2d
+				[game->map_player_x][game->map_player_y]) > 0)
+		{
+			game->hit = 1;
+		}
+	}
+}
+
+void	hook_target_draw(t_game *game)
+{
+	if (game->side == 0)
+		game->perpWallDist = (game->sideDistX - game->deltaDistX);
+	else
+		game->perpWallDist = (game->sideDistY - game->deltaDistY);
+	game->pitch = 100;
+	game->lineHeight = (int)(SCREEN_HEIGHT / game->perpWallDist);
+	game->drawStart = -game->lineHeight / 2 + SCREEN_HEIGHT / 2 + game->pitch;
+	if (game->drawStart < 0)
+		game->drawStart = 0;
+	game->drawEnd = game->lineHeight / 2 + SCREEN_HEIGHT / 2 + game->pitch;
+	if (game->drawEnd >= SCREEN_HEIGHT)
+		game->drawEnd = SCREEN_HEIGHT - 1;
+}
+//texNum = char_to_int(game->map->map2d
+//[game->map_player_x][game->map_player_y]) - 1; 
+void	hook_find_text_x_y(t_game *game)
+{
+	game->texNum = which_wall(game, game->ray_dir_x, game->side);
+	if (game->side == 0)
+		game->wallX = game->player->plyr_y
+			+ game->perpWallDist * game->ray_dir_y;
+	else
+		game->wallX = game->player->plyr_x
+			+ game->perpWallDist * game->ray_dir_x;
+	game->wallX -= floor((game->wallX));
+	game->texX = (int)(game->wallX * (double)(TILE_SIZE));
+	if (game->side == 0 && game->ray_dir_x > 0)
+		game->texX = TILE_SIZE - game->texX - 1;
+	if (game->side == 1 && game->ray_dir_y < 0)
+		game->texX = TILE_SIZE - game->texX - 1;
+	game->step = 1.0 * TILE_SIZE / game->lineHeight;
+	game->texPos = (game->drawStart - game->pitch - SCREEN_HEIGHT
+			/ 2 + game->lineHeight / 2) * game->step;
+}
+
+void	hook(t_game *game)
 {
 	int	x;
 
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
-		game->hit = 0;
-		game->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
-		game->ray_dir_x = game->player->dir_x + game->player->plan_x * game->camera_x;
-		game->ray_dir_y = game->player->dir_y + game->player->plan_y* game->camera_x;
-		game->map_player_x = (int)(game->player->plyr_x);
-		game->map_player_y = (int)(game->player->plyr_y);
-		game->deltaDistX = (game->ray_dir_x == 0) ? 1e30 : fabs(1 / game->ray_dir_x);
-		game->deltaDistY = (game->ray_dir_y == 0) ? 1e30 : fabs(1 / game->ray_dir_y);
-
-
-		if (game->ray_dir_x < 0) 
-		{ 
-			game->stepX = -1; 
-			game->sideDistX = (game->player->plyr_x - (double)game->map_player_x) * game->deltaDistX ; 
-		} 
-		else
-		{ 
-			game->stepX = 1; 
-			game->sideDistX = ((double)game->map_player_x + 1.0 - game->player->plyr_x) * game->deltaDistX ; 
-		} 
-		if (game->ray_dir_y < 0) 
-		{ 
-			game->stepY = -1 ; 
-			game->sideDistY = (game->player->plyr_y - game->map_player_y) * game->deltaDistY; 
-		} 
-		else 
-		{ 
-			game->stepY = 1 ; 
-			game->sideDistY = (game->map_player_y + 1.0 - game->player->plyr_y) * game->deltaDistY; 
-		}
-
-	  	while (game->hit == 0) 
+		hook_init_loop(game, x);
+		hook_init_side_dist(game);
+		hook_find_hit(game);
+		hook_target_draw(game);
+		hook_find_text_x_y(game);
+		for(int y = game->drawStart; y < game->drawEnd; y++)
 		{
-			if (game->sideDistX < game->sideDistY) 
-			{ 
-				game->sideDistX += game->deltaDistX; 
-				game->map_player_x += game->stepX; 
-				game->side = 0 ; 
-			} 
-			else 
-			{ 
-				game->sideDistY += game->deltaDistY;
-				game->map_player_y += game->stepY; 
-				game->side = 1 ; 
-			}
-			if (char_to_int(game->map->map2d[game->map_player_x][game->map_player_y]) > 0){
-				game->hit = 1; 
-			} 
-		}
-
-		if(game->side == 0)
-			game->perpWallDist = (game->sideDistX - game->deltaDistX); 
-	  	else
-			game->perpWallDist = (game->sideDistY - game->deltaDistY);
-
-		int pitch = 100;
-	  
-	  	int lineHeight = (int)(SCREEN_HEIGHT / game->perpWallDist);
-		
-		int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2 + pitch;
-
-		if(drawStart < 0)
-			drawStart = 0;
-			
-		int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2 + pitch;
-		
-		if(drawEnd >= SCREEN_HEIGHT)
-			drawEnd = SCREEN_HEIGHT - 1;
-
-
-		// int texNum = char_to_int(game->map->map2d[game->map_player_x][game->map_player_y]) - 1; //1 subtracted from it so that texture 0 can be used!
-		
-		int texNum = which_wall(game, game->ray_dir_x, game->side);
-
-		double wallX; //where exactly the wall was hit
-		if(game->side == 0)
-			wallX = game->player->plyr_y + game->perpWallDist * game->ray_dir_y;
-		else
-			wallX = game->player->plyr_x + game->perpWallDist * game->ray_dir_x;
-		wallX -= floor((wallX));
-
-		int texX = (int)(wallX * (double)(TILE_SIZE));
-		
-		if(game->side == 0 && game->ray_dir_x > 0)
-			texX = TILE_SIZE - texX - 1;
-		if(game->side == 1 && game->ray_dir_y < 0)
-			texX = TILE_SIZE - texX - 1;
-
-		double step = 1.0 * TILE_SIZE / lineHeight;
-		double texPos = (drawStart - pitch - SCREEN_HEIGHT / 2 + lineHeight / 2) * step;
-		for(int y = drawStart; y < drawEnd; y++)
-		{
-			int texY = (int)texPos & (TILE_SIZE - 1);
-			texPos += step;
-			int color = game->sprite[(texNum)]->pixel_colors[TILE_SIZE * texY + texX];
+			int texY = (int)game->texPos & (TILE_SIZE - 1);
+			game->texPos += game->step;
+			int color = game->sprite[(game->texNum)]->pixel_colors[TILE_SIZE * texY + game->texX];
 			game->buffer[y][x] = color;
 		}
-		for(int y = 0; y < drawStart; y++)
+		for(int y = 0; y < game->drawStart; y++)
 		{
 			game->buffer[y][x] = game->color_floor;
 		}
-		for(int y = drawEnd; y < SCREEN_HEIGHT; y++)
+		for(int y = game->drawEnd; y < SCREEN_HEIGHT; y++)
 		{
 			game->buffer[y][x] = game->color_ceilling;
 		}
@@ -218,7 +236,7 @@ int	game_loop(void)
 			&game->mlx->bits_per_pixel, &game->mlx->line_length,
 			&game->mlx->endian);
 	for(int y = 0; y < SCREEN_HEIGHT; y++) for(int x = 0; x < SCREEN_WIDTH; x++) game->buffer[y][x] = 0;
-	hook(game, 0, 0);
+	hook(game);
 	draw_buffer(game);
 
 
