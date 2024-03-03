@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 15:00:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 19:46:41 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_free_game(t_game *game)
 
 	i = 0;
 	ft_free_map(game, &i);
+	i = 0;
 	if (game->sprite)
 	{
 		while (i < 4)
@@ -72,8 +73,7 @@ void	ft_free_game(t_game *game)
 				free(game->sprite[i]->pixel_colors);
 			if (game->sprite[i]->img)
 				mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
-			if (game->sprite[i])
-				free(game->sprite[i]);
+			free(game->sprite[i]);
 			i++;
 		}
 		free(game->sprite);
