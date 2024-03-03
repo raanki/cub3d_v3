@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 18:17:17 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 18:55:27 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	moove_up(int key, t_game *game)
 		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * game->moveSpeed)]) == 0)
 		{
 			game->player->plyr_y += game->player->dir_y * game->moveSpeed;
-			// printf("pos x est devenu : %f\n", game->player->plyr_x);
+			// printf("pos y est devenu : %f\n", game->player->plyr_x);
 		}
 	}
 }
@@ -63,10 +63,21 @@ void	moove_back(int key, t_game *game)
 {
 	if (key == XK_s || key == 115)
 	{
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * game->moveSpeed + game->sure_mode)][(int)(game->player->plyr_y + game->sure_mode)]) == 0)
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * game->moveSpeed + game->sure_mode)][(int)(game->player->plyr_y + game->sure_mode)]) == 0
+		&& (game->player->plyr_x  - game->player->dir_x  * game->moveSpeed) > 1)
+		{
+			// printf("\ncar j'ai test : %f\n", game->player->plyr_y - game->player->dir_y * game->moveSpeed + game->sure_mode);
 			game->player->plyr_x  -= game->player->dir_x  * game->moveSpeed;
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * game->moveSpeed)] == 0))
+			// printf("pos x est devenu : %f\n", game->player->plyr_x);
+		}
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * game->moveSpeed)] == 0)
+		&& (game->player->plyr_y - game->player->dir_y * game->moveSpeed + game->sure_mode) < (game->map->h_map)
+		&& (game->player->plyr_y - game->player->dir_y * game->moveSpeed) > (1))
+		{
+			// printf("\n2 car j'ai test : %f\n",(game->player->plyr_y - game->player->dir_y * game->moveSpeed));
 			game->player->plyr_y -= game->player->dir_y  * game->moveSpeed;
+			// printf("pos y est devenu : %f\n", game->player->plyr_y);
+		}
 	}
 }
 
