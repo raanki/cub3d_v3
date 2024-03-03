@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 10:11:01 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 10:56:05 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ typedef struct s_game
 //************************* EXE ******************************
 //************************************************************
 
+double	nor_angle(double angle);
+int		which_wall(t_game *game, double ray_angle, int side);
 void	load_sprite(t_game *game);
 void	free_game(t_game *game);
 int		ft_reles(int key, t_game *game);
@@ -152,6 +154,11 @@ int		ft_mlx_key(int key, void *gam);
 int		game_loop(void);
 void	hook(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void	hook_init_side_dist(t_game *game);
+void	hook_find_hit(t_game *game);
+void	hook_init_loop(t_game *game, int x);
+void	hook_target_draw(t_game *game);
+void	hook_find_text_x_y(t_game *game);
 
 //************************************************************
 //************************* PARSING **************************

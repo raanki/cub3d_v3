@@ -6,22 +6,18 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/02 22:59:02 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/03 10:54:49 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int char_to_int(char c)
+int	char_to_int(char c)
 {
-    if (c >= '0' && c <= '9')
-    {
-        return c - '0';
-    }
-    else
-    {
-        return -1;
-    }
+	if (c >= '0' && c <= '9')
+		return (c - '0');
+	else
+		return (-1);
 }
 
 t_game	*game_instance(void)
@@ -37,4 +33,51 @@ t_game	*game_instance(void)
 		game_instance->player = NULL;
 	}
 	return (game_instance);
+}
+
+double	nor_angle(double angle) // normalize the angle
+{
+	if (angle < 0)
+		angle += (2 * M_PI);
+	if (angle > (2 * M_PI))
+		angle -= (2 * M_PI);
+	return (angle);
+}
+
+/*
+0: West wall
+1: East wall
+2: South wall
+3: North wall
+*/
+int	which_wall(t_game *game, double ray_angle, int side)
+{
+	ray_angle = nor_angle(ray_angle);
+	if (side == 0)
+	{
+		if (ray_angle > 0 && ray_angle < M_PI)
+			return (2);
+		else
+			return (3);
+	}
+	else
+	{
+		if (ray_angle > M_PI / 2 && ray_angle < 3 * M_PI / 2)
+			return (0);
+		else
+			return (1);
+	}
+}
+
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
+	{
+		dst = game->mlx->addr
+			+ (y * game->mlx->line_length
+				+ x * (game->mlx->bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
+	}
 }
