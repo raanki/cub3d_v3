@@ -47,6 +47,7 @@
 #define SPRITE_NORTH "sprites/brown.xpm"
 #define SPRITE_SOUTH "sprites/grey.xpm"
 
+#include "srcs/gnl/get_next_line.h"
 //*****************************************************************
 //*****************************************************************
 //******************************* STUCTURES ***********************
@@ -155,7 +156,7 @@ int		ft_exit(void *param);
 int		ft_char_to_int(char c);
 t_game	*ft_game_instance(void);
 void	ft_start_the_game(t_game *game);
-void	ft_init_map(t_game *game);
+void	ft_init_map(t_game *game, char *args);
 int		ft_mlx_key(int key, void *gam);
 int		ft_game_loop(void);
 void	ft_hook(t_game *game);
@@ -171,3 +172,4 @@ void	ft_e_str(char *s);
 //************************************************************
 //************************* PARSING **************************
 //************************************************************
+t_map *fetch_map_params(t_map *map, char *file_name);

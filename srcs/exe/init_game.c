@@ -12,7 +12,7 @@
 
 #include "../../cub3d.h"
 
-void	ft_init_map(t_game *game)
+void	ft_init_map(t_game *game, char *arg)
 {
 	t_map		*map;
 	t_player	*player;
@@ -23,13 +23,18 @@ void	ft_init_map(t_game *game)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
+
 	game->map = map;
+    // get len/width
+    map = fetch_map_params(map, arg);
+
 	map->map2d = ft_calloc(MAP_WIDTH + 1, sizeof(char *));
 	if (!map->map2d)
 	{
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
+
 	map->map2d[0] = strdup("1111111111111111111111111");
 	map->map2d[1] = strdup("1000000000000000000000001");
 	map->map2d[2] = strdup("1000000000000000000000001");

@@ -29,6 +29,10 @@ srcs/exe/load_sprite.c\
 \
 srcs/parsing/parsing_map.c\
 \
+srcs/gnl/get_next_line.c\
+\
+srcs/gnl/get_next_line_utils.c\
+\
 
 OBJ = $(SRC:.c=.o)
 

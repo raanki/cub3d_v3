@@ -17,9 +17,8 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	(void)argc;
-	(void)argv;
 	game = ft_game_instance();
-	ft_init_map(game);
-	ft_start_the_game(game);
+	ft_init_map(game, argv[1]);
+    //ft_start_the_game(game);
 	return (0);
 }
