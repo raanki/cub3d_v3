@@ -12,6 +12,19 @@
 
 #include "../../cub3d.h"
 
+void prnt(char** arr) {
+    int i = 0;
+    while (arr[i] != NULL) {
+        int j = 0;
+        while (arr[i][j] != '\0') {
+            printf("%c ", arr[i][j]);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+}
+
 int	open_fd(char *name)
 {
     int	fd;
@@ -44,17 +57,38 @@ t_map *create_map(t_map *map, char *file)
 {
     int fd;
     int i = 0;
-
     fd = open_fd(file);
     map->map2d = ft_calloc(map -> h_map + 1, sizeof(char *));
-    map->map2d[map -> w_map + 1] = NULL;
-    while(map->map2d[i] != NULL)
+    map->map2d[map -> h_map] = NULL;
+
+    while (i < map -> h_map)
     {
-        map->map2d[i] = get_next_line(fd);
+        map->map2d[i] = ft_calloc(map -> w_map + 1, sizeof(char));
+        int j = 0;
+        while (j < map -> w_map) {
+            map->map2d[i][j] = 32;
+            j++;
+        }
         i++;
     }
+    i = 0;
+    while(True)
+    {
+        char *line = get_next_line(fd);
+        if (map->map2d[i] == NULL)
+            break;
+        strncpy(map->map2d[i], line, strlen(line));
+        i++;
+    }
+    //prnt(map -> map2d);
     return (map);
 }
+
+//t_map *test_map(t_map *map)
+//{
+//
+//}
+
 t_map *fetch_map_params(t_map *map, char *file)
 {
     int fd;

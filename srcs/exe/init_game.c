@@ -23,42 +23,16 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
+    //parse textures and colors before
+    
+	game->map = fetch_map_params(map, arg);
 
-	game->map = map;
-    // get len/width
-    map = fetch_map_params(map, arg);
-
-	map->map2d = ft_calloc(MAP_WIDTH + 1, sizeof(char *));
 	if (!map->map2d)
 	{
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-
-	map->map2d[0] = strdup("1111111111111111111111111");
-	map->map2d[1] = strdup("1000000000000000000000001");
-	map->map2d[2] = strdup("1000000000000000000000001");
-	map->map2d[3] = strdup("1000000000000000000000001");
-	map->map2d[4] = strdup("10000000222220000030003001");
-	map->map2d[5] = strdup("10000000200002000000000001");
-	map->map2d[6] = strdup("10000000200002000030003001");
-	map->map2d[7] = strdup("10000000200002000000000001");
-	map->map2d[8] = strdup("10000000222220000030003001");
-	map->map2d[9] = strdup("1000000000000000000000001");
-	map->map2d[10] = strdup("1000000000000000000000001");
-	map->map2d[11] = strdup("1000000000000000000000001");
-	map->map2d[12] = strdup("1000000000000000000000001");
-    map->map2d[14] = strdup("1000000000000000000000001");
-	map->map2d[13] = strdup("1000000000000000000000001");
-    map->map2d[15] = strdup("1000000000000000000000001");
-    map->map2d[16] = strdup("10000000000000000000000001");
-    map->map2d[17] = strdup("10000000000000000000000001");
-    map->map2d[18] = strdup("10000000000000000000000001");
-    map->map2d[19] = strdup("1111111111111111111111111");
-	map->map2d[20] = NULL;
-	map->w_map = MAP_WIDTH;
-	map->h_map = MAP_HEIGHT;
-	game->color_ceilling = COLOR_CEILLING;
+    game->color_ceilling = COLOR_CEILLING;
 	game->color_floor = COLOR_FLOOR;
 	player = malloc(sizeof(t_player));
 	if (player == NULL)
