@@ -24,7 +24,7 @@ void	ft_init_map(t_game *game, char *arg)
 		exit(EXIT_FAILURE);
 	}
     //parse textures and colors before
-    
+
 	game->map = fetch_map_params(map, arg);
 
 	if (!map->map2d)
