@@ -109,11 +109,7 @@ int scan_first_last_line(char *line, int line_curr, char **map)
     while (line[i] != '\n' && line[i] != '\0')
     {
         if (line[i] != '1' && (line[i] != 32 || (line[i] >= 9 && line[i] <= 13) == 1))
-        {
-            //printf("i -> %d\n", i);
-            //printf("char -> %d\n", line[i]);
             return(1);
-        }
         i++;
     }
     return(0);
@@ -134,14 +130,15 @@ int stupid_count_one_algo_left(char *line, int line_curr, char **map)
 
     if (is_ws == 1 && line[i] == '1')
     {
-        //printf("ws\n");
-        if (map[line_curr+1][i -1] == '1' || map[line_curr+1][i + 1] == '1')
+        printf("ws\n");
+        if (map[line_curr+1][i - 1] == '1' || map[line_curr+1][i + 1] == '1'  || map[line_curr+1][i] == '1')
             cnt++;
-
-        if (map[line_curr+1][i] == '1' || map[line_curr-1][i] == '1')
+        if (map[line_curr+1][i] == '1' || map[line_curr-1][i] == '1' || map[line_curr-1][i - 1] == '1')
             cnt++;
-
-        if (cnt == 2)
+        if ((map[line_curr+1][i - 1] == '1' && map[line_curr-1][i + 1] == '1') || (map[line_curr-1][i + 1] == '1' && map[line_curr+1][i - 1] == '1'))
+            cnt++;
+        printf("cnt -> %d", cnt);
+        if (cnt >= 2)
             return(0);
         else
             return(1);
@@ -183,7 +180,7 @@ t_map *test_map(t_map *map)
         else
         {
             flag = stupid_count_one_algo_left(check_map[i], i, check_map);
-            //printf("flag -> %d, i -> %d\n", flag, i);
+            //printf("line -> %s flag -> %d, i -> %d\n", check_map[i], flag, i);
             if (flag == 1)
             {
                 printf("Map is not valid/algo");
