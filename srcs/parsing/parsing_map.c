@@ -86,7 +86,7 @@ t_map *create_map(t_map *map, char *file)
 }
 
 
-int scan_first_last_line(char *line, int line_curr, char **map)
+int scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info)
 {
     int i;
     int is_ws = 0;
@@ -101,6 +101,15 @@ int scan_first_last_line(char *line, int line_curr, char **map)
     {
         if (map[line_curr + 1][i - 1] != '1')
             return(1);
+    }
+    if (is_ws == 1 && line[i] == '1' && line_curr == map_info -> h_map - 1)
+    {
+        if (map[line_curr - 1][i - 1] != '1')
+        {
+
+            return(1);
+        }
+
     }
     while (line[i] != '\n' && line[i] != '\0')
     {
@@ -124,7 +133,7 @@ int stupid_count_one_algo(char *line, int line_curr, char **map)
 
     if (is_ws == 1 && line[i] == '1')
     {
-        printf("ws\n");
+
         if (map[line_curr+1][i - 1] == '1' || map[line_curr+1][i + 1] == '1'  || map[line_curr+1][i] == '1')
             cnt++;
         if (map[line_curr+1][i] == '1' || map[line_curr-1][i] == '1' || map[line_curr-1][i - 1] == '1')
@@ -147,7 +156,7 @@ int stupid_count_one_algo(char *line, int line_curr, char **map)
 }
 
 int stupid_count_one_algo_right(char *line, int line_curr, char **map) {
-    int i = strlen(line) - 1; // Start from the end of the line
+    int i = strlen(line) - 1;
     int cnt = 0;
     int is_ws = 0;
 
@@ -160,8 +169,10 @@ int stupid_count_one_algo_right(char *line, int line_curr, char **map) {
         int has_next_line = (map[line_curr + 1] != NULL);
         int has_prev_line = (line_curr > 0);
 
-        if (i > 0 && line[i - 1] == '1') cnt++;
-        if (line[i + 1] == '1') cnt++;
+        if (i > 0 && line[i - 1] == '1')
+            cnt++;
+        if (line[i + 1] == '1')
+            cnt++;
 
         if (has_next_line) {
             if (i > 0 && map[line_curr + 1][i - 1] == '1')
@@ -202,7 +213,7 @@ void first_check(char **map)
         j = 0;
         while (map[i][j] != '\0' && map[i][j] != '\n')
         {
-            if ((map[i][j] == '1' || map[i][j] == '0' || map[i][j]) != 'N' || (map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13)))
+            if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13))
                 j++;
             else
             {
@@ -221,6 +232,7 @@ t_map *test_map(t_map *map)
     int i;
     char **check_map;
     int flag;
+    int flag_1;
     flag = -1;
     i = 0;
     check_map = map ->map2d;
@@ -232,10 +244,11 @@ t_map *test_map(t_map *map)
     {
         if (i == 0 || i == map->h_map - 1)
         {
-            flag = scan_first_last_line(check_map[i], i, check_map);
+            flag = scan_first_last_line(check_map[i], i, check_map, map);
             if (flag == 1)
             {
-                printf("Map is not valid");
+
+                printf("Map is not valid hih");
                 // exit
                 exit(27);
             }
@@ -243,8 +256,8 @@ t_map *test_map(t_map *map)
         else
         {
             flag = stupid_count_one_algo(check_map[i], i, check_map);
-            flag = stupid_count_one_algo_right(check_map[i], i, check_map);
-            if (flag == 1)
+            flag_1 = stupid_count_one_algo_right(check_map[i], i, check_map);
+            if (flag == 1 || flag_1 == 1)
             {
                 printf("Map is not valid");
                 // free stuff
