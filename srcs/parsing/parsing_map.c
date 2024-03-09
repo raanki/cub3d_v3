@@ -202,7 +202,7 @@ void first_check(char **map)
         j = 0;
         while (map[i][j] != '\0' && map[i][j] != '\n')
         {
-            if ((map[i][j] == '1' || map[i][j] == '0') || (map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13)))
+            if ((map[i][j] == '1' || map[i][j] == '0' || map[i][j]) != 'N' || (map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13)))
                 j++;
             else
             {
