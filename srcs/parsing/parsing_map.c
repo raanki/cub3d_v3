@@ -160,17 +160,21 @@ int find_last_non_whitespace_char(char *line) {
     while (i >= 0 && (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))) {
         i--;
     }
-    printf("i -> %d\n", i);
     return i;
 }
 
 int stupid_count_one_algo_right(char *line, int line_curr, char **map) {
     int i = strlen(line) - 1;
     int cnt = 0;
-    // make this into a separate func return i -> then resuse it
-    i = find_last_non_whitespace_char(line);
+    int is_ws = 0;
 
-    if (i != 0 && line[i] == '1') {
+    // make this into a separate func return i -> then resuse it
+    while (i >= 0 && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13))) {
+        i--;
+        is_ws = 1;
+    }
+
+    if (is_ws == 1 && line[i] == '1') {
         int has_next_line = (map[line_curr + 1] != NULL);
         int has_prev_line = (line_curr > 0);
 
