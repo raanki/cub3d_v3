@@ -85,12 +85,8 @@ t_map *create_map(t_map *map, char *file)
     return (map);
 }
 
-//int check_map_values(char c)
-//{
-//    if (c != 32 || c != 48 || c != 49)
-//}
 
-int scan_first_last_line(char *line, int line_curr, char **map)
+int scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info)
 {
     int i;
     int is_ws = 0;
@@ -106,6 +102,15 @@ int scan_first_last_line(char *line, int line_curr, char **map)
         if (map[line_curr + 1][i - 1] != '1')
             return(1);
     }
+    if (is_ws == 1 && line[i] == '1' && line_curr == map_info -> h_map - 1)
+    {
+        if (map[line_curr - 1][i - 1] != '1')
+        {
+
+            return(1);
+        }
+
+    }
     while (line[i] != '\n' && line[i] != '\0')
     {
         if (line[i] != '1' && (line[i] != 32 || (line[i] >= 9 && line[i] <= 13) == 1))
@@ -115,13 +120,11 @@ int scan_first_last_line(char *line, int line_curr, char **map)
     return(0);
 }
 
-int stupid_count_one_algo_left(char *line, int line_curr, char **map)
+int stupid_count_one_algo(char *line, int line_curr, char **map)
 {
     int i = 0;
     int cnt = 0;
     int is_ws = 0;
-    //skip whitespaces
-    //printf("line num %d -> %s\n", i,line);
 
     while (line[i] == 32 || (line[i] >= 9 && line[i] <= 13)){
         i++;
@@ -130,14 +133,14 @@ int stupid_count_one_algo_left(char *line, int line_curr, char **map)
 
     if (is_ws == 1 && line[i] == '1')
     {
-        printf("ws\n");
+
         if (map[line_curr+1][i - 1] == '1' || map[line_curr+1][i + 1] == '1'  || map[line_curr+1][i] == '1')
             cnt++;
         if (map[line_curr+1][i] == '1' || map[line_curr-1][i] == '1' || map[line_curr-1][i - 1] == '1')
             cnt++;
         if ((map[line_curr+1][i - 1] == '1' && map[line_curr-1][i + 1] == '1') || (map[line_curr-1][i + 1] == '1' && map[line_curr+1][i - 1] == '1'))
             cnt++;
-        printf("cnt -> %d", cnt);
+
         if (cnt >= 2)
             return(0);
         else
@@ -145,13 +148,91 @@ int stupid_count_one_algo_left(char *line, int line_curr, char **map)
     }
     else
     {
-        //printf("else\n");
         if (line[i] == '1')
             return(0);
         else
             return(-1);
     }
+}
 
+int find_last_non_whitespace_char(char *line) {
+    int i = strlen(line) - 1;
+    while (i >= 0 && (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))) {
+        i--;
+    }
+    return i;
+}
+
+int stupid_count_one_algo_right(char *line, int line_curr, char **map) {
+    int i = strlen(line) - 1;
+    int cnt = 0;
+    int is_ws = 0;
+
+    // make this into a separate func return i -> then resuse it
+    while (i >= 0 && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13))) {
+        i--;
+        is_ws = 1;
+    }
+
+    if (is_ws == 1 && line[i] == '1') {
+        int has_next_line = (map[line_curr + 1] != NULL);
+        int has_prev_line = (line_curr > 0);
+
+        if (i > 0 && line[i - 1] == '1')
+            cnt++;
+        if (line[i + 1] == '1')
+            cnt++;
+
+        if (has_next_line) {
+            if (i > 0 && map[line_curr + 1][i - 1] == '1')
+                cnt++;
+            if (map[line_curr + 1][i] == '1')
+                cnt++;
+            if (map[line_curr + 1][i + 1] == '1')
+                cnt++;
+        }
+        if (has_prev_line) {
+            if (i > 0 && map[line_curr - 1][i - 1] == '1')
+                cnt++;
+            if (map[line_curr - 1][i] == '1')
+                cnt++;
+            if (map[line_curr - 1][i + 1] == '1')
+                cnt++;
+        }
+
+        if (cnt >= 2)
+            return(0);
+        else
+            return(1);
+    }
+    else {
+        if (line[i] == '1')
+            return(0);
+        else
+            return(-1);
+    }
+}
+void first_check(char **map)
+{
+    int i;
+    int j;
+    i = 0;
+    while (map[i] != NULL)
+    {
+        j = 0;
+        while (map[i][j] != '\0' && map[i][j] != '\n')
+        {
+            if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13))
+                j++;
+            else
+            {
+                printf("no valid\n");
+                exit(27);
+            }
+        }
+        i++;
+    }
+    printf("All valid\n");
 
 }
 
@@ -160,30 +241,34 @@ t_map *test_map(t_map *map)
     int i;
     char **check_map;
     int flag;
+    int flag_1;
     flag = -1;
     i = 0;
     check_map = map ->map2d;
 
+    first_check(map -> map2d);
+
+    // complex check spaces
     while (check_map[i] != NULL)
     {
         if (i == 0 || i == map->h_map - 1)
         {
-            flag = scan_first_last_line(check_map[i], i, check_map);
+            flag = scan_first_last_line(check_map[i], i, check_map, map);
             if (flag == 1)
             {
-                printf("Map is not valid/scan");
-                //printf("line num %d -> %s\n", i,check_map[i]);
-                // free stuff
+
+                printf("Map is not valid hih");
+                // exit
                 exit(27);
             }
         }
         else
         {
-            flag = stupid_count_one_algo_left(check_map[i], i, check_map);
-            //printf("line -> %s flag -> %d, i -> %d\n", check_map[i], flag, i);
-            if (flag == 1)
+            flag = stupid_count_one_algo(check_map[i], i, check_map);
+            flag_1 = stupid_count_one_algo_right(check_map[i], i, check_map);
+            if (flag == 1 || flag_1 == 1)
             {
-                printf("Map is not valid/algo");
+                printf("Map is not valid");
                 // free stuff
                 exit(27);
             }
