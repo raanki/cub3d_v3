@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 18:24:59 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/09 11:19:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 
 #define MAP_WIDTH 24
 #define MAP_HEIGHT 20
-#define SCREEN_WIDTH 640 
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1500 
+#define SCREEN_HEIGHT 900
 #define COLOR_CEILLING 0x00FF00
 #define COLOR_FLOOR 0x0000FF
 #define M_PI 3.14159265358979323846 
@@ -172,4 +172,6 @@ void	ft_e_str(char *s);
 //************************************************************
 //************************* PARSING **************************
 //************************************************************
-t_map *fetch_map_params(t_map *map, char *file_name);
+
+t_map	*fetch_map_params(t_map *map, char *file_name);
+void	parse_line_color(t_game *game, char *line);

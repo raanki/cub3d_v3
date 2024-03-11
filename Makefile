@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/03 18:04:05 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/09 11:21:13 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,16 @@ srcs/gnl/get_next_line.c\
 \
 srcs/gnl/get_next_line_utils.c\
 \
+srcs/parsing/parsing_color.c\
+\
+srcs/parsing/parsing_text.c\
+\
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Iminilibx-linux -Wall -Werror -Wextra
-LDFLAGS = -Lminilibx-linux
+CFLAGS = -Iminilibx-linux
+LDFLAGS = -Lminilibx-linux -Wall -Werror -Wextra
 LDLIBS = -lmlx -lbsd -lXext -lX11 -lm
 
 .SILENT:

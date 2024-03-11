@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 18:23:09 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/09 09:46:50 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,34 @@ void	ft_hook_find_hit(t_game *game)
 	}
 }
 
+int	find_nice_pitch()
+{
+	if (SCREEN_HEIGHT <= 500)
+		return 100;
+	if (SCREEN_HEIGHT <= 700)
+		return 50;
+	if (SCREEN_HEIGHT <= 800)
+		return 40;
+	if (SCREEN_HEIGHT <= 900)
+		return 30;
+	if (SCREEN_HEIGHT <= 1000)
+		return 20;
+	if (SCREEN_HEIGHT <= 1100)
+		return 10;
+	if (SCREEN_HEIGHT <= 1200)
+		return 5;
+	if (SCREEN_HEIGHT <= 1300)
+		return 0;
+	return 0;
+}
+
 void	ft_hook_target_draw(t_game *game)
 {
 	if (game->side == 0)
 		game->perp_wall_dist = (game->side_dist_x - game->delta_dist_x);
 	else
 		game->perp_wall_dist = (game->side_dist_y - game->delta_dist_y);
-	game->pitch = 100;
+	game->pitch = find_nice_pitch();
 	game->line_height = (int)(SCREEN_HEIGHT / game->perp_wall_dist);
 	game->draw_start = -game->line_height / 2 + SCREEN_HEIGHT / 2 + game->pitch;
 	if (game->draw_start < 0)
