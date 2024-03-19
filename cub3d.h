@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/09 11:19:38 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 00:39:25 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,11 @@
 //****************************************************************
 //****************************************************************
 
-#define MAP_WIDTH 24
-#define MAP_HEIGHT 20
 #define SCREEN_WIDTH 1500 
 #define SCREEN_HEIGHT 900
-#define COLOR_CEILLING 0x00FF00
-#define COLOR_FLOOR 0x0000FF
 #define M_PI 3.14159265358979323846 
 #define TILE_SIZE 64
 #define FOV 0.66
-#define PLAYER_START_X 15
-#define PLAYER_START_Y 12
-#define SPRITE_WEST "sprites/sky-blue.xpm"
-#define SPRITE_EAST "sprites/dark.xpm"
-#define SPRITE_NORTH "sprites/brown.xpm"
-#define SPRITE_SOUTH "sprites/grey.xpm"
 
 #include "srcs/gnl/get_next_line.h"
 //*****************************************************************
@@ -135,6 +125,7 @@ typedef struct s_game
 	double		sure_mode;
 	double		rotSpeed;
 	double		stepSide;
+	char		**sprite_path;
 }	t_game;
 
 //************************************************************
@@ -173,5 +164,15 @@ void	ft_e_str(char *s);
 //************************* PARSING **************************
 //************************************************************
 
-t_map	*fetch_map_params(t_map *map, char *file_name);
-void	parse_line_color(t_game *game, char *line);
+t_map	*fetch_map_params(int fd, t_map *map, char *file_name, t_game *game);
+unsigned int	parse_line_color(t_game *game, char *line);
+char	*parse_line_texture(t_game *game, char *line);
+int		is_line_texture(char *line);
+int		open_fd(char *name);
+void	prnt(char** arr);
+int    is_line_color(char *line);
+int		is_only_space(char *str);
+char *remove_last_spaces(char *line);
+char		**ft_split(char const *s, char c);
+int	ft_strncmp(char *s1, char *s2, size_t n);
+char    *remove_first_spaces_until_first_letter(char *line);

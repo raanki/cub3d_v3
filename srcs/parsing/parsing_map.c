@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 18:04:58 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 00:36:55 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,18 @@ t_map *create_map(t_map *map, char *file)
     while(True)
     {
         char *line = get_next_line(fd);
+        if (is_line_color(line) || is_line_texture(line) || is_only_space(line))
+        {
+          	continue;
+        }
         if (map->map2d[i] == NULL)
             break;
-        strncpy(map->map2d[i], line, strlen(line));
+        if (!line) {
+            map->map2d[i] = NULL;
+            break;
+        }
+
+        strncpy(map->map2d[i], line, ft_strlen(line));
         i++;
     }
     close(fd);
@@ -212,7 +221,8 @@ int stupid_count_one_algo_right(char *line, int line_curr, char **map) {
             return(-1);
     }
 }
-void first_check(char **map)
+
+void first_check(t_game *game, char **map)
 {
     int i;
     int j;
@@ -222,13 +232,21 @@ void first_check(char **map)
         j = 0;
         while (map[i][j] != '\0' && map[i][j] != '\n')
         {
-            if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13))
-                j++;
-            else
-            {
-                printf("no valid\n");
-                exit(27);
-            }
+		if (map[i][j] == 'N')
+		{
+			printf("\nset pos player\n");
+			game->player->plyr_y = j;
+			game->player->plyr_x = i;
+		}
+		if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'N'
+		|| map[i][j] == 32 || (map[i][j] >= 9 && map[i][j] <= 13)
+		|| map[i][j] == 49 || map[i][j] == 79)
+			j++;
+		else
+		{
+			printf("no valid\n");
+			exit(27);
+		}
         }
         i++;
     }
@@ -236,7 +254,7 @@ void first_check(char **map)
 
 }
 
-t_map *test_map(t_map *map)
+t_map *test_map(t_game *game, t_map *map)
 {
     int i;
     char **check_map;
@@ -246,7 +264,8 @@ t_map *test_map(t_map *map)
     i = 0;
     check_map = map ->map2d;
 
-    first_check(map -> map2d);
+
+    first_check(game, map -> map2d);
 
     // complex check spaces
     while (check_map[i] != NULL)
@@ -286,13 +305,11 @@ t_map *test_map(t_map *map)
     return(map);
 }
 
-t_map *fetch_map_params(t_map *map, char *file)
+t_map *fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 {
-    int fd;
     char *line = "";
     int width;
     int i = 0;
-    fd = open_fd(file);
 
     width = -1;
     while (line != NULL)
@@ -310,7 +327,7 @@ t_map *fetch_map_params(t_map *map, char *file)
     map -> h_map = i;
     map = create_map(map, file);
     //prnt(map -> map2d);
-    map = test_map(map);
+    map = test_map(game, map);
     return(map);
 
 }

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:13 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/09 12:15:45 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 00:00:54 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	parse_line_color(NULL, "SO ./path_to_the_north_texture");
-	exit(1);
+	// parse_line_color(NULL, "F 220,100,0");
 	t_game	*game;
 
 	(void)argc;

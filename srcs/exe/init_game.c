@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 18:25:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 00:33:09 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,70 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-    //parse textures and colors before
+	
+	game->player = malloc(sizeof(t_player));
+	if (game->player  == NULL)
+	{
+		ft_free_game(game);
+		exit(0);
+	}
 
-	game->map = fetch_map_params(map, arg);
+//*************************************************************************************************************
+    // here do the color / player / texture parsing
+
+	game->sprite_path = ft_calloc(5, sizeof(char *));
+	if (!game->sprite_path)
+	{
+		ft_free_game(game);
+		exit(EXIT_FAILURE);
+	}
+	
+
+	int fd = open_fd(arg);
+	char *line = "";
+	int	index_sprite_path = 0;
+	int	count_valid_information = 0;
+
+    while (line != NULL && count_valid_information < 6)
+    {
+        line = get_next_line(fd);
+
+		if (is_line_texture(line))
+		{
+			game->sprite_path[index_sprite_path] = parse_line_texture(game, ft_strdup(line));
+			count_valid_information++;
+			index_sprite_path++;
+		}
+		else if (is_line_color(line))
+		{
+			parse_line_color(game, line);
+			count_valid_information++;
+		}
+        
+        free(line);
+    }
+
+	game->sprite_path[4] = NULL;
+	
+// end parse color / player / texture 
+//*************************************************************************************************************
+
+
+	game->map = fetch_map_params(fd, map, arg, game);
 
 	if (!map->map2d)
 	{
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-    game->color_ceilling = COLOR_CEILLING;
-	game->color_floor = COLOR_FLOOR;
-	player = malloc(sizeof(t_player));
-	if (player == NULL)
-	{
-		ft_free_game(game);
-		exit(0);
-	}
-	player->dir_x = -1;
-	player->dir_y = 0;
-	player->plyr_x = PLAYER_START_X;
-	player->plyr_y = PLAYER_START_Y;
-	player->plan_x = 0;
-	player->plan_y = FOV;
+	game->player ->dir_x = -1;
+	game->player ->dir_y = 0;
+	game->player ->plan_x = 0;
+	game->player ->plan_y = FOV;
 	game->map = map;
-	game->player = player;
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;
+
 }
 
 void	ft_start_the_game(t_game *game)

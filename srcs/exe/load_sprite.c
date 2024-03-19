@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 19:47:11 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/19 23:54:15 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 {
 	int		width;
 	int		height;
-
+	
+	width = 0;
+	height = 0;
 	game->sprite[*i] = ft_calloc(1, sizeof(t_sprite));
 	if (!game->sprite[*i])
 	{
@@ -25,9 +27,12 @@ void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 	}
 	game->sprite[*i]->pixel_colors = NULL;
 	game->sprite[*i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p,
-			sprite_paths[*i], &width, &height);
-	if ((!game->sprite[*i]->img) || (width != TILE_SIZE || height != TILE_SIZE))
+			 game->sprite_path[*i], &width, &height);
+	if (!(game->sprite[*i]->img) || (width != TILE_SIZE || height != TILE_SIZE))
 	{
+		printf("\n\nerror pour le sprite \"%s\"\n", game->sprite_path[*i]);
+		printf("width %d\n", width);
+		printf("height %d\n", height);
 		ft_e_str("sprite");
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
@@ -68,7 +73,7 @@ void	ft_manage_sprite(t_game *game, char *sprite_paths[4])
 	i = 0;
 	while (i < 4)
 	{
-		ft_manage_create_sprite(game, &i, sprite_paths);
+		ft_manage_create_sprite(game, &i, game->sprite_path);
 		game->sprite[i]->pixel_colors = ft_calloc((TILE_SIZE
 				* TILE_SIZE + 1), sizeof(int));
 		if (!game->sprite[i]->pixel_colors)
@@ -84,19 +89,13 @@ void	ft_manage_sprite(t_game *game, char *sprite_paths[4])
 void	ft_load_sprite(t_game *game)
 {
 	
-	char	*sprite_paths[4];
-
-	sprite_paths[0] = SPRITE_WEST;
-	sprite_paths[1] = SPRITE_EAST;
-	sprite_paths[2] = SPRITE_NORTH;
-	sprite_paths[3] = SPRITE_SOUTH;
 	game->sprite = ft_calloc(4, sizeof(t_sprite *));
 	if (!game->sprite)
 	{
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	ft_manage_sprite(game, sprite_paths);
+	ft_manage_sprite(game, game->sprite_path);
 }
 
 void	ft_e_str(char *s)
