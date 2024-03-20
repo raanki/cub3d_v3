@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:19:06 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 23:24:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ t_map	*create_map(t_map *map, char *file)
 
 int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
 {
-	int i;
-	int cnt;
-	int is_ws;
-	int has_next_line;
-	int has_prev_line;
+	int	i;
+	int	cnt;
+	int	is_ws;
+	int	has_next_line;
+	int	has_prev_line;
 
 	is_ws = 0;
 	cnt = 0;
@@ -124,7 +124,7 @@ int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
 	}
 }
 
-t_map *test_map(t_game *game, t_map *map)
+t_map	*test_map(t_game *game, t_map *map)
 {
 	int		i;
 	char	**check_map;
