@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 00:33:09 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 20:39:33 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	game->player = malloc(sizeof(t_player));
 	if (game->player  == NULL)
 	{

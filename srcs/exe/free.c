@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 19:46:41 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 20:58:01 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	ft_free_game(t_game *game)
 	{
 		while (i < 4)
 		{
+			if (game->sprite_path[i])
+				free(game->sprite_path[i]);
 			if (!game->sprite[i])
 			{
 				i++;
@@ -76,6 +78,7 @@ void	ft_free_game(t_game *game)
 			free(game->sprite[i]);
 			i++;
 		}
+		free(game->sprite_path);
 		free(game->sprite);
 	}
 	ft_free_mlx(game);

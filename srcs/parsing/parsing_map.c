@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 01:00:02 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 20:53:22 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_map	*create_map(t_map *map, char *file)
 		j = 0;
 		while (j < map -> w_map)
 		{
-			map->map2d[i][j] = 32;
+			map->map2d[i][j] = ' ';
 			j++;
 		}
 		i++;
@@ -87,13 +87,18 @@ t_map	*create_map(t_map *map, char *file)
 		line = get_next_line(fd);
 		if (is_line_color(line) || is_line_texture(line) || is_only_space(line))
 			continue ;
-		if (map->map2d[i] == NULL)
-			break ;
+		if (map->map2d[i] == NULL) {
+			
+		}
 		if (!line) {
 			map->map2d[i] = NULL;
 			break ;
 		}
 		strncpy(map->map2d[i], line, ft_strlen(line));
+		if (line) {
+			free(line);
+			line = NULL;
+		}
 		i++;
 	}
 	close(fd);

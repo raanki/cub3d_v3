@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 00:49:41 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 20:49:37 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*remove_first_spaces_until_first_letter(char *line)
 		ft_e_str("malloc");
 		return (NULL);
 	}
+	free(line);
 	return (ret);
 }
 
@@ -79,6 +80,7 @@ char	*get_type_texture_from_valid_line_color(char *line)
 	ret[0] = line[0];
 	ret[1] = line[1];
 	ret[2] = '\0';
+	free(line);
 	return (ret);
 }
 

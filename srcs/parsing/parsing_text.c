@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 01:01:37 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 20:54:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	is_line_texture(char *line)
 		|| !ft_strncmp(cpy_line, "SO ", 3)
 		|| !ft_strncmp(cpy_line, "WE ", 3)
 		|| !ft_strncmp(cpy_line, "EA ", 3))
+	{
 		return (1);
+	}
 	return (0);
 }
 
