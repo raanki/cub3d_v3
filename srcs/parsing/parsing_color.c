@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 00:38:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 00:49:41 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,33 @@ char	*ft_strdup(const char *src)
 	return (cpy);
 }
 
-char    *remove_first_spaces_until_first_letter(char *line)
+char	*remove_first_spaces_until_first_letter(char *line)
 {
-	int     index_first_character;
-	int     index_last_space;
-	char    *ret;
+	int		index_first_character;
+	int		index_last_space;
+	char	*ret;
 
 	index_first_character = 0;
 	index_last_space = 0;
 	if (!line)
-		return line;
-	while(line[index_last_space] == ' ')
+		return (line);
+	while (line[index_last_space] == ' ')
 		index_last_space++;
 	if (!index_last_space)
-		return line;
+		return (line);
 	ret = ft_strdup(line + index_last_space);
 	if (!ret)
 	{
 		ft_e_str("malloc");
-		return NULL;
+		return (NULL);
 	}
 	return (ret);
-
 }
 
-int    is_line_color(char *line)
+int	is_line_color(char *line)
 {
-	char    *cpy_line;
-	
+	char	*cpy_line;
+
 	if (!line || line[0] == '\0')
 		return (0);
 	cpy_line = remove_first_spaces_until_first_letter(line);
@@ -67,16 +66,15 @@ int    is_line_color(char *line)
 	return (0);
 }
 
-
 char	*get_type_texture_from_valid_line_color(char *line)
 {
-	char *ret;
+	char	*ret;
 
 	ret = malloc(2 + 1);
 	if (!ret)
 	{
 		ft_e_str("malloc");
-		return NULL;
+		return (NULL);
 	}
 	ret[0] = line[0];
 	ret[1] = line[1];
@@ -84,26 +82,28 @@ char	*get_type_texture_from_valid_line_color(char *line)
 	return (ret);
 }
 
-char *remove_last_spaces(char *line)
+char	*remove_last_spaces(char *line)
 {
-	int index_last_letter;
-	int	i;
-	char *ret;
-	int size_line = 0;
-	
+	int		index_last_letter;
+	int		i;
+	char	*ret;
+	int		size_line;
+
+	size_line = 0;
 	size_line = ft_strlen(line);
 	index_last_letter = size_line - 1;
 	i = 0;
-	while ((line[index_last_letter] == ' ' || line[index_last_letter] == '\n') && index_last_letter >= 0)
+	while ((line[index_last_letter] == ' ' || line[index_last_letter] == '\n')
+		&& index_last_letter >= 0)
 		index_last_letter--;
-	if (index_last_letter < 0) 
-		return line;
+	if (index_last_letter < 0)
+		return (line);
 	index_last_letter++;
 	ret = malloc(2 * size_line - index_last_letter + 1);
 	if (!ret)
 	{
 		ft_e_str("malloc");
-		return NULL;
+		return (NULL);
 	}
 	while (i < index_last_letter)
 	{
@@ -114,20 +114,21 @@ char *remove_last_spaces(char *line)
 	return (ret);
 }
 
-char *remove_all_space(char *str)
+char	*remove_all_space(char *str)
 {
-	int i;
-	int size_str;
-	int size_return;
-	char *ret;
+	int		i;
+	int		size_str;
+	int		size_return;
+	char	*ret;
+	int		index_new_str;
 
 	size_return = 0;
+	index_new_str = 0;
 	i = 0;
 	size_str = ft_strlen(str);
-	if (!size_str){
-		return NULL;
-	}
-	while(str && str[i])
+	if (!size_str)
+		return (NULL);
+	while (str && str[i])
 	{
 		if (str[i] == ' ' || str[i] == '\n')
 			size_return++;
@@ -135,56 +136,55 @@ char *remove_all_space(char *str)
 	}
 	ret = malloc(size_str - size_return + 1);
 	if (!ret)
-	{
-		return 0;
-	}
+		return (0);
 	i = 0;
-	int index_new_str = 0;
 	while (str && str[i])
 	{
 		if (str[i] != ' ' && str[i] != '\n')
 		{
 			ret[index_new_str] = str[i];
-			index_new_str++;	
+			index_new_str++;
 		}
 		i++;
 	}
 	ret[index_new_str] = '\0';
-	return ret;
+	return (ret);
 }
 
-unsigned int rgb_to_hex(int r, int g, int b)
+unsigned	int	rgb_to_hex(int r, int g, int b)
 {
-    unsigned int hex;
+	unsigned int	hex;
+
     hex = (r << 16) + (g << 8) + b;
-    return hex;
+    return (hex);
 }
 
 char	*get_color_from_valid_line_color(char *line)
 {
-	char *color_str;
+	char	*color_str;
 
 	color_str = remove_first_spaces_until_first_letter(line + 2);
 	return (color_str);
-	
 }
 
-
-
-unsigned int	parse_line_color(t_game *game, char *line)
+unsigned	int	parse_line_color(t_game *game, char *line)
 {
 	char	*cpy_line;
 	char	*type_text;
 	char	*path;
-	int r, g, b;
+	int		b;
+	int		r;
+	int		g;
 	char	**split_rgb;
-	int		color_ceilling = 0;
-	int i = 0;
+	int		color_ceilling;
+	int		i = 0;
 
+	i = 0;
+	color_ceilling = 0;
 	if (!is_line_color(line))
 	{
 		ft_e_str("not valid line color");
-		return 0;
+		return (0);
 	}
 	cpy_line = remove_first_spaces_until_first_letter(line);
 	if (line && (line[0] == 'C'))
@@ -194,7 +194,7 @@ unsigned int	parse_line_color(t_game *game, char *line)
 	cpy_line = get_color_from_valid_line_color(cpy_line);
 	cpy_line = remove_all_space(cpy_line);
 	split_rgb = ft_split(cpy_line, ',');
-	while(split_rgb && split_rgb[i])
+	while (split_rgb && split_rgb[i])
 	{
 		if (i == 0)
 			r = atoi(split_rgb[0]);
@@ -204,18 +204,9 @@ unsigned int	parse_line_color(t_game *game, char *line)
 			b = atoi(split_rgb[2]);
 		i++;
 	}
-
-	if (color_ceilling) {
-		game->color_ceilling = rgb_to_hex(r, g , b);
-		printf("set color for ceilling\n");
-	} else {
-		game->color_floor = rgb_to_hex(r, g , b);
-		printf("set color for floor");
-	}
-	return rgb_to_hex(r, g , b);
+	if (color_ceilling)
+		game->color_ceilling = rgb_to_hex(r, g, b);
+	else
+		game->color_floor = rgb_to_hex(r, g, b);
+	return (rgb_to_hex(r, g, b));
 }
-
-
-
-
-
