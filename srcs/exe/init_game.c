@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 21:39:45 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 22:13:53 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ void	ft_init_map(t_game *game, char *arg)
 			count_valid_information++;
 			index_sprite_path++;
 		}
-		else
-		if (is_line_color(line))
+		else if (is_line_color(line))
 		{
 			
 			parse_line_color(game, tmp);
