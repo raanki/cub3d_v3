@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:20:07 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 21:21:22 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_game	*ft_game_instance(void)
 			exit(EXIT_FAILURE);
 		game_instance->map = NULL;
 		game_instance->player = NULL;
+		game_instance->sprite = NULL;
+		game_instance->sprite_path = NULL;
+		game_instance->mlx = NULL;
 	}
 	return (game_instance);
 }

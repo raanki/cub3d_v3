@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 20:49:37 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 21:00:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ int	is_line_color(char *line)
 	cpy_line = remove_first_spaces_until_first_letter(line);
 	if (!ft_strncmp(cpy_line, "F ", 2)
 		|| !ft_strncmp(cpy_line, "C ", 2))
-		return (1);
+		{
+			return (1);
+		}
 	return (0);
 }
 

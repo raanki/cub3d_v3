@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 20:58:01 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 21:38:45 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void	ft_free_map(t_game *game, int *i)
 	if (game->map && game->map->map2d)
 		free(game->map->map2d);
 	if (game->map)
+	{
 		free(game->map);
+	}
 	if (game->player)
 		free(game->player);
 }
@@ -64,8 +66,6 @@ void	ft_free_game(t_game *game)
 	{
 		while (i < 4)
 		{
-			if (game->sprite_path[i])
-				free(game->sprite_path[i]);
 			if (!game->sprite[i])
 			{
 				i++;
@@ -78,9 +78,21 @@ void	ft_free_game(t_game *game)
 			free(game->sprite[i]);
 			i++;
 		}
-		free(game->sprite_path);
 		free(game->sprite);
 	}
+
+	i = 0;
+	if (game->sprite_path)
+	{
+		while (i < 4)
+		{
+			if (game->sprite_path[i])
+				free(game->sprite_path[i]);
+			i++;
+		}
+		free(game->sprite_path);
+	}
+
 	ft_free_mlx(game);
 	free(game);
 }

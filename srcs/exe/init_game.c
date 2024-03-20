@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 20:39:33 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 21:39:45 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,29 @@
 
 void	ft_init_map(t_game *game, char *arg)
 {
-	t_map		*map;
 	t_player	*player;
 
-	map = ft_calloc(1, sizeof(t_map));
-	if (!map)
+
+	game->map = malloc(sizeof(t_map));
+	if (!game->map)
 	{
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
 
+	game->map->map2d = NULL;
+
 	game->player = malloc(sizeof(t_player));
 	if (game->player  == NULL)
 	{
 		ft_free_game(game);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 
 //*************************************************************************************************************
     // here do the color / player / texture parsing
+
+	char *tmp;
 
 	game->sprite_path = ft_calloc(5, sizeof(char *));
 	if (!game->sprite_path)
@@ -40,7 +44,10 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	
+	game->sprite_path[0] = NULL;
+	game->sprite_path[1] = NULL;
+	game->sprite_path[2] = NULL;
+	game->sprite_path[3] = NULL;
 
 	int fd = open_fd(arg);
 	char *line = "";
@@ -50,31 +57,43 @@ void	ft_init_map(t_game *game, char *arg)
     while (line != NULL && count_valid_information < 6)
     {
         line = get_next_line(fd);
-
+		if (!line)
+			break ;
+		tmp = ft_strdup(line);
 		if (is_line_texture(line))
 		{
-			game->sprite_path[index_sprite_path] = parse_line_texture(game, ft_strdup(line));
+			game->sprite_path[index_sprite_path] = parse_line_texture(game, tmp);
 			count_valid_information++;
 			index_sprite_path++;
 		}
-		else if (is_line_color(line))
+		else
+		if (is_line_color(line))
 		{
-			parse_line_color(game, line);
+			
+			parse_line_color(game, tmp);
 			count_valid_information++;
 		}
         
+		free(tmp);
         free(line);
     }
 
 	game->sprite_path[4] = NULL;
 	
+	if (count_valid_information != 6)
+	{
+		ft_free_game(game);
+		printf("lack informations (texture or color)\n");
+		exit(EXIT_FAILURE);
+	}
+	
 // end parse color / player / texture 
 //*************************************************************************************************************
 
 
-	game->map = fetch_map_params(fd, map, arg, game);
+	game->map = fetch_map_params(fd, game->map , arg, game);
 
-	if (!map->map2d)
+	if (!game->map->map2d)
 	{
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
@@ -83,7 +102,7 @@ void	ft_init_map(t_game *game, char *arg)
 	game->player ->dir_y = 0;
 	game->player ->plan_x = 0;
 	game->player ->plan_y = FOV;
-	game->map = map;
+	game->map = game->map;
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;
 
