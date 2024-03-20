@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/09 09:46:50 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 01:03:13 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,25 @@ void	ft_hook_find_hit(t_game *game)
 	}
 }
 
-int	find_nice_pitch()
+int	find_nice_pitch(void)
 {
 	if (SCREEN_HEIGHT <= 500)
-		return 100;
+		return (100);
 	if (SCREEN_HEIGHT <= 700)
-		return 50;
+		return (50);
 	if (SCREEN_HEIGHT <= 800)
-		return 40;
+		return (40);
 	if (SCREEN_HEIGHT <= 900)
-		return 30;
+		return (30);
 	if (SCREEN_HEIGHT <= 1000)
-		return 20;
+		return (20);
 	if (SCREEN_HEIGHT <= 1100)
-		return 10;
+		return (10);
 	if (SCREEN_HEIGHT <= 1200)
-		return 5;
+		return (5);
 	if (SCREEN_HEIGHT <= 1300)
-		return 0;
-	return 0;
+		return (0);
+	return (0);
 }
 
 void	ft_hook_target_draw(t_game *game)
