@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:03:32 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 23:22:16 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_game
 	int			g;
 	char		**split_rgb;
 	int			i;
+	int			j;
 }	t_game;
 
 //************************************************************
@@ -189,3 +190,10 @@ char			**ft_split(char const *s, char c);
 int				ft_strncmp(char *s1, char *s2, size_t n);
 char			*remove_first_spaces_until_first_letter(char *line);
 unsigned		int rgb_to_hex(int r, int g, int b);
+int				is_line_bigger(char *str, int old_len);
+int				find_last_non_whitespace_char(char *line);
+int				scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info);
+int				stupid_count_one_algo(char *line, int line_curr, char **map);
+t_map			*test_map(t_game *game, t_map *map);
+t_map			*create_map(t_map *map, char *file);
+void			first_check(t_game *game, char **map);
