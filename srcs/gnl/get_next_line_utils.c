@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:56:33 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/15 16:02:11 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:58:28 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,79 +14,79 @@
 
 int	ft_strlen(const char *s)
 {
-    int	i;
+	int	i;
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
 void	ft__bzero(void *s, size_t n)
 {
-    unsigned int	i;
+	unsigned int	i;
 
-    i = 0;
-    while (i < n)
-    {
-        ((unsigned char *)s)[i] = '\0';
-        i++;
-    }
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = '\0';
+		i++;
+	}
 }
 
 void	*ft__calloc(size_t nmemb, size_t size)
 {
-    void	*output;
+	void	*output;
 
-    if (nmemb == 0 || size == 0)
-        return (malloc(0));
-    if (nmemb * size < size)
-        return (0);
-    output = (void *)malloc(size * nmemb);
-    if (!output)
-        return (NULL);
-    ft__bzero(output, nmemb * size);
-    return (output);
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	if (nmemb * size < size)
+		return (0);
+	output = (void *)malloc(size * nmemb);
+	if (!output)
+		return (NULL);
+	ft__bzero(output, nmemb * size);
+	return (output);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-    int		i;
-    int		j;
-    int		len;
-    char	*output;
+	int		i;
+	int		j;
+	int		len;
+	char	*output;
 
-    if (!s1 || !s2)
-        return (NULL);
-    i = 0;
-    j = 0;
-    len = ft_strlen(s1) + ft_strlen(s2) + 1;
-    output = ft__calloc(sizeof(char), len);
-    if (!output)
-        return (NULL);
-    while (s1[i] != '\0')
-    {
-        output[i] = s1[i];
-        i++;
-    }
-    while (s2[j] != '\0')
-    {
-        output[i] = s2[j];
-        i++;
-        j++;
-    }
-    return (output);
+	if (!s1 || !s2)
+		return (NULL);
+	i = 0;
+	j = 0;
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	output = ft__calloc(sizeof(char), len);
+	if (!output)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		output[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		output[i] = s2[j];
+		i++;
+		j++;
+	}
+	return (output);
 }
 
 int	ft_do_ze_line(char **line, char *buffer, char **stash)
 {
-    *line = ft_strjoin("", *stash);
-    if (!*line)
-        return (1);
-    free(*stash);
-    *stash = ft_strjoin(*line, buffer);
-    if (!*stash)
-        return (free(*line), 1);
-    free(*line);
-    return (0);
+	*line = ft_strjoin("", *stash);
+	if (!*line)
+		return (1);
+	free(*stash);
+	*stash = ft_strjoin(*line, buffer);
+	if (!*stash)
+		return (free(*line), 1);
+	free(*line);
+	return (0);
 }

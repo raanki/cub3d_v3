@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 22:00:13 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 22:56:05 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,6 @@ int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
 	is_ws = 0;
 	cnt = 0;
 	i = strlen(line) - 1;
-	// make this into a separate func return i -> then resuse it
 	while (i >= 0 && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
 	{
 		i--;
@@ -294,7 +293,6 @@ t_map *test_map(t_game *game, t_map *map)
 	i = 0;
 	check_map = map ->map2d;
 	first_check(game, map -> map2d);
-	// complex check spaces
 	while (check_map[i] != NULL)
 	{
 		if (i == 0 || i == map->h_map - 1)
@@ -302,7 +300,8 @@ t_map *test_map(t_game *game, t_map *map)
 			flag = scan_first_last_line(check_map[i], i, check_map, map);
 			if (flag == 1)
 			{
-				printf("Map is not valid hih");
+				printf("Map is not valid\n");
+				ft_free_game(game);
 				exit(27);
 			}
 		}
@@ -312,18 +311,14 @@ t_map *test_map(t_game *game, t_map *map)
 			flag_1 = stupid_count_one_algo_right(check_map[i], i, check_map);
 			if (flag == 1 || flag_1 == 1)
 			{
-				printf("Map is not valid");
-				// free stuff
+				printf("Map is not valid\n");
+				ft_free_game(game);
 				exit(27);
 			}
 		}
 		flag = -1;
 		i++;
 	}
-	// test first line it should be all 1
-	// all till last one -> first and last char should be 1
-	// last line -> all 1
-	printf("map ok");
 	return (map);
 }
 
@@ -350,7 +345,6 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 	map -> w_map = width;
 	map -> h_map = i;
 	map = create_map(map, file);
-	//prnt(map -> map2d);
 	map = test_map(game, map);
 	return (map);
 }

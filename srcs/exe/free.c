@@ -6,53 +6,32 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 21:38:45 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 23:05:37 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int	ft_exit(void *param)
+void	ft_free_sprite(t_game *game)
 {
-	t_game	*game;
+	int	i;
 
-	game = (t_game *)param;
-	ft_free_game(game);
-	exit(EXIT_SUCCESS);
-}
-
-void	ft_free_mlx(t_game *game)
-{
-	if (game->mlx)
+	i = 0;
+	while (i < 4)
 	{
-		if (game->mlx->img)
-			mlx_destroy_image(game->mlx->mlx_p, game->mlx->img);
-		if (game->mlx->win_p)
+		if (!game->sprite[i])
 		{
-			mlx_clear_window(game->mlx->mlx_p, game->mlx->win_p);
-			mlx_destroy_window(game->mlx->mlx_p, game->mlx->win_p);
+			i++;
+			continue ;
 		}
-		if (game->mlx->mlx_p)
-		{
-			mlx_destroy_display(game->mlx->mlx_p);
-			free(game->mlx->mlx_p);
-		}
-		free(game->mlx);
+		if (game->sprite[i]->pixel_colors)
+			free(game->sprite[i]->pixel_colors);
+		if (game->sprite[i]->img)
+			mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
+		free(game->sprite[i]);
+		i++;
 	}
-}
-
-void	ft_free_map(t_game *game, int *i)
-{
-	while (game && game->map && game->map->map2d && game->map->map2d[*i])
-		free(game->map->map2d[(*i)++]);
-	if (game->map && game->map->map2d)
-		free(game->map->map2d);
-	if (game->map)
-	{
-		free(game->map);
-	}
-	if (game->player)
-		free(game->player);
+	free(game->sprite);
 }
 
 void	ft_free_game(t_game *game)
@@ -63,25 +42,7 @@ void	ft_free_game(t_game *game)
 	ft_free_map(game, &i);
 	i = 0;
 	if (game->sprite)
-	{
-		while (i < 4)
-		{
-			if (!game->sprite[i])
-			{
-				i++;
-				continue ;
-			}
-			if (game->sprite[i]->pixel_colors)
-				free(game->sprite[i]->pixel_colors);
-			if (game->sprite[i]->img)
-				mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
-			free(game->sprite[i]);
-			i++;
-		}
-		free(game->sprite);
-	}
-
-	i = 0;
+		ft_free_sprite(game);
 	if (game->sprite_path)
 	{
 		while (i < 4)
@@ -92,7 +53,6 @@ void	ft_free_game(t_game *game)
 		}
 		free(game->sprite_path);
 	}
-
 	ft_free_mlx(game);
 	free(game);
 }

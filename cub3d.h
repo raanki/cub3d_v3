@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 22:37:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 23:03:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,21 +167,25 @@ void	ft_hook_target_draw(t_game *game);
 void	ft_hook_find_text_x_y(t_game *game);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_e_str(char *s);
+int		ft_exit(void *param);
+void	ft_free_mlx(t_game *game);
+void	ft_free_map(t_game *game, int *i);
 
 //************************************************************
 //************************* PARSING **************************
 //************************************************************
 
-t_map	*fetch_map_params(int fd, t_map *map, char *file_name, t_game *game);
-unsigned int	parse_line_color(t_game *game, char *line);
-char	*parse_line_texture(t_game *game, char *line);
-int		is_line_texture(char *line);
-int		open_fd(char *name);
-void	prnt(char** arr);
-int    is_line_color(char *line);
-int		is_only_space(char *str);
-char *remove_last_spaces(char *line);
-char		**ft_split(char const *s, char c);
-int	ft_strncmp(char *s1, char *s2, size_t n);
-char    *remove_first_spaces_until_first_letter(char *line);
-unsigned int	rgb_to_hex(int r, int g, int b);
+t_map			*fetch_map_params(int fd, t_map *map,
+			char *file_name, t_game *game);
+unsigned	int	parse_line_color(t_game *game, char *line);
+char			*parse_line_texture(t_game *game, char *line);
+int				is_line_texture(char *line);
+int				open_fd(char *name);
+void			prnt(char** arr);
+int				is_line_color(char *line);
+int				is_only_space(char *str);
+char			*remove_last_spaces(char *line);
+char			**ft_split(char const *s, char c);
+int				ft_strncmp(char *s1, char *s2, size_t n);
+char			*remove_first_spaces_until_first_letter(char *line);
+unsigned		int rgb_to_hex(int r, int g, int b);

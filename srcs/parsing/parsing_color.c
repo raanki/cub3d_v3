@@ -6,12 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 22:44:52 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 22:59:46 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
 
 char	*remove_last_spaces(char *line)
 {
@@ -66,7 +65,6 @@ char	*remove_all_space(char *str)
 	ret[index_new_str] = '\0';
 	return (ret);
 }
-
 
 char	*get_color_from_valid_line_color(char *line)
 {
