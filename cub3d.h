@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 00:39:25 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/20 22:37:00 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,14 @@ typedef struct s_game
 	double		rotSpeed;
 	double		stepSide;
 	char		**sprite_path;
+	char		*cpy_line;
+	char		*type_text;
+	char		*path;
+	int			b;
+	int			r;
+	int			g;
+	char		**split_rgb;
+	int			i;
 }	t_game;
 
 //************************************************************
@@ -176,3 +184,4 @@ char *remove_last_spaces(char *line);
 char		**ft_split(char const *s, char c);
 int	ft_strncmp(char *s1, char *s2, size_t n);
 char    *remove_first_spaces_until_first_letter(char *line);
+unsigned int	rgb_to_hex(int r, int g, int b);
