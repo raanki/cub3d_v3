@@ -59,6 +59,7 @@ void	first_check(t_game *game, char **map)
 				game->j++;
 			else
 			{
+                ft_free_game(game);
 				printf("no valid\n");
 				exit(27);
 			}
