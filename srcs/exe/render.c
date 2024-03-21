@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:55:15 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 22:29:12 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,22 @@ void	ft_hook_draw_sprite(t_game *game, int x)
 	int	y;
 	int	color;
 	int	tex_y;
+	int inverted_tex_x;
 
 	y = game->draw_start - 1;
 	while (++y < game->draw_end)
 	{
 		tex_y = (int)game->tex_pos & (TILE_SIZE - 1);
 		game->tex_pos += game->step;
+		inverted_tex_x= TILE_SIZE - 1 - game->tex_x;
 		color = game->sprite[(game->tex_num)]->pixel_colors
-		[TILE_SIZE * tex_y + game->tex_x];
+		[TILE_SIZE * tex_y + inverted_tex_x];
 		game->buffer[y][x] = color;
 	}
 	y = -1;
 	
 	while (++y < game->draw_start)
-		game->buffer[y][x] = game->color_ceilling;
+		game->buffer[y][x] = game->color_floor;
 	y = game->draw_end - 1;
 	while (++y < SCREEN_HEIGHT)
 		game->buffer[y][x] = game->color_floor;

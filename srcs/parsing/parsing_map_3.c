@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:52:20 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 22:05:45 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void	first_check(t_game *game, char **map)
 				game->player->plyr_x = game->i;
 				game->number_player_letter_find++;
 			}
-			if (map[game->i][game->j] == '1' || map[game->i][game->j] == '0'
+			if ((map[game->i][game->j] == '1' || map[game->i][game->j] == '0'
 				|| map[game->i][game->j] == 'N' || map[game->i][game->j] == 'S'
 				|| map[game->i][game->j] == 'E' || map[game->i][game->j] == 'W'
 				|| map[game->i][game->j] == 32
 				|| (map[game->i][game->j] >= 9 && map[game->i][game->j] <= 13)
-			|| map[game->i][game->j] == 49 || map[game->i][game->j] == 79)
+			|| map[game->i][game->j] == 49 || map[game->i][game->j] == 79))
 				game->j++;
 			else
 			{

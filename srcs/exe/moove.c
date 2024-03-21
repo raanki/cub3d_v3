@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:53:22 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 22:10:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	moove_left(int key, t_game	*game)
 {
 	if (key == XK_d || key == 100)
 	{
-		double	moveX = game->player->dir_y * game->stepSide;
-    	double	moveY = -game->player->dir_x * game->stepSide;
-			if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
-				game->player->plyr_x += moveX;
-			if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
-				game->player->plyr_y += moveY;
+
+		double	moveX = -game->player->dir_y * game->stepSide;
+    	double	moveY = game->player->dir_x * game->stepSide;
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
+			game->player->plyr_x += moveX;
+		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
+			game->player->plyr_y += moveY;
 	}
 }
 
@@ -29,8 +30,8 @@ void	moove_right(int key, t_game	*game)
 {
 	if (key == XK_a || key == 97)
 	{
-		double	moveX = -game->player->dir_y * game->stepSide;
-    	double	moveY = game->player->dir_x * game->stepSide;
+		double	moveX = game->player->dir_y * game->stepSide;
+    	double	moveY = -game->player->dir_x * game->stepSide;
 		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
 			game->player->plyr_x += moveX;
 		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)

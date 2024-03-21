@@ -1,11 +1,24 @@
-NO ./sprites/sky-blue.xpm
-SO ./sprites/dark.xpm
-WE ./sprites/brown.xpm
-EA ./sprites/grey.xpm
+NO ./sprites/one.xpm
+
+
+
+SO ./sprites/two.xpm
+
+
+WE ./sprites/three.xpm
+
+EA ./sprites/four.xpm
+
+
+
+
+
 
 
 F 220,100,0
 C 225,30,0
+
+
 
 
 
@@ -16,3 +29,5 @@ C 225,30,0
 10001
 100N1
 11111
+
+

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 21:21:22 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 22:20:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,22 @@ double	ft_nor_angle(double angle)
 	return (angle);
 }
 
-/*
-0: West wall
-1: East wall
-2: South wall
-3: North wall
-*/
 int	ft_which_wall(t_game *game, double ray_angle, int side)
 {
 	ray_angle = ft_nor_angle(ray_angle);
 	if (side == 0)
 	{
 		if (ray_angle > 0 && ray_angle < M_PI)
-			return (2);
+			return (1);
 		else
-			return (3);
+			return (0);
 	}
 	else
 	{
 		if (game->ray_dir_y > 0)
-			return (0);
+			return (2);
 		else
-			return (1);
+			return (3);
 	}
 }
 
