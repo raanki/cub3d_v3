@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 22:52:26 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:23:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	game->sprite_path[0] = ft_strdup("nothing");
-	game->sprite_path[1] = ft_strdup("nothing");
-	game->sprite_path[2] = ft_strdup("nothing");
-	game->sprite_path[3] = ft_strdup("nothing");
+	game->sprite_path[0] = ft_strdup("nothing but essential");
+	game->sprite_path[1] = ft_strdup("nothing but essential");
+	game->sprite_path[2] = ft_strdup("nothing but essential");
+	game->sprite_path[3] = ft_strdup("nothing but essential");
 
 	int fd = open_fd(game, arg);
 	char *line = "";
@@ -119,14 +119,14 @@ void	ft_init_map(t_game *game, char *arg)
 	if (count_valid_texture != 4)
 	{
 		ft_free_game(game);
-		printf("You have to put 4 textures\n");
+		printf("You have to put 4 valid textures\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (count_valid_color != 2)
 	{
 		ft_free_game(game);
-		printf("You have to put 2 colors\n");
+		printf("You have to put 2 valid colors\n");
 		exit(EXIT_FAILURE);
 	}
 	

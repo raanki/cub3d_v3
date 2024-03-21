@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 22:36:27 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:27:42 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,33 @@ char	*remove_first_spaces_until_first_letter(char *line)
 	return (ret);
 }
 
+int	ft_str_have_three_coma(char *string)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (string && string[i])
+	{
+		if (string[i] == ',' && string[i + 1] != ',')
+			count++;
+		i++;
+	}
+
+	if (count == 2)
+		return (1);
+	return (0);
+}
+
 int	is_line_color(char *line)
 {
 	char	*cpy_line;
 
 	if (!line || line[0] == '\0')
 		return (0);
+	if (!ft_str_have_three_coma(line))
+	 	return (0);
 	cpy_line = remove_first_spaces_until_first_letter(line);
 	if (!ft_strncmp(cpy_line, "F ", 2)
 		|| !ft_strncmp(cpy_line, "C ", 2))

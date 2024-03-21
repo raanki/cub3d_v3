@@ -1,23 +1,18 @@
+
+WE ./sprites/three.xpm
+
+C 225,30,1
+
 EA ./sprites/four.xpm
 
 SO ./sprites/two.xpm
 
 NO ./sprites/one.xpm
 
+F 66,66,66
 
 
 
-
-
-WE ./sprites/three.xpm
-
-
-
-
-
-
-F 220,100,0
-C 225,30,0
 
 
 

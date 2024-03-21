@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:54:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:30:04 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,22 @@ char	*get_color_from_valid_line_color(char *line)
 	return (color_str);
 }
 
+
+int	ft_check_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while(split && split[i])
+	{
+		i++;
+	}
+	if (i != 2)
+		return (0);
+	return (1);
+	
+}
+
 void	set_rgb_index(t_game *game)
 {
 	game->split_rgb = ft_split(game->cpy_line, ',');
@@ -85,6 +101,18 @@ void	set_rgb_index(t_game *game)
 		game->g = atoi(game->split_rgb[1]);
 	else if (game->i == 2)
 		game->b = atoi(game->split_rgb[2]);
+	if (game->r < 0 || game->r > 255
+	|| game->g < 0 || game->g > 255
+	|| game->b < 0 || game->b > 255 || ft_check_split(game->split_rgb))
+	{
+		game->i = -1;
+		while(game->split_rgb && game->split_rgb[++game->i])
+			free(game->split_rgb[game->i]);
+		free(game->split_rgb);
+		ft_free_game(game);
+		ft_e_str("not valid line color 1 ");
+		exit(1);
+	}
 }
 
 unsigned	int	parse_line_color(t_game *game, char *line)
