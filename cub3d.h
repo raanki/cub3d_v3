@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:22:16 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 21:47:40 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_game
 	int			j;
 	int			is_ceilling;
 	int			number_player_letter_find;
+	int			angle_player;
 }	t_game;
 
 //************************************************************

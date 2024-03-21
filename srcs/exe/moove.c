@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 18:55:27 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 21:53:22 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ void	rotate_left(int key, t_game *game)
 	if (key == 65361)
 	{
 		double oldDirX = game->player->dir_x;
-		game->player->dir_x = game->player->dir_x * cos(game->rotSpeed) - game->player->dir_y * sin(game->rotSpeed);
-		game->player->dir_y = oldDirX * sin(game->rotSpeed) + game->player->dir_y * cos(game->rotSpeed);
+		game->player->dir_x = game->player->dir_x * cos(-game->rotSpeed) - game->player->dir_y  * sin(-game->rotSpeed);
+		game->player->dir_y  = oldDirX * sin(-game->rotSpeed) + game->player->dir_y  * cos(-game->rotSpeed);
 		double oldPlaneX = game->player->plan_x;
-		game->player->plan_x = game->player->plan_x * cos(game->rotSpeed) - game->player->plan_y * sin(game->rotSpeed);
-		game->player->plan_y = oldPlaneX * sin(game->rotSpeed) + game->player->plan_y * cos(game->rotSpeed);
+		game->player->plan_x = game->player->plan_x * cos(-game->rotSpeed) - game->player->plan_y * sin(-game->rotSpeed);
+		game->player->plan_y = oldPlaneX * sin(-game->rotSpeed) + game->player->plan_y * cos(-game->rotSpeed);
 	}
 }
 
@@ -100,11 +100,11 @@ void	rotate_right(int key, t_game *game)
 	if (key == 65363)
 	{
 		double oldDirX = game->player->dir_x;
-		game->player->dir_x = game->player->dir_x * cos(-game->rotSpeed) - game->player->dir_y  * sin(-game->rotSpeed);
-		game->player->dir_y  = oldDirX * sin(-game->rotSpeed) + game->player->dir_y  * cos(-game->rotSpeed);
+		game->player->dir_x = game->player->dir_x * cos(game->rotSpeed) - game->player->dir_y * sin(game->rotSpeed);
+		game->player->dir_y = oldDirX * sin(game->rotSpeed) + game->player->dir_y * cos(game->rotSpeed);
 		double oldPlaneX = game->player->plan_x;
-		game->player->plan_x = game->player->plan_x * cos(-game->rotSpeed) - game->player->plan_y * sin(-game->rotSpeed);
-		game->player->plan_y = oldPlaneX * sin(-game->rotSpeed) + game->player->plan_y * cos(-game->rotSpeed);
+		game->player->plan_x = game->player->plan_x * cos(game->rotSpeed) - game->player->plan_y * sin(game->rotSpeed);
+		game->player->plan_y = oldPlaneX * sin(game->rotSpeed) + game->player->plan_y * cos(game->rotSpeed);
 	}
 }
 
