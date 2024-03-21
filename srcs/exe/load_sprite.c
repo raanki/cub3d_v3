@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:57:17 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 00:00:34 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ void	ft_manage_sprite(t_game *game, char *sprite_paths[4])
 {
 	int		i;
 
+	i = 0;
+	while (i < 4)
+	{
+		game->sprite[i] = NULL;
+		i++;
+	}
 	i = 0;
 	while (i < 4)
 	{

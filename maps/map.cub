@@ -1,5 +1,5 @@
 
-WE ./sprites/three.xpm
+WE ./sprites/thre!e.xpm
 
 C 225,30,1
 
@@ -7,7 +7,7 @@ EA ./sprites/four.xpm
 
 SO ./sprites/two.xpm
 
-NO ./sprites/one.xp!m
+NO ./sprites/one.xpm
 
 F 122,143,11
 
