@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:13:46 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:51:42 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_game
 	t_player	*player;
 	t_mlx		*mlx;
 	t_sprite	**sprite;
-	int			buffer[SCREEN_HEIGHT + 1][SCREEN_WIDTH + 1];
+	unsigned int			buffer[SCREEN_HEIGHT + 1][SCREEN_WIDTH + 1];
 	double		camera_x;
 	double		camera_y;
 	double		ray_dir_x;
@@ -119,8 +119,8 @@ typedef struct s_game
 	double		step;
 	double		tex_pos;
 	int			color;
-	int			color_ceilling;
-	int			color_floor;
+	unsigned int	color_ceilling;
+	unsigned int	color_floor;
 	double		moveSpeed;
 	double		sure_mode;
 	double		rotSpeed;
@@ -135,6 +135,7 @@ typedef struct s_game
 	char		**split_rgb;
 	int			i;
 	int			j;
+	int			is_ceilling;
 }	t_game;
 
 //************************************************************

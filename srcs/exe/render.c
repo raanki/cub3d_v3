@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/03 14:23:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:55:15 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	ft_draw_buffer(t_game *game)
 		x++;
 	}
 }
+	#define COLOR_ORANGE 0XDC6400
+
 
 void	ft_hook_draw_sprite(t_game *game, int x)
 {
@@ -46,11 +48,13 @@ void	ft_hook_draw_sprite(t_game *game, int x)
 		game->buffer[y][x] = color;
 	}
 	y = -1;
+	
 	while (++y < game->draw_start)
-		game->buffer[y][x] = game->color_floor;
+		game->buffer[y][x] = game->color_ceilling;
 	y = game->draw_end - 1;
 	while (++y < SCREEN_HEIGHT)
-		game->buffer[y][x] = game->color_ceilling;
+		game->buffer[y][x] = game->color_floor;
+
 }
 
 void	ft_hook(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 22:59:46 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:54:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void	set_rgb_index(t_game *game)
 unsigned	int	parse_line_color(t_game *game, char *line)
 {
 	game->i = -1;
-	game->color_ceilling = 0;
+	game->is_ceilling = 0;
 	if (!is_line_color(line))
 		return (ft_e_str("not valid line color"), 0);
 	game->cpy_line = remove_first_spaces_until_first_letter(line);
 	if (line && (line[0] == 'C'))
-		game->color_ceilling = 1;
+		game->is_ceilling = 1;
 	game->cpy_line = get_color_from_valid_line_color(game->cpy_line);
 	game->cpy_line = remove_all_space(game->cpy_line);
 	set_rgb_index(game);
@@ -103,7 +103,7 @@ unsigned	int	parse_line_color(t_game *game, char *line)
 	while (game->split_rgb && game->split_rgb[game->i])
 		free(game->split_rgb[(game->i)++]);
 	free(game->split_rgb);
-	if (game->color_ceilling)
+	if (game->is_ceilling)
 		game->color_ceilling = rgb_to_hex(game->r, game->g, game->b);
 	else
 		game->color_floor = rgb_to_hex(game->r, game->g, game->b);
