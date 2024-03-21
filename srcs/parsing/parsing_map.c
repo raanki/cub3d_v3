@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:22:39 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:14:51 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 		}
 		if (!line)
 		{
-			free(map->map2d[i]);
-			map->map2d[i] = NULL;
-			i++;
 			while (i < map -> h_map)
 			{
-				free(map->map2d[++i]);
+				free(map->map2d[i]);
+				map->map2d[i] = NULL;
+				i++;
 			}
+			
+			free(map->map2d[i]);
 			map->map2d[i] = NULL;
 			break ;
 		}
@@ -65,6 +66,8 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 		i++;
 	}
 	close(fd);
+	// ft_free_game(game);
+	// exit(1);
 	return (map);
 }
 
