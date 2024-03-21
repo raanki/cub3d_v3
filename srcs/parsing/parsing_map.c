@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:24:47 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:13:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-t_map	*create_map(t_map *map, char *file)
+t_map	*create_map(t_game *game, t_map *map, char *file)
 {
 	int		fd;
 	int		i;
@@ -20,7 +20,7 @@ t_map	*create_map(t_map *map, char *file)
 	char	*line;
 
 	i = 0;
-	fd = open_fd(file);
+	fd = open_fd(game, file);
 	map->map2d = ft_calloc(map -> h_map + 1, sizeof(char *));
 	map->map2d[map -> h_map] = NULL;
 	while (i < map -> h_map)

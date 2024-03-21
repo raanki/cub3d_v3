@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:19:12 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:12:56 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 	close(fd);
 	map -> w_map = width;
 	map -> h_map = i;
-	map = create_map(map, file);
+	map = create_map(game, map, file);
 	map = test_map(game, map);
 	return (map);
 }

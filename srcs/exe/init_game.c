@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 22:13:53 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:13:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_init_map(t_game *game, char *arg)
 	game->sprite_path[2] = NULL;
 	game->sprite_path[3] = NULL;
 
-	int fd = open_fd(arg);
+	int fd = open_fd(game, arg);
 	char *line = "";
 	int	index_sprite_path = 0;
 	int	count_valid_information = 0;

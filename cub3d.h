@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:22:16 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:13:46 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ t_map			*fetch_map_params(int fd, t_map *map,
 unsigned	int	parse_line_color(t_game *game, char *line);
 char			*parse_line_texture(t_game *game, char *line);
 int				is_line_texture(char *line);
-int				open_fd(char *name);
+int				open_fd(t_game *game, char *name);
 void			prnt(char** arr);
 int				is_line_color(char *line);
 int				is_only_space(char *str);
@@ -195,5 +195,5 @@ int				find_last_non_whitespace_char(char *line);
 int				scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info);
 int				stupid_count_one_algo(char *line, int line_curr, char **map);
 t_map			*test_map(t_game *game, t_map *map);
-t_map			*create_map(t_map *map, char *file);
+t_map			*create_map(t_game *game, t_map *map, char *file);
 void			first_check(t_game *game, char **map);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:17:38 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:14:16 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@ void	prnt(char **arr)
 	}
 }
 
-int	open_fd(char *name)
+int	open_fd(t_game *game, char *name)
 {
 	int	fd;
 
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
+	{
+		ft_free_game(game);
 		exit(0);
+	}
 	return (fd);
 }
 
