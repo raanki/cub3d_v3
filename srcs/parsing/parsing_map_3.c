@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:21:15 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:24:19 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,23 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 void	first_check(t_game *game, char **map)
 {
 	game->i = 0;
+	game->number_player_letter_find = 0;
 	while (map[game->i] != NULL)
 	{
 		game->j = 0;
 		while (map[game->i][game->j] != '\0' && map[game->i][game->j] != '\n')
 		{
-			if (map[game->i][game->j] == 'N')
+			if (map[game->i][game->j] == 'N' || map[game->i][game->j] == 'S'
+				|| map[game->i][game->j] == 'E' || map[game->i][game->j] == 'W')
 			{
 				game->player->plyr_y = game->j;
 				game->player->plyr_x = game->i;
+				game->number_player_letter_find++;
 			}
 			if (map[game->i][game->j] == '1' || map[game->i][game->j] == '0'
-				|| map[game->i][game->j] == 'N' || map[game->i][game->j] == 32
+				|| map[game->i][game->j] == 'N' || map[game->i][game->j] == 'S'
+				|| map[game->i][game->j] == 'E' || map[game->i][game->j] == 'W'
+				|| map[game->i][game->j] == 32
 				|| (map[game->i][game->j] >= 9 && map[game->i][game->j] <= 13)
 			|| map[game->i][game->j] == 49 || map[game->i][game->j] == 79)
 				game->j++;
@@ -66,6 +71,14 @@ void	first_check(t_game *game, char **map)
 		}
 		game->i++;
 	}
+
+	if (game->number_player_letter_find != 1)
+	{
+		ft_free_game(game);
+		printf("You have to put only 1 player\n");
+		exit(27);
+	}
+	
 }
 
 void	condition_stupid_count_one_algo(int *cnt,
