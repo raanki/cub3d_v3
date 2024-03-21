@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:30:04 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:50:09 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,10 @@ void	set_rgb_index(t_game *game)
 		while(game->split_rgb && game->split_rgb[++game->i])
 			free(game->split_rgb[game->i]);
 		free(game->split_rgb);
+		free(game->current_tmp);
+		free(game->current_line);
 		ft_free_game(game);
-		ft_e_str("not valid line color 1 ");
+		ft_e_str("not valid line color");
 		exit(1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:00:07 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:57:17 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 	else
 	{
 		game->sprite[*i]->img = NULL;
+		game->sprite[*i]->pixel_colors = NULL;
 	}
 	if (!game->sprite_path[*i] || !(game->sprite[*i]->img) || (width != TILE_SIZE || height != TILE_SIZE))
 	{

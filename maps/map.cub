@@ -7,9 +7,9 @@ EA ./sprites/four.xpm
 
 SO ./sprites/two.xpm
 
-NO ./sprites/one.xpm
+NO ./sprites/one.xp!m
 
-F 66,66,66
+F 122,143,11
 
 
 

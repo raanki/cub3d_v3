@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 22:39:21 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:42:42 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ typedef struct s_game
 	int			number_player_letter_find;
 	int			angle_player;
 	int			current_sprite;
+	char		*current_line;
+	char		*current_tmp;
 }	t_game;
 
 //************************************************************

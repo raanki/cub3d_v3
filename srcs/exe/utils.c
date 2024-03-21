@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 22:20:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:46:28 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_game	*ft_game_instance(void)
 		game_instance->sprite = NULL;
 		game_instance->sprite_path = NULL;
 		game_instance->mlx = NULL;
+		game_instance->current_line = NULL;
+		game_instance->current_tmp = NULL;
 	}
 	return (game_instance);
 }

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:23:38 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:51:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void	ft_init_map(t_game *game, char *arg)
 //*************************************************************************************************************
     // here do the color / player / texture parsing
 
-	char *tmp;
-
 	game->sprite_path = ft_calloc(5, sizeof(char *));
 	if (!game->sprite_path)
 	{
@@ -83,35 +81,36 @@ void	ft_init_map(t_game *game, char *arg)
 	game->sprite_path[3] = ft_strdup("nothing but essential");
 
 	int fd = open_fd(game, arg);
-	char *line = "";
 	int	index_sprite_path = 0;
 	game->current_sprite = 0;
 	int	count_valid_texture = 0;
 	int	count_valid_color = 0;
+	int first = 1;
 
-    while (line != NULL && (count_valid_texture < 4 || count_valid_color < 2))
+    while ((game->current_line != NULL && (count_valid_texture < 4 || count_valid_color < 2)) || first)
     {
-        line = get_next_line(fd);
-		if (!line)
+		first = 0;
+        game->current_line= get_next_line(fd);
+		if (!game->current_line)
 			break ;
-		tmp = ft_strdup(line);
-		if (is_line_texture(line))
+		game->current_tmp = ft_strdup(game->current_line);
+		if (is_line_texture(game->current_line))
 		{
 			if (game->sprite_path[game->current_sprite])
 				free(game->sprite_path[game->current_sprite]);
-			game->sprite_path[game->current_sprite] = parse_line_texture(game, tmp);
+			game->sprite_path[game->current_sprite] = parse_line_texture(game, game->current_tmp);
 			count_valid_texture++;
 			index_sprite_path++;
 		}
-		else if (is_line_color(line))
+		else if (is_line_color(game->current_line))
 		{
 			
-			parse_line_color(game, tmp);
+			parse_line_color(game, game->current_tmp);
 			count_valid_color++;
 		}
         
-		free(tmp);
-        free(line);
+		free(game->current_tmp);
+        free(game->current_line);
     }
 
 	game->sprite_path[4] = NULL;

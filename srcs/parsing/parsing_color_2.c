@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:27:42 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 23:42:48 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	ft_str_have_three_coma(char *string)
 			count++;
 		i++;
 	}
-
 	if (count == 2)
 		return (1);
 	return (0);
