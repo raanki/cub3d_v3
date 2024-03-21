@@ -6,11 +6,44 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:13:32 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 21:49:00 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
+
+void	set_start_angle_player(t_game *game)
+{
+	if (game->angle_player == 0) // EAST
+	{
+		game->player->dir_x = 0;
+		game->player->dir_y = -1;
+		game->player->plan_x = FOV;
+		game->player->plan_y = 0;
+	}
+	else if (game->angle_player == 1) // SUD
+	{
+		game->player->dir_x = 1;
+		game->player->dir_y = 0;
+		game->player->plan_x = 0;
+		game->player->plan_y = FOV;
+	}
+	else if (game->angle_player == 2) // WEST
+	{
+		game->player->dir_x = 0;
+		game->player->dir_y = 1;
+		game->player->plan_x = -FOV;
+		game->player->plan_y = 0;
+	}
+	else if (game->angle_player == 3) // NORD
+	{
+		game->player->dir_x = -1;
+		game->player->dir_y = 0;
+		game->player->plan_x = 0;
+		game->player->plan_y = -FOV;
+	}
+}
 
 void	ft_init_map(t_game *game, char *arg)
 {
@@ -97,10 +130,8 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	game->player ->dir_x = -1;
-	game->player ->dir_y = 0;
-	game->player ->plan_x = 0;
-	game->player ->plan_y = FOV;
+	
+	set_start_angle_player(game);
 	game->map = game->map;
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;

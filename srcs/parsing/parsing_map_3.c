@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:24:19 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 21:52:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 	return (map);
 }
 
+void	set_good_angle_with_letter(t_game *game, char c)
+{
+	if (c == 'N')
+		game->angle_player = 3;
+	if (c == 'S')
+		game->angle_player = 1;
+	if (c == 'E')
+		game->angle_player = 0;
+	if (c == 'W')
+		game->angle_player = 2;
+}
+
 void	first_check(t_game *game, char **map)
 {
 	game->i = 0;
@@ -51,6 +63,7 @@ void	first_check(t_game *game, char **map)
 			if (map[game->i][game->j] == 'N' || map[game->i][game->j] == 'S'
 				|| map[game->i][game->j] == 'E' || map[game->i][game->j] == 'W')
 			{
+				set_good_angle_with_letter(game, map[game->i][game->j]);
 				game->player->plyr_y = game->j;
 				game->player->plyr_x = game->i;
 				game->number_player_letter_find++;
