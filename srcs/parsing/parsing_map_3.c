@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:21:15 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/21 21:03:54 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
+		if (is_only_space(line))
+		{
+			free(line);
+			continue;
+		}
 		if (line)
 		{
 			width = is_line_bigger(line, width);
@@ -101,11 +106,11 @@ int	stupid_count_one_algo(char *line, int line_curr, char **map)
 		if (cnt >= 2)
 			return (0);
 		else
-			return (1);
+			return (97);
 	}
 	else
 		if (line[i] == '1')
 			return (0);
 	else
-		return (1);
+		return (100);
 }

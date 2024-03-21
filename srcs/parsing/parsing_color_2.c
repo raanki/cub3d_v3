@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 22:36:27 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 20:59:49 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ char	*remove_first_spaces_until_first_letter(char *line)
 
 int	is_line_color(char *line)
 {
-	char	*cpy_line;
 
 	if (!line || line[0] == '\0')
 		return (0);
-	cpy_line = remove_first_spaces_until_first_letter(line);
-	if (!ft_strncmp(cpy_line, "F ", 2)
-		|| !ft_strncmp(cpy_line, "C ", 2))
+	int i = 0;
+	while (line[i] && line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (!ft_strncmp(&line[i], "F ", 2)
+		|| !ft_strncmp(&line[i], "C ", 2))
 	{
 		return (1);
 	}

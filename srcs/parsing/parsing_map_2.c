@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 20:14:16 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 21:03:12 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ int	scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info)
 	while (line[++i] == 32 || (line[i] >= 9 && line[i] <= 13))
 		is_ws = 1;
 	if (is_ws == 1 && line[i] == '1' && line_curr == 0)
-		if (map[line_curr + 1][i - 1] != '1')
-			return (1);
+		if (map[line_curr + 1][i - 1] != '1' && map[line_curr + 1][i - 1] != ' ')
+			return (92);
 	if (is_ws == 1 && line[i] == '1' && line_curr == map_info -> h_map - 1)
-		if (map[line_curr - 1][i - 1] != '1')
-			return (1);
+		if (map[line_curr - 1][i - 1] != '1' && map[line_curr - 1][i - 1] != ' ')
+			return (42);
 	while (line[i] != '\n' && line[i] != '\0')
 	{
 		if (line[i] != '1' && (line[i] != 32
 				|| (line[i] >= 9 && line[i] <= 13) == 1))
-			return (1);
+			return (75);
 		i++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_text.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:00:05 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 21:06:52 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 
 int	is_line_texture(char *line)
 {
-	char	*cpy_line;
 
 	if (!line || line[0] == '\0')
 		return (0);
-	cpy_line = remove_first_spaces_until_first_letter(line);
-	if (!ft_strncmp(cpy_line, "NO ", 3)
-		|| !ft_strncmp(cpy_line, "SO ", 3)
-		|| !ft_strncmp(cpy_line, "WE ", 3)
-		|| !ft_strncmp(cpy_line, "EA ", 3))
+	int i = 0;
+	while (line[i] && line[i] == ' ' || line[i] == '\t')
+		i++;
+	// cpy_line = remove_first_spaces_until_first_letter(line);
+	if (!ft_strncmp(&line[i], "NO ", 3)
+		|| !ft_strncmp(&line[i], "SO ", 3)
+		|| !ft_strncmp(&line[i], "WE ", 3)
+		|| !ft_strncmp(&line[i], "EA ", 3))
 	{
 		return (1);
 	}
@@ -55,9 +57,7 @@ int	is_only_space(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
-		{
 			return (0);
-		}
 		i++;
 	}
 	return (1);

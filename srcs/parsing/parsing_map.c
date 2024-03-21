@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:14:51 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 21:22:17 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,29 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 	i = 0;
 	fd = open_fd(game, file);
 	map->map2d = ft_calloc(map -> h_map + 1, sizeof(char *));
-	map->map2d[map -> h_map] = NULL;
-	while (i < map -> h_map)
+	// map->map2d[map -> h_map] = NULL;
+	while (i < map -> h_map +1)
 	{
 		map->map2d[i] = ft_calloc(map -> w_map + 1, sizeof(char));
-		j = 0;
-		while (j < map -> w_map)
-		{
-			map->map2d[i][j] = ' ';
-			j++;
-		}
+		memset(map->map2d[i], ' ', map->w_map);
 		i++;
 	}
+
+	for (int z = 0; map->map2d[z]; z++)
+		printf("[%i]{%s}\n", z, map->map2d[z]);
 	i = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (is_line_color(line) || is_line_texture(line) || is_only_space(line))
+		// printf("[%s]\n", line);
+		// printf("line -> %s\n", !line);
+		if (!line)
+			break ;
+		if (is_line_color(line) || is_only_space(line)  || is_line_texture(line)) 
 		{
 			free(line);
 			line = NULL;
 			continue ;
-		}
-		if (!line)
-		{
-			while (i < map -> h_map)
-			{
-				free(map->map2d[i]);
-				map->map2d[i] = NULL;
-				i++;
-			}
-			
-			free(map->map2d[i]);
-			map->map2d[i] = NULL;
-			break ;
 		}
 		strncpy(map->map2d[i], line, ft_strlen(line));
 		if (line)
@@ -65,6 +54,9 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 		}
 		i++;
 	}
+	
+	for (int z = 0; map->map2d[z]; z++)
+		printf("AFTER[%i]{%s}\n", z, map->map2d[z]);
 	close(fd);
 	// ft_free_game(game);
 	// exit(1);
@@ -116,14 +108,14 @@ int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
 		if (cnt >= 2)
 			return (0);
 		else
-			return (1);
+			return (123);
 	}
 	else
 	{
 		if (line[i] == '1')
 			return (0);
 		else
-			return (1);
+			return (145);
 	}
 }
 
@@ -143,9 +135,10 @@ t_map	*test_map(t_game *game, t_map *map)
 		if (i == 0 || i == map->h_map - 1)
 		{
 			flag = scan_first_last_line(check_map[i], i, check_map, map);
-			if (flag == 1)
+			printf("FLAG ERROR %i\n", flag);
+			if (flag > 0)
 			{
-				printf("Map is not valid\n");
+				printf("Map is not valid here\n");
 				ft_free_game(game);
 				exit(27);
 			}
@@ -154,9 +147,10 @@ t_map	*test_map(t_game *game, t_map *map)
 		{
 			flag = stupid_count_one_algo(check_map[i], i, check_map);
 			flag_1 = stupid_count_one_algo_right(check_map[i], i, check_map);
-			if (flag == 1 || flag_1 == 1)
+			printf("FLAG %i FLAG_1 %i\n", flag, flag_1);
+			if (flag > 0 || flag_1 > 0)
 			{
-				printf("Map is not valid\n");
+				printf("Map is not valid there\n");
 				ft_free_game(game);
 				exit(27);
 			}
