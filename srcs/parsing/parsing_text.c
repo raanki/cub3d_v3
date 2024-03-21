@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 22:09:32 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 22:47:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,34 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 int	is_line_texture(char *line)
 {
 	char	*cpy_line;
+	t_game	*game;
 
+	game = ft_game_instance();
 	if (!(line && line[0] != '\0'))
 		return (0);
 	cpy_line = remove_first_spaces_until_first_letter(line);
-	if (cpy_line && ft_strlen(cpy_line) >= 3 && (!ft_strncmp(cpy_line, "NO ", 3)
-		|| !ft_strncmp(cpy_line, "SO ", 3)
-		|| !ft_strncmp(cpy_line, "WE ", 3)
-		|| !ft_strncmp(cpy_line, "EA ", 3)))
+	if (cpy_line && ft_strlen(cpy_line) >= 3)
 	{
-		return (1);
+		if( !ft_strncmp(cpy_line, "NO ", 3))
+		{
+			game->current_sprite = 0;
+			return (1);	
+		}
+		else if( !ft_strncmp(cpy_line, "SO ", 3))
+		{
+			game->current_sprite = 1;
+			return (1);	
+		}
+		else if( !ft_strncmp(cpy_line, "WE ", 3))
+		{
+			game->current_sprite = 2;
+			return (1);	
+		}
+		else if( !ft_strncmp(cpy_line, "EA ", 3))
+		{
+			game->current_sprite = 3;
+			return (1);	
+		}
 	}
 	return (0);
 }

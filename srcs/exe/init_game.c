@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:49:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/21 22:52:26 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,19 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	game->sprite_path[0] = NULL;
-	game->sprite_path[1] = NULL;
-	game->sprite_path[2] = NULL;
-	game->sprite_path[3] = NULL;
+	game->sprite_path[0] = ft_strdup("nothing");
+	game->sprite_path[1] = ft_strdup("nothing");
+	game->sprite_path[2] = ft_strdup("nothing");
+	game->sprite_path[3] = ft_strdup("nothing");
 
 	int fd = open_fd(game, arg);
 	char *line = "";
 	int	index_sprite_path = 0;
-	int	count_valid_information = 0;
+	game->current_sprite = 0;
+	int	count_valid_texture = 0;
+	int	count_valid_color = 0;
 
-    while (line != NULL && count_valid_information < 6)
+    while (line != NULL && (count_valid_texture < 4 || count_valid_color < 2))
     {
         line = get_next_line(fd);
 		if (!line)
@@ -95,15 +97,17 @@ void	ft_init_map(t_game *game, char *arg)
 		tmp = ft_strdup(line);
 		if (is_line_texture(line))
 		{
-			game->sprite_path[index_sprite_path] = parse_line_texture(game, tmp);
-			count_valid_information++;
+			if (game->sprite_path[game->current_sprite])
+				free(game->sprite_path[game->current_sprite]);
+			game->sprite_path[game->current_sprite] = parse_line_texture(game, tmp);
+			count_valid_texture++;
 			index_sprite_path++;
 		}
 		else if (is_line_color(line))
 		{
 			
 			parse_line_color(game, tmp);
-			count_valid_information++;
+			count_valid_color++;
 		}
         
 		free(tmp);
@@ -112,10 +116,17 @@ void	ft_init_map(t_game *game, char *arg)
 
 	game->sprite_path[4] = NULL;
 	
-	if (count_valid_information != 6)
+	if (count_valid_texture != 4)
 	{
 		ft_free_game(game);
-		printf("lack informations (texture or color)\n");
+		printf("You have to put 4 textures\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if (count_valid_color != 2)
+	{
+		ft_free_game(game);
+		printf("You have to put 2 colors\n");
 		exit(EXIT_FAILURE);
 	}
 	

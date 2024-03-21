@@ -1,14 +1,15 @@
+EA ./sprites/four.xpm
+
+SO ./sprites/two.xpm
+
 NO ./sprites/one.xpm
 
 
 
-SO ./sprites/two.xpm
+
 
 
 WE ./sprites/three.xpm
-
-EA ./sprites/four.xpm
-
 
 
 
