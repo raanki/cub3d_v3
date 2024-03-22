@@ -6,38 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:19:39 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:28:43 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
-{
-	char	*line;
-	int		width;
-	int		i;
-
-	i = 0;
-	line = "";
-	width = -1;
-	while (line != NULL)
-	{
-		line = get_next_line(fd);
-		if (line)
-		{
-			width = is_line_bigger(line, width);
-			i++;
-		}
-		free(line);
-	}
-	close(fd);
-	map -> w_map = width;
-	map -> h_map = i;
-	map = create_map(game, map, file);
-	map = test_map(game, map);
-	return (map);
-}
 
 void	set_good_angle_with_letter(t_game *game, char c)
 {

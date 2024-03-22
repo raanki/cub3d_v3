@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:24:55 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:32:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,13 @@ int	is_line_texture(char *line)
 	if (cpy_line && ft_strlen(cpy_line) >= 3)
 	{
 		if (!ft_strncmp(cpy_line, "NO ", 3))
-		{
-			game->current_sprite = 0;
-			return (1);
-		}
+			return (game->current_sprite = 0, 1);
 		else if (!ft_strncmp(cpy_line, "SO ", 3))
-		{
-			game->current_sprite = 1;
-			return (1);
-		}
+			return (game->current_sprite = 1, 1);
 		else if (!ft_strncmp(cpy_line, "WE ", 3))
-		{
-			game->current_sprite = 2;
-			return (1);
-		}
+			return (game->current_sprite = 2, 1);
 		else if (!ft_strncmp(cpy_line, "EA ", 3))
-		{
-			game->current_sprite = 3;
-			return (1);
-		}
+			return (game->current_sprite = 3, 1);
 	}
 	return (0);
 }

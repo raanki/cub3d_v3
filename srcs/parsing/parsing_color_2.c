@@ -6,29 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:23:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:30:46 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-char	*ft_strdup(const char *src)
-{
-	char	*cpy;
-	int		i;
-
-	i = 0;
-	cpy = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (cpy == NULL)
-		return (NULL);
-	while (src[i] != '\0')
-	{
-		cpy[i] = src[i];
-		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
-}
 
 char	*remove_first_spaces_until_first_letter(char *line)
 {

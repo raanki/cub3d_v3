@@ -6,37 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:15:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:30:04 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-char	*remove_last_spaces(char *line)
-{
-	int		index_last_letter;
-	int		i;
-	char	*ret;
-	int		size_line;
-
-	size_line = 0;
-	size_line = ft_strlen(line);
-	index_last_letter = size_line - 1;
-	while ((line[index_last_letter] == ' ' || line[index_last_letter] == '\n')
-		&& index_last_letter >= 0)
-		index_last_letter--;
-	if (index_last_letter < 0)
-		return (line);
-	index_last_letter++;
-	ret = malloc(2 * size_line - index_last_letter + 1);
-	if (!ret)
-		return (ft_e_str("malloc"), NULL);
-	i = -1;
-	while (++i < index_last_letter)
-		ret[i] = line[i];
-	ret[i] = '\0';
-	return (ret);
-}
 
 char	*remove_all_space(char *str)
 {
