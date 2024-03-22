@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 15:28:13 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 16:59:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,77 @@ void	ft_copy_line_map(t_game *game, t_map *map)
 	game->i++;
 }
 
+int	ft_valid_char(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (line == NULL)
+		return (1);
+	while (line && line[i])
+	{
+		if (line[i] != '0' && line[i] != '1' && line[i] != '\n'
+			&& line[i] != 'S' && line[i] != 'W' && line[i] != 'N'
+			&& line[i] != 'E' && line[i] != ' ' && line[i] != '\0')
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 {
+	char	*save;
+
+	save = NULL;
+	while (1)
+	{
+		game->line = get_next_line(game->fd);
+		if (save)
+		{
+			free(save);
+			save = NULL;
+		}
+		if (game->line)
+			save = ft_strdup(game->line);
+		else
+			save = NULL;
+		if (game->line && (is_only_space(game->line)
+				|| is_line_color(game->line)
+				|| is_line_texture(game->line)))
+		{
+			free(game->line);
+			if (save)
+			{
+				free(save);
+				save = NULL;
+			}
+			continue ;
+		}
+		if (game->line && !ft_valid_char(save))
+		{
+			if (save)
+				free(save);
+			free(game->line);
+			ft_e_str("Invalid char");
+			ft_free_game(game);
+			exit(EXIT_FAILURE);
+		}
+		if (!game->line)
+		{
+			break ;
+		}
+		free(game->line);
+		if (save)
+		{
+			free(save);
+			save = NULL;
+		}
+	}
+	close(game->fd);
+	game->fd = open_fd(game, game->arg);
 	while (1)
 	{
 		game->line = get_next_line(game->fd);

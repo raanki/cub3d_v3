@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:16:41 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 16:16:49 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	set_rgb_index(t_game *game)
 {
 	game->split_rgb = ft_split(game->cpy_line, ',');
 	free(game->cpy_line);
+	game->cpy_line = NULL;
 	while (game->split_rgb && game->split_rgb[++(game->i)])
 		if (game->i == 0)
 			game->r = atoi(game->split_rgb[0]);
@@ -106,6 +107,7 @@ unsigned	int	parse_line_color(t_game *game, char *line)
 	while (game->split_rgb && game->split_rgb[game->i])
 		free(game->split_rgb[(game->i)++]);
 	free(game->split_rgb);
+	game->split_rgb = NULL;
 	if (game->is_ceilling)
 		game->color_ceilling = rgb_to_hex(game->r, game->g, game->b);
 	else

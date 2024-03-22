@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:59:23 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 16:38:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_free_game(t_game *game)
 
 	i = 0;
 	ft_free_map(game, &i);
+	if (game->arg)
+		free(game->arg);
 	i = 0;
 	if (game->sprite)
 		ft_free_sprite(game);

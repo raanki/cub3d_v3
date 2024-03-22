@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:21:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 16:05:00 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_game
 	int				has_next_line;
 	int				has_prev_line;
 	char			*line;
+	char			*arg;
 
 }	t_game;
 
