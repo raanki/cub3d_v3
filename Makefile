@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/20 23:19:32 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/22 12:50:14 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ srcs/exe/init_game.c\
 srcs/exe/render.c\
 \
 srcs/exe/moove.c\
+\
+srcs/exe/moove_2.c\
 \
 srcs/exe/hook_utils.c\
 \

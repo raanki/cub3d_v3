@@ -6,31 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 11:34:38 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:52:49 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-void	ft_hook_init_loop(t_game *game, int x)
-{
-	game->hit = 0;
-	game->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
-	game->ray_dir_x = game->player->dir_x
-		+ game->player->plan_x * game->camera_x;
-	game->ray_dir_y = game->player->dir_y
-		+ game->player->plan_y * game->camera_x;
-	game->map_player_x = (int)floor(game->player->plyr_x);
-	game->map_player_y = (int)floor(game->player->plyr_y);
-	if (game->ray_dir_x == 0)
-		game->delta_dist_x = 1e30;
-	else
-		game->delta_dist_x = fabs(1 / game->ray_dir_x);
-	if (game->delta_dist_y == 0)
-		game->delta_dist_y = 1e30;
-	else
-		game->delta_dist_y = fabs(1 / game->ray_dir_y);
-}
 
 void	ft_hook_init_side_dist(t_game *game)
 {
@@ -76,7 +56,8 @@ void	ft_hook_find_hit(t_game *game)
 			game->map_player_y += game->step_y;
 			game->side = 1 ;
 		}
-		if (game->map_player_y >= game->map->h_map - 1 || game->map_player_x > game->map->w_map
+		if (game->map_player_y >= game->map->h_map - 1
+			|| game->map_player_x > game->map->w_map
 			|| game->map_player_y <= 0 || game->map_player_x <= 0
 			|| ft_char_to_int(game->map->map2d
 				[game->map_player_x][game->map_player_y]) == 1)
@@ -84,27 +65,6 @@ void	ft_hook_find_hit(t_game *game)
 			game->hit = 1;
 		}
 	}
-}
-
-int	find_nice_pitch(void)
-{
-	if (SCREEN_HEIGHT <= 500)
-		return (100);
-	if (SCREEN_HEIGHT <= 700)
-		return (50);
-	if (SCREEN_HEIGHT <= 800)
-		return (40);
-	if (SCREEN_HEIGHT <= 900)
-		return (30);
-	if (SCREEN_HEIGHT <= 1000)
-		return (20);
-	if (SCREEN_HEIGHT <= 1100)
-		return (10);
-	if (SCREEN_HEIGHT <= 1200)
-		return (5);
-	if (SCREEN_HEIGHT <= 1300)
-		return (0);
-	return (0);
 }
 
 void	ft_hook_target_draw(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 00:00:34 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:54:01 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 	if (game->sprite_path[*i])
 	{
 		game->sprite[*i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p,
-			game->sprite_path[*i], &width, &height);
+				game->sprite_path[*i], &width, &height);
 	}
 	else
 	{
 		game->sprite[*i]->img = NULL;
 		game->sprite[*i]->pixel_colors = NULL;
 	}
-	if (!game->sprite_path[*i] || !(game->sprite[*i]->img) || (width != TILE_SIZE || height != TILE_SIZE))
+	if (!game->sprite_path[*i] || !(game->sprite[*i]->img)
+		|| (width != TILE_SIZE || height != TILE_SIZE))
 	{
 		ft_e_str("sprite");
 		ft_free_game(game);

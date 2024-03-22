@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:08:04 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:53:01 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,9 @@ void	ft_e_str(char *s);
 int		ft_exit(void *param);
 void	ft_free_mlx(t_game *game);
 void	ft_free_map(t_game *game, int *i);
+void	rotate_left(int key, t_game *game);
+void	rotate_right(int key, t_game *game);
+int		find_nice_pitch(void);
 
 //************************************************************
 //************************* PARSING **************************
