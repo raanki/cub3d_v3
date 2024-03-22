@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:16:37 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:23:41 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,9 @@ int	ft_mlx_key(int key, void *gam)
 	game->rotSpeed = 0.15;
 	game->stepSide = 0.3;
 
-	printf("avant x = %f\n", game->player->plyr_x);
-	printf("avant y = %f\n", game->player->plyr_y);
-	printf("sure la map %c\n\n", game->map->map2d[(int)floor(game->player->plyr_x)][(int)floor(game->player->plyr_y)]);
+	// printf("avant x = %f\n", game->player->plyr_x);
+	// printf("avant y = %f\n", game->player->plyr_y);
+	// printf("sure la map %c\n\n", game->map->map2d[(int)floor(game->player->plyr_x)][(int)floor(game->player->plyr_y)]);
 
 	moove_left(key, game);
 	moove_right(key, game);
@@ -157,9 +157,9 @@ int	ft_mlx_key(int key, void *gam)
 	moove_back(key, game);
 	rotate_left(key, game);
 	rotate_right(key, game);
-	printf("Apèessure la map %c\n", game->map->map2d[(int)floor(game->player->plyr_x)][(int)floor(game->player->plyr_y)]);
-	printf("apres x = %f\n", game->player->plyr_x);
-	printf("apres y = %f\n\n\n", game->player->plyr_y);
+	// printf("Apèessure la map %c\n", game->map->map2d[(int)floor(game->player->plyr_x)][(int)floor(game->player->plyr_y)]);
+	// printf("apres x = %f\n", game->player->plyr_x);
+	// printf("apres y = %f\n\n\n", game->player->plyr_y);
 	
 	return (0);
 }
