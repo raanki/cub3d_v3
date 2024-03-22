@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/22 17:53:16 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/22 18:08:48 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ srcs/parsing/parsing_text.c\
 srcs/parsing/ft_split.c\
 \
 srcs/parsing/check_map.c\
+\
+srcs/parsing/flood_fill.c\
 \
 
 OBJ = $(SRC:.c=.o)
