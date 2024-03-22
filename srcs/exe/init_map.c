@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 23:31:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 00:10:54 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ void	ft_set_map_color_texture(t_game *game)
 		{
 			parse_line_color(game, game->cur_tmp);
 			game->count_valid_color++;
+		}
+		if (game->count_valid_color != 2
+			&& game->count_valid_texture != 4
+			&& (!is_only_space(game->current_line)
+				&& !is_line_color(game->current_line)
+				&& !is_line_texture(game->current_line)))
+		{
+			printf(" a cause de \"%s\"\n", game->current_line);
+			free(game->cur_tmp);
+			free(game->current_line);
+			ft_e_str("Not Valid file");
+			ft_free_game(game);
+			exit(EXIT_FAILURE);
 		}
 		free(game->cur_tmp);
 		free(game->current_line);

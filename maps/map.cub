@@ -4,20 +4,20 @@
 
 
 
+C 235, 198, 52
 
+F 45,33,27
+
+NO ./sprites/one.xpm
 
 
 EA ./sprites/four.xpm
 
 SO ./sprites/two.xpm
 
+
 WE ./sprites/three.xpm
 
-C 235, 198, 52
-
-F 45,33,27
-
-NO ./sprites/one.xpm
 
 111
 101
