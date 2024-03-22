@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:52:49 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 22:52:35 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_hook_find_hit(t_game *game)
 			|| game->map_player_x > game->map->w_map
 			|| game->map_player_y <= 0 || game->map_player_x <= 0
 			|| ft_char_to_int(game->map->map2d
-				[game->map_player_x][game->map_player_y]) == 1)
+				[game->map_player_y][game->map_player_x]) == 1)
 		{
 			game->hit = 1;
 		}
@@ -83,8 +83,6 @@ void	ft_hook_target_draw(t_game *game)
 		game->draw_end = SCREEN_HEIGHT - 1;
 }
 
-//tex_num = char_to_int(game->map->map2d
-//[game->map_player_x][game->map_player_y]) - 1;
 void	ft_hook_find_text_x_y(t_game *game)
 {
 	game->tex_num = ft_which_wall(game, game->ray_dir_x, game->side);
