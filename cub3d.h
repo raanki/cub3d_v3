@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:53:01 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:08:00 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,11 @@ typedef struct s_game
 	char		*current_line;
 	char		*current_tmp;
 	int			sure_mode_h;
+	int			index_sprite_path;
+	int			count_valid_texture;
+	int			count_valid_color;
+	int			first;
+	int			fd;
 }	t_game;
 
 //************************************************************
@@ -207,3 +212,4 @@ int				stupid_count_one_algo(char *line, int line_curr, char **map);
 t_map			*test_map(t_game *game, t_map *map);
 t_map			*create_map(t_game *game, t_map *map, char *file);
 void			first_check(t_game *game, char **map);
+void			set_start_angle_player(t_game *game);
