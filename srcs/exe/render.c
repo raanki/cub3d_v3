@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 11:53:36 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:12:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void ft_hook_draw_sprite(t_game *game, int x)
         inverted_tex_x = TILE_SIZE - 1 - game->tex_x;
         if (inverted_tex_x >= 0 && inverted_tex_x < TILE_SIZE && tex_y >= 0 && tex_y < TILE_SIZE)
         {
-            color = game->sprite[game->tex_num]->pixel_colors[TILE_SIZE * tex_y + inverted_tex_x];
+            color = game->sprite[game->tex_num]->pixel_colors[(TILE_SIZE * tex_y + inverted_tex_x) > 0 ? (TILE_SIZE * tex_y + inverted_tex_x - 1) : 0];
             game->buffer[game->i][x] = color;
         }
         game->i++;

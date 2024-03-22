@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 11:54:05 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:16:37 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void moove_left(int key, t_game *game)
 
         if (nextX < game->map->w_map && nextX > game->sure_mode)
         {
-            if (game->map->map2d[(int)(nextX + game->stepSide)][(int)(game->player->plyr_y)] != '1')
+            if (game->map->map2d[(int)(nextX + game->stepSide * game->player->dir_x)][(int)(game->player->plyr_y)] != '1')
                 game->player->plyr_x = nextX;
         }
 
         if (nextY < game->map->h_map - game->sure_mode_h && nextY > game->sure_mode)
         {
-            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide)] != '1')
+            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide * game->player->dir_y)] != '1')
                 game->player->plyr_y = nextY;
         }
     }
@@ -43,13 +43,13 @@ void moove_right(int key, t_game *game)
 
         if (nextX < game->map->w_map && nextX > game->sure_mode)
         {
-            if (game->map->map2d[(int)(nextX + game->stepSide)][(int)(game->player->plyr_y)] != '1')
+            if (game->map->map2d[(int)(nextX + game->stepSide * game->player->dir_x)][(int)(game->player->plyr_y)] != '1')
                 game->player->plyr_x = nextX;
         }
 
         if (nextY < game->map->h_map - game->sure_mode_h && nextY > game->sure_mode)
         {
-            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide )] != '1')
+            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide * game->player->dir_y)] != '1')
                 game->player->plyr_y = nextY;
         }
     }
@@ -70,13 +70,13 @@ void moove_up(int key, t_game *game)
 
         if (nextX < game->map->w_map - game->sure_mode_h && nextX > game->sure_mode)
         {
-            if (game->map->map2d[(int)(nextX + game->stepSide)][(int)(game->player->plyr_y)] != '1')
+            if (game->map->map2d[(int)(nextX + game->stepSide * game->player->dir_x)][(int)(game->player->plyr_y)] != '1')
                 game->player->plyr_x = nextX;
         }
 
         if (nextY < game->map->h_map - game->sure_mode_h && nextY > game->sure_mode)
         {
-            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide)] != '1')
+            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide * game->player->dir_y)] != '1')
                 game->player->plyr_y = nextY;
         }
     }
@@ -93,13 +93,13 @@ void moove_back(int key, t_game *game)
 
         if (nextX < game->map->w_map && nextX > game->sure_mode)
         {
-            if (game->map->map2d[(int)(nextX + game->stepSide)][(int)(game->player->plyr_y)] != '1')
+            if (game->map->map2d[(int)(nextX + game->stepSide * game->player->dir_x)][(int)(game->player->plyr_y)] != '1')
                 game->player->plyr_x = nextX;
         }
 
         if (nextY < game->map->h_map - game->sure_mode_h && nextY > game->sure_mode)
         {
-            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide)] != '1')
+            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY + game->stepSide * game->player->dir_y)] != '1')
                 game->player->plyr_y = nextY;
         }
     }
@@ -139,6 +139,7 @@ int	ft_mlx_key(int key, void *gam)
 {
 	t_game	*game;
 
+	
 	game = (t_game *)gam;
 	game->moveSpeed = 0.2;
 	game->sure_mode = 1.2;
@@ -146,11 +147,19 @@ int	ft_mlx_key(int key, void *gam)
 	game->rotSpeed = 0.15;
 	game->stepSide = 0.3;
 
+	printf("avant x = %f\n", game->player->plyr_x);
+	printf("avant y = %f\n", game->player->plyr_y);
+	printf("sure la map %c\n\n", game->map->map2d[(int)floor(game->player->plyr_x)][(int)floor(game->player->plyr_y)]);
+
 	moove_left(key, game);
 	moove_right(key, game);
 	moove_up(key, game);
 	moove_back(key, game);
 	rotate_left(key, game);
 	rotate_right(key, game);
+	printf("Apèessure la map %c\n", game->map->map2d[(int)floor(game->player->plyr_x)][(int)floor(game->player->plyr_y)]);
+	printf("apres x = %f\n", game->player->plyr_x);
+	printf("apres y = %f\n\n\n", game->player->plyr_y);
+	
 	return (0);
 }
