@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 22:45:46 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 23:29:51 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	ft_check_spawn_wall_nothing_any(t_game *game, char **map)
 		game->player->plyr_y = game->i + 0.5;
 		game->player->plyr_x = game->j + 0.5;
 		set_good_angle_with_letter(game, map[game->i][game->j]);
-		printf("heigth = %d\n", game->map->h_map);
-		printf("width = %d\n", game->map->w_map);
 		map[game->i][game->j] = '0';
 		game->number_player_letter_find++;
 	}
