@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:16:38 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:20:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 char	*remove_first_spaces_until_first_letter(char *line)
 {
-	int		index_first_character;
 	int		index_last_space;
 	char	*ret;
 
-	index_first_character = 0;
 	index_last_space = 0;
 	if (!line)
 		return (line);

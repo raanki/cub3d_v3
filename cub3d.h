@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:07:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:21:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ int				find_nice_pitch(void);
 t_map			*fetch_map_params(int fd, t_map *map,
 					char *file_name, t_game *game);
 unsigned	int		parse_line_color(t_game *game, char *line);
-char			*parse_line_texture(t_game *game, char *line);
+char			*parse_line_texture(char *line);
 int				is_line_texture(char *line);
 int				open_fd(t_game *game, char *name);
 void			prnt(char **arr);

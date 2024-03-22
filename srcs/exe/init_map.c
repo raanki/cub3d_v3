@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:14:12 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:21:40 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_init_player_map(t_game *game)
 {
-	t_player	*player;
-
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
 	{
@@ -55,8 +53,8 @@ void	ft_set_map_color_texture(t_game *game)
 		{
 			if (game->sprite_path[game->current_sprite])
 				free(game->sprite_path[game->current_sprite]);
-			game->sprite_path[game->current_sprite] = parse_line_texture(game,
-					game->current_tmp);
+			game->sprite_path[game->current_sprite] = parse_line_texture(game->
+					current_tmp);
 			game->count_valid_texture++;
 			game->index_sprite_path++;
 		}

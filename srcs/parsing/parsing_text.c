@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:32:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:21:21 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,9 @@ char	*get_path_from_valid_line_texture(char *line)
 	return (path_line);
 }
 
-char	*parse_line_texture(t_game *game, char *line)
+char	*parse_line_texture(char *line)
 {
 	char	*cpy_line;
-	char	*type_text;
-	char	*path;
 
 	if (!is_line_texture(line))
 	{

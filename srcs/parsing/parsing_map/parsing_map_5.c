@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:16:59 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:20:43 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_copy_line_map(t_game *game, t_map *map)
 	game->i++;
 }
 
-void	ft_create_real_map_skip_rest(t_game *game, t_map *map, char *file)
+void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 {
 	while (1)
 	{
@@ -67,7 +67,7 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 		game->i++;
 	}
 	game->i = 0;
-	ft_create_real_map_skip_rest(game, map, file);
+	ft_create_real_map_skip_rest(game, map);
 	close(game->fd);
 	return (map);
 }
