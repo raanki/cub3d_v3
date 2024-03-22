@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:08:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 21:14:26 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:34:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,16 @@ int	is_adjacent_valid(char **map, int x, int y, t_game *game)
 	int	i;
 	int	new_x;
 	int	new_y;
-	int dirs[4][2] = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+	int	dirs[4][2];
 
+	dirs[0][0] = 0;
+	dirs[0][1] = -1;
+	dirs[1][0] = 0;
+	dirs[1][1] = 1;
+	dirs[2][0] = -1;
+	dirs[2][1] = 0;
+	dirs[3][0] = 1;
+	dirs[3][1] = 0;
 	i = 0;
 	while (i < 4)
 	{

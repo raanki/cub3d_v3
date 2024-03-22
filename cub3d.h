@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 21:29:15 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:38:09 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_game
 	int				current_sprite;
 	char			*current_line;
 	char			*cur_tmp;
-	int				sure_mode_h;
+	double			sure_mode_h;
 	int				index_sprite_path;
 	int				count_valid_texture;
 	int				count_valid_color;

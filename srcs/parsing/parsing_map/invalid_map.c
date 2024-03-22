@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 20:34:09 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 21:30:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_check_invalid_char_map(t_game *game)
 	while (1)
 	{
 		ft_set_up_all(game);
-		if (game->line && ((is_only_space(game->line) && !game->now_is_map )
+		if (game->line && ((is_only_space(game->line) && !game->now_is_map)
 				|| is_line_color(game->line) || is_line_texture(game->line)))
 		{
 			free(game->line);
