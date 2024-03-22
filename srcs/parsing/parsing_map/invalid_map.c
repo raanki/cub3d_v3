@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invalid_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 17:10:17 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 19:26:54 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_check_up_all(t_game *game)
 			free(game->save);
 		free(game->line);
 		ft_e_str("Invalid char");
-		ft_free_game(game);
 		close(game->fd);
+		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	free(game->line);
