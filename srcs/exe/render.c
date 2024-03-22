@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 09:35:20 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 11:53:36 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,37 @@ void	ft_draw_buffer(t_game *game)
 		x++;
 	}
 }
-	#define COLOR_ORANGE 0XDC6400
 
 
-void	ft_hook_draw_sprite(t_game *game, int x)
+void ft_hook_draw_sprite(t_game *game, int x)
 {
-	int	y;
-	int	color;
-	int	tex_y;
-	int inverted_tex_x;
+    int color;
+    int tex_y;
+    int inverted_tex_x;
 
-	y = game->draw_start - 1;
-	while (++y < game->draw_end)
-	{
-		tex_y = (int)game->tex_pos & (TILE_SIZE - 1);
-		game->tex_pos += game->step;
-		inverted_tex_x= TILE_SIZE - 1 - game->tex_x;
-		color = game->sprite[(game->tex_num)]->pixel_colors
-		[TILE_SIZE * tex_y + inverted_tex_x];
-		game->buffer[y][x] = color;
-	}
-	y = -1;
-	
-	while (++y <= game->draw_start && game->draw_start < (game->map->w_map * TILE_SIZE))
-		game->buffer[y][x] = game->color_ceilling;
-	y = game->draw_end - 1;
-	while (++y < SCREEN_HEIGHT && y > 0)
-		game->buffer[y][x] = game->color_floor;
-
+    if (game->draw_start < 0)
+        game->draw_start = 0;
+    game->i = game->draw_start;
+    while (game->i < game->draw_end)
+    {
+        tex_y = (int)game->tex_pos & (TILE_SIZE - 1);
+        game->tex_pos += game->step;
+        inverted_tex_x = TILE_SIZE - 1 - game->tex_x;
+        if (inverted_tex_x >= 0 && inverted_tex_x < TILE_SIZE && tex_y >= 0 && tex_y < TILE_SIZE)
+        {
+            color = game->sprite[game->tex_num]->pixel_colors[TILE_SIZE * tex_y + inverted_tex_x];
+            game->buffer[game->i][x] = color;
+        }
+        game->i++;
+    }
+	game->i= -1;
+	while (++game->i< game->draw_start)
+		game->buffer[game->i][x] = game->color_ceilling;
+	game->i = game->draw_end - 1;
+	while (++game->i < SCREEN_HEIGHT)
+		game->buffer[game->i][x] = game->color_round;
 }
+
 
 void	ft_hook(t_game *game)
 {

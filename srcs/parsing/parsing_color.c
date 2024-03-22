@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:50:09 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 11:31:27 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ unsigned	int	parse_line_color(t_game *game, char *line)
 	if (game->is_ceilling)
 		game->color_ceilling = rgb_to_hex(game->r, game->g, game->b);
 	else
-		game->color_floor = rgb_to_hex(game->r, game->g, game->b);
+		game->color_round = rgb_to_hex(game->r, game->g, game->b);
 	return (rgb_to_hex(game->r, game->g, game->b));
 }

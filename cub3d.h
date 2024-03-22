@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:42:42 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 11:31:27 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_game
 	double		tex_pos;
 	int			color;
 	unsigned int	color_ceilling;
-	unsigned int	color_floor;
+	unsigned int	color_round;
 	double		moveSpeed;
 	double		sure_mode;
 	double		rotSpeed;
@@ -141,6 +141,7 @@ typedef struct s_game
 	int			current_sprite;
 	char		*current_line;
 	char		*current_tmp;
+	int			sure_mode_h;
 }	t_game;
 
 //************************************************************

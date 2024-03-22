@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 10:00:27 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 11:34:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_hook_init_loop(t_game *game, int x)
 		+ game->player->plan_x * game->camera_x;
 	game->ray_dir_y = game->player->dir_y
 		+ game->player->plan_y * game->camera_x;
-	game->map_player_x = (int)(game->player->plyr_x);
-	game->map_player_y = (int)(game->player->plyr_y);
+	game->map_player_x = (int)floor(game->player->plyr_x);
+	game->map_player_y = (int)floor(game->player->plyr_y);
 	if (game->ray_dir_x == 0)
 		game->delta_dist_x = 1e30;
 	else
