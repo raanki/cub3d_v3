@@ -6,37 +6,36 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:51:47 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:01:03 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-
+/**
+ * EAST
+ * SUD
+ * WEST
+ * NORD
+*/
 void	set_start_angle_player(t_game *game)
 {
-	if (game->angle_player == 0) // EAST
-	{
-		game->player->dir_x = 0;
-		game->player->dir_y = -1;
-		game->player->plan_x = FOV;
-		game->player->plan_y = 0;
-	}
-	else if (game->angle_player == 1) // SUD
+	game->player->plan_x = FOV;
+	game->player->dir_x = 0;
+	game->player->plan_y = 0;
+	game->player->dir_y = -1;
+	if (game->angle_player == 1)
 	{
 		game->player->dir_x = 1;
 		game->player->dir_y = 0;
 		game->player->plan_x = 0;
-		game->player->plan_y = FOV;
 	}
-	else if (game->angle_player == 2) // WEST
+	else if (game->angle_player == 2)
 	{
-		game->player->dir_x = 0;
 		game->player->dir_y = 1;
 		game->player->plan_x = -FOV;
-		game->player->plan_y = 0;
 	}
-	else if (game->angle_player == 3) // NORD
+	else if (game->angle_player == 3)
 	{
 		game->player->dir_x = -1;
 		game->player->dir_y = 0;
@@ -49,16 +48,13 @@ void	ft_init_map(t_game *game, char *arg)
 {
 	t_player	*player;
 
-
 	game->map = malloc(sizeof(t_map));
 	if (!game->map)
 	{
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
-
 	game->map->map2d = NULL;
-
 	game->player = malloc(sizeof(t_player));
 	if (game->player  == NULL)
 	{
@@ -104,15 +100,12 @@ void	ft_init_map(t_game *game, char *arg)
 		}
 		else if (is_line_color(game->current_line))
 		{
-			
 			parse_line_color(game, game->current_tmp);
 			count_valid_color++;
 		}
-        
 		free(game->current_tmp);
         free(game->current_line);
     }
-
 	game->sprite_path[4] = NULL;
 	
 	if (count_valid_texture != 4)

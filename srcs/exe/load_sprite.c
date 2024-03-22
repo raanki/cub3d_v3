@@ -6,19 +6,14 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:54:01 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:57:05 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
+void	init_sprite_memory(t_game *game, int *i, int *height, int *width)
 {
-	int		width;
-	int		height;
-
-	width = 0;
-	height = 0;
 	game->sprite[*i] = ft_calloc(1, sizeof(t_sprite));
 	if (!game->sprite[*i])
 	{
@@ -29,13 +24,23 @@ void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
 	if (game->sprite_path[*i])
 	{
 		game->sprite[*i]->img = mlx_xpm_file_to_image(game->mlx->mlx_p,
-				game->sprite_path[*i], &width, &height);
+				game->sprite_path[*i], width, height);
 	}
 	else
 	{
 		game->sprite[*i]->img = NULL;
 		game->sprite[*i]->pixel_colors = NULL;
 	}
+}
+
+void	ft_manage_create_sprite(t_game *game, int *i, char *sprite_paths[4])
+{
+	int		width;
+	int		height;
+
+	width = 0;
+	height = 0;
+	init_sprite_memory(game, i, &height, &width);
 	if (!game->sprite_path[*i] || !(game->sprite[*i]->img)
 		|| (width != TILE_SIZE || height != TILE_SIZE))
 	{
@@ -107,18 +112,4 @@ void	ft_load_sprite(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 	ft_manage_sprite(game, game->sprite_path);
-}
-
-void	ft_e_str(char *s)
-{
-	int	size;
-
-	size = 0;
-	while (s[size] != '\0')
-	{
-		size++;
-	}
-	write(2, "Error\n", 6);
-	write(2, s, size);
-	write(2, "\n", 1);
 }

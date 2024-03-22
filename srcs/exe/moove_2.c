@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:49:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:52:52 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 12:55:05 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,18 @@ void	ft_hook_init_loop(t_game *game, int x)
 		game->delta_dist_y = 1e30;
 	else
 		game->delta_dist_y = fabs(1 / game->ray_dir_y);
+}
+
+void	ft_e_str(char *s)
+{
+	int	size;
+
+	size = 0;
+	while (s[size] != '\0')
+	{
+		size++;
+	}
+	write(2, "Error\n", 6);
+	write(2, s, size);
+	write(2, "\n", 1);
 }
