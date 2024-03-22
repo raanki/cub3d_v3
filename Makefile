@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/22 15:05:05 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/22 17:10:44 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ srcs/parsing/parsing_map/parsing_map_3.c\
 srcs/parsing/parsing_map/parsing_map_4.c\
 \
 srcs/parsing/parsing_map/parsing_map_5.c\
+\
+srcs/parsing/parsing_map/invalid_map.c\
 \
 srcs/gnl/get_next_line.c\
 \

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 16:05:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:11:11 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct s_game
 	int				has_prev_line;
 	char			*line;
 	char			*arg;
+	char			*save;
 
 }	t_game;
 
@@ -224,3 +225,5 @@ t_map			*test_map(t_game *game, t_map *map);
 t_map			*create_map(t_game *game, t_map *map, char *file);
 void			first_check(t_game *game, char **map);
 void			set_start_angle_player(t_game *game);
+void			ft_check_invalid_char_map(t_game *game);
+int				ft_valid_char(char *line);

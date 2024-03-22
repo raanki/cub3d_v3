@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 16:59:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:07:36 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,55 +45,7 @@ int	ft_valid_char(char *line)
 
 void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 {
-	char	*save;
-
-	save = NULL;
-	while (1)
-	{
-		game->line = get_next_line(game->fd);
-		if (save)
-		{
-			free(save);
-			save = NULL;
-		}
-		if (game->line)
-			save = ft_strdup(game->line);
-		else
-			save = NULL;
-		if (game->line && (is_only_space(game->line)
-				|| is_line_color(game->line)
-				|| is_line_texture(game->line)))
-		{
-			free(game->line);
-			if (save)
-			{
-				free(save);
-				save = NULL;
-			}
-			continue ;
-		}
-		if (game->line && !ft_valid_char(save))
-		{
-			if (save)
-				free(save);
-			free(game->line);
-			ft_e_str("Invalid char");
-			ft_free_game(game);
-			exit(EXIT_FAILURE);
-		}
-		if (!game->line)
-		{
-			break ;
-		}
-		free(game->line);
-		if (save)
-		{
-			free(save);
-			save = NULL;
-		}
-	}
-	close(game->fd);
-	game->fd = open_fd(game, game->arg);
+	ft_check_invalid_char_map(game);
 	while (1)
 	{
 		game->line = get_next_line(game->fd);
