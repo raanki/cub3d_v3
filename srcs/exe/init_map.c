@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 17:42:46 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:55:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,7 @@ void	ft_init_map(t_game *game, char *arg)
 	game->map = game->map;
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;
+
+	ft_replace_2d(game->map->map2d, '\n', ' ');
+	prnt(game->map->map2d);
 }

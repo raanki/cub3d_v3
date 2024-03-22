@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 17:42:37 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:52:14 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,3 +228,4 @@ void			first_check(t_game *game, char **map);
 void			set_start_angle_player(t_game *game);
 void			ft_check_invalid_char_map(t_game *game);
 int				ft_valid_char(char *line);
+void			ft_replace_2d(char **array, char to_find, char to_replace);
