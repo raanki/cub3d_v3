@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 23:49:13 by ranki            ###   ########.fr       */
+/*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
+/*   Updated: 2024/03/23 00:17:35 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,3 +239,4 @@ int					check_column_from_bottom(char **map, int mapHeight, int j);
 int					check_line_from_left(char **map, int mapWidth, int i);
 int					check_line_from_right(char **map, int mapWidth, int i);
 void				ft_set_array_flood(t_game *game);
+void				ft_check_map_trade_with_arg(t_game *game);

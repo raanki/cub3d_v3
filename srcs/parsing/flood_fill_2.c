@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:08:41 by mklimina          #+#    #+#             */
-/*   Updated: 2024/03/22 21:12:39 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/23 00:15:34 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../cub3d.h"
 
 int	check_column_from_top(char **map, int mapHeight, int j)
 {
@@ -100,4 +102,20 @@ int	check_line_from_right(char **map, int mapWidth, int i)
 		j--;
 	}
 	return (1);
+}
+
+void	ft_check_map_trade_with_arg(t_game *game)
+{
+	if (game->count_valid_color != 2
+		&& game->count_valid_texture != 4
+		&& (!is_only_space(game->current_line)
+			&& !is_line_color(game->current_line)
+			&& !is_line_texture(game->current_line)))
+	{
+		free(game->cur_tmp);
+		free(game->current_line);
+		ft_e_str("Not Valid file");
+		ft_free_game(game);
+		exit(EXIT_FAILURE);
+	}
 }
