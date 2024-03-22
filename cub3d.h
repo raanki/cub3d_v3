@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:08:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:45:25 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,10 @@ typedef struct s_game
 	int			count_valid_color;
 	int			first;
 	int			fd;
+	int			flag;	
+	int			flag_1;	
+	char		**check_map;;	
+
 }	t_game;
 
 //************************************************************

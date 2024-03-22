@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:28:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:46:34 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,42 +124,45 @@ int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
 	}
 }
 
+void	ft_condition_test_map(t_game *game, t_map *map)
+{
+	if (game->i == 0 || game->i == map->h_map - 1)
+	{
+		game->flag = scan_first_last_line(game->check_map[game->i],
+				game->i, game->check_map, map);
+		if (game->flag == 1)
+		{
+			printf("Map is not valid\n");
+			ft_free_game(game);
+			exit(27);
+		}
+	}
+	else
+	{
+		game->flag = stupid_count_one_algo(game->check_map[game->i],
+				game->i, game->check_map);
+		game->flag_1 = stupid_count_one_algo_right(game->check_map[game->i],
+				game->i, game->check_map);
+		if (game->flag == 1 || game->flag_1 == 1)
+		{
+			printf("Map is not valid\n");
+			ft_free_game(game);
+			exit(27);
+		}
+	}
+	game->flag = -1;
+}
+
 t_map	*test_map(t_game *game, t_map *map)
 {
-	int		i;
-	char	**check_map;
-	int		flag;
-	int		flag_1;
-
-	flag = -1;
-	i = 0;
-	check_map = map ->map2d;
+	game->flag = -1;
+	game->i = 0;
+	game->check_map = map ->map2d;
 	first_check(game, map -> map2d);
-	while (check_map[i] != NULL)
+	while (game->check_map[game->i] != NULL)
 	{
-		if (i == 0 || i == map->h_map - 1)
-		{
-			flag = scan_first_last_line(check_map[i], i, check_map, map);
-			if (flag == 1)
-			{
-				printf("Map is not valid\n");
-				ft_free_game(game);
-				exit(27);
-			}
-		}
-		else
-		{
-			flag = stupid_count_one_algo(check_map[i], i, check_map);
-			flag_1 = stupid_count_one_algo_right(check_map[i], i, check_map);
-			if (flag == 1 || flag_1 == 1)
-			{
-				printf("Map is not valid\n");
-				ft_free_game(game);
-				exit(27);
-			}
-		}
-		flag = -1;
-		i++;
+		ft_condition_test_map(game, map);
+		game->i++;
 	}
 	return (map);
 }
