@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 18:45:52 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 20:29:33 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_game
 	int				current_sprite;
 	char			*current_line;
 	char			*current_tmp;
-	int				sure_mode_h;
+	double			sure_mode_h;
 	int				index_sprite_path;
 	int				count_valid_texture;
 	int				count_valid_color;
@@ -157,6 +157,7 @@ typedef struct s_game
 	char			*line;
 	char			*arg;
 	char			*save;
+	int				now_is_map;
 
 }	t_game;
 

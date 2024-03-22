@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invalid_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 19:26:54 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:34:09 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ void	ft_check_up_all(t_game *game)
 void	ft_check_invalid_char_map(t_game *game)
 {
 	game->save = NULL;
+	game->now_is_map = 0;
 	while (1)
 	{
 		ft_set_up_all(game);
-		if (game->line && (is_only_space(game->line)
+		if (game->line && ((is_only_space(game->line) && !game->now_is_map )
 				|| is_line_color(game->line) || is_line_texture(game->line)))
 		{
 			free(game->line);
@@ -63,9 +64,20 @@ void	ft_check_invalid_char_map(t_game *game)
 			}
 			continue ;
 		}
+		game->now_is_map = 1;
 		if (!game->line)
 		{
 			break ;
+		}
+		if (game->now_is_map == 1 && is_only_space(game->line))
+		{
+			if (game->save)
+				free(game->save);
+			free(game->line);
+			ft_e_str("Not valid Map");
+			close(game->fd);
+			ft_free_game(game);
+			exit(EXIT_FAILURE);
 		}
 		ft_check_up_all(game);
 	}
