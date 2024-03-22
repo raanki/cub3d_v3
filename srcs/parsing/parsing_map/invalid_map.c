@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 21:30:59 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 23:45:14 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,21 @@ void	ft_check_up_all(t_game *game)
 	}
 }
 
+void	ft_check_island(t_game *game)
+{
+	if (game->now_is_map == 1 && is_only_space(game->line))
+	{
+		if (game->save)
+			free(game->save);
+		free(game->line);
+		ft_e_str("Not valid Map");
+		close(game->fd);
+		ft_free_game(game);
+		exit(EXIT_FAILURE);
+	}
+	ft_check_up_all(game);
+}
+
 void	ft_check_invalid_char_map(t_game *game)
 {
 	game->save = NULL;
@@ -69,17 +84,7 @@ void	ft_check_invalid_char_map(t_game *game)
 		{
 			break ;
 		}
-		if (game->now_is_map == 1 && is_only_space(game->line))
-		{
-			if (game->save)
-				free(game->save);
-			free(game->line);
-			ft_e_str("Not valid Map");
-			close(game->fd);
-			ft_free_game(game);
-			exit(EXIT_FAILURE);
-		}
-		ft_check_up_all(game);
+		ft_check_island(game);
 	}
 	close(game->fd);
 	game->fd = open_fd(game, game->arg);

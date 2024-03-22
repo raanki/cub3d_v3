@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:08:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 21:34:32 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 23:48:53 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,13 @@ int	is_adjacent_valid(char **map, int x, int y, t_game *game)
 	int	i;
 	int	new_x;
 	int	new_y;
-	int	dirs[4][2];
 
-	dirs[0][0] = 0;
-	dirs[0][1] = -1;
-	dirs[1][0] = 0;
-	dirs[1][1] = 1;
-	dirs[2][0] = -1;
-	dirs[2][1] = 0;
-	dirs[3][0] = 1;
-	dirs[3][1] = 0;
+	ft_set_array_flood(game);
 	i = 0;
 	while (i < 4)
 	{
-		new_x = x + dirs[i][0];
-		new_y = y + dirs[i][1];
+		new_x = x + game->dirs[i][0];
+		new_y = y + game->dirs[i][1];
 		if (new_x >= 0 && new_x < game->map->w_map && new_y >= 0
 			&& new_y < game->map->h_map)
 		{

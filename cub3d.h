@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 22:49:26 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 23:49:13 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ typedef struct s_game
 	char			*arg;
 	char			*save;
 	int				now_is_map;
+	int				dirs[4][2];
 
 }					t_game;
 
@@ -237,3 +238,4 @@ int					check_column_from_top(char **map, int mapHeight, int j);
 int					check_column_from_bottom(char **map, int mapHeight, int j);
 int					check_line_from_left(char **map, int mapWidth, int i);
 int					check_line_from_right(char **map, int mapWidth, int i);
+void				ft_set_array_flood(t_game *game);
