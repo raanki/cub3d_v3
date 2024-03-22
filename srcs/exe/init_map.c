@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 18:46:29 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 20:20:48 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ void	ft_init_map(t_game *game, char *arg)
 	game->map = game->map;
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;
-
 	ft_replace_2d(game->map->map2d, '\n', ' ');
 	if (mapValid(game->map->map2d, game->map->h_map, game->map->w_map) == 0)
 	{
