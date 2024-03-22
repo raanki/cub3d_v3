@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:24:41 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:42:46 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,23 @@ void	ft_check_texture_color_fetch(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
+}
+
+int	check_res(t_game *game)
+{
+	int	x;
+	int	y;
+
+	mlx_get_screen_size((game->mlx->mlx_p), &x, &y);
+	if (x < SCREEN_HEIGHT || y < SCREEN_HEIGHT)
+	{
+		ft_e_str("Resolution too big for screen");
+		game->mlx->win_p = NULL;
+		game->mlx->img = NULL;
+		ft_free_game(game);
+		exit(EXIT_FAILURE);
+	}
+	return (0);
 }
 
 void	ft_init_map(t_game *game, char *arg)

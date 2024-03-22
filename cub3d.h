@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:26 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 17:11:11 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:42:37 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 //****************************************************************
 //****************************************************************
 
-#define SCREEN_WIDTH 1500 
+#define SCREEN_WIDTH 1500
 #define SCREEN_HEIGHT 900
 #define M_PI 3.14159265358979323846 
 #define TILE_SIZE 64
@@ -197,6 +197,7 @@ void			ft_free_map(t_game *game, int *i);
 void			rotate_left(int key, t_game *game);
 void			rotate_right(int key, t_game *game);
 int				find_nice_pitch(void);
+int				check_res(t_game *game);
 
 //************************************************************
 //************************* PARSING **************************

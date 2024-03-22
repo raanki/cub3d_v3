@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 17:07:36 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:24:45 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 		map->map2d[game->i] = ft_calloc(map -> w_map + 1, sizeof(char));
 		game->j = -1;
 		while (++game->j < map -> w_map)
-			map->map2d[game->i][game->j] = '1';
+			map->map2d[game->i][game->j] = ' ';
 		game->i++;
 	}
 	game->i = 0;

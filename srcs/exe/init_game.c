@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:44:20 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 17:38:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_start_the_game(t_game *game)
 	{
 		exit (EXIT_FAILURE);
 	}
+	check_res(game);
 	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH,
 			SCREEN_HEIGHT, "Cub3D");
 	mlx->img = mlx_new_image(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT);
