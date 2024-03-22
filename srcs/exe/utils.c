@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:46:28 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 21:16:57 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_game	*ft_game_instance(void)
 		game_instance->sprite_path = NULL;
 		game_instance->mlx = NULL;
 		game_instance->current_line = NULL;
-		game_instance->current_tmp = NULL;
+		game_instance->cur_tmp = NULL;
 	}
 	return (game_instance);
 }

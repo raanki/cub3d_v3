@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 20:40:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 21:21:25 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,21 @@ void	ft_set_map_color_texture(t_game *game)
 		game->current_line = get_next_line(game->fd);
 		if (!game->current_line)
 			break ;
-		game->current_tmp = ft_strdup(game->current_line);
+		game->cur_tmp = ft_strdup(game->current_line);
 		if (is_line_texture(game->current_line))
 		{
 			if (game->sprite_path[game->current_sprite])
 				free(game->sprite_path[game->current_sprite]);
-			game->sprite_path[game->current_sprite] = parse_line_texture(game
-					->current_tmp);
+			game->sprite_path[game->current_sprite] = parse_lt(game->cur_tmp);
 			game->count_valid_texture++;
 			game->index_sprite_path++;
 		}
 		else if (is_line_color(game->current_line))
 		{
-			parse_line_color(game, game->current_tmp);
+			parse_line_color(game, game->cur_tmp);
 			game->count_valid_color++;
 		}
-		free(game->current_tmp);
+		free(game->cur_tmp);
 		free(game->current_line);
 	}
 }
@@ -124,7 +123,8 @@ void	ft_init_map(t_game *game, char *arg)
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;
 	ft_replace_2d(game->map->map2d, '\n', ' ');
-	if (mapValid(game->map->map2d, game->map->h_map, game->map->w_map) == 0)
+	if (mapvalid(game->map->map2d, game->map->h_map, game->map->w_map,
+			game) == 0)
 	{
 		printf("Not Close\n");
 		ft_free_game(game);

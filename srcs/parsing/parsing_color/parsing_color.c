@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 16:16:49 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 21:16:07 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	set_rgb_index(t_game *game)
 		while (game->split_rgb && game->split_rgb[++game->i])
 			free(game->split_rgb[game->i]);
 		free(game->split_rgb);
-		free(game->current_tmp);
+		free(game->cur_tmp);
 		free(game->current_line);
 		ft_free_game(game);
 		ft_e_str("not valid line color");

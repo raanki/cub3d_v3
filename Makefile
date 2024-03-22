@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
+#    By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/22 20:22:09 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/22 21:21:08 by mklimina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,13 @@ srcs/parsing/check_map.c\
 \
 srcs/parsing/flood_fill.c\
 \
+srcs/parsing/flood_fill_2.c\
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Iminilibx-linux
-LDFLAGS = -Lminilibx-linux -Wall -Werror -Wextra
+CFLAGS = -g3 -Iminilibx-linux
+LDFLAGS = -Lminilibx-linux  -Wall -Werror -Wextra
 LDLIBS = -lmlx -lbsd -lXext -lX11 -lm
 
 .SILENT:
