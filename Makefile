@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/22 13:28:25 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/22 14:16:26 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,21 +33,23 @@ srcs/exe/free_2.c\
 \
 srcs/exe/load_sprite.c\
 \
-srcs/parsing/parsing_map.c\
+srcs/parsing/parsing_map/parsing_map.c\
 \
-srcs/parsing/parsing_map_2.c\
+srcs/parsing/parsing_map/parsing_map_2.c\
 \
-srcs/parsing/parsing_map_3.c\
+srcs/parsing/parsing_map/parsing_map_3.c\
 \
-srcs/parsing/parsing_map_4.c\
+srcs/parsing/parsing_map/parsing_map_4.c\
+\
+srcs/parsing/parsing_map/parsing_map_5.c\
 \
 srcs/gnl/get_next_line.c\
 \
 srcs/gnl/get_next_line_utils.c\
 \
-srcs/parsing/parsing_color.c\
+srcs/parsing/parsing_color/parsing_color.c\
 \
-srcs/parsing/parsing_color_2.c\
+srcs/parsing/parsing_color/parsing_color_2.c\
 \
 srcs/parsing/parsing_text.c\
 \

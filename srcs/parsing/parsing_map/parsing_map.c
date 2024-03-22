@@ -6,118 +6,63 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:46:34 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:17:01 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../../cub3d.h"
 
-t_map	*create_map(t_game *game, t_map *map, char *file)
+void	ft_condition_count_one_algo(char *line, int line_curr,
+		char **map, t_game *game)
 {
-	int		fd;
-	int		i;
-	int		j;
-	char	*line;
-
-	i = 0;
-	fd = open_fd(game, file);
-	map->map2d = ft_calloc(map -> h_map + 1, sizeof(char *));
-	map->map2d[map -> h_map] = NULL;
-	while (i < map -> h_map)
+	game->has_next_line = (map[line_curr + 1] != NULL);
+	game->has_prev_line = (line_curr > 0);
+	if (game->i > 0 && line[game->i - 1] == '1')
+		game->cnt++;
+	if (line[game->i + 1] == '1')
+		game->cnt++;
+	if (game->has_next_line)
 	{
-		map->map2d[i] = ft_calloc(map -> w_map + 1, sizeof(char));
-		j = 0;
-		while (j < map -> w_map)
-		{
-			map->map2d[i][j] = ' ';
-			j++;
-		}
-		i++;
+		if (game->i > 0 && map[line_curr + 1][game->i - 1] == '1')
+			game->cnt++;
+		if (map[line_curr + 1][game->i] == '1')
+			game->cnt++;
+		if (map[line_curr + 1][game->i + 1] == '1')
+			game->cnt++;
 	}
-	i = 0;
-	while (1)
+	if (game->has_prev_line)
 	{
-		line = get_next_line(fd);
-		if (is_line_color(line) || is_line_texture(line) || is_only_space(line))
-		{
-			free(line);
-			line = NULL;
-			continue ;
-		}
-		if (!line)
-		{
-			while (i < map -> h_map)
-			{
-				free(map->map2d[i]);
-				map->map2d[i] = NULL;
-				i++;
-			}
-			free(map->map2d[i]);
-			map->map2d[i] = NULL;
-			break ;
-		}
-		strncpy(map->map2d[i], line, ft_strlen(line));
-		if (line)
-		{
-			free(line);
-			line = NULL;
-		}
-		i++;
+		if (game->i > 0 && map[line_curr - 1][game->i - 1] == '1')
+			game->cnt++;
+		if (map[line_curr - 1][game->i] == '1')
+			game->cnt++;
+		if (map[line_curr - 1][game->i + 1] == '1')
+			game->cnt++;
 	}
-	close(fd);
-	return (map);
 }
 
 int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
 {
-	int	i;
-	int	cnt;
-	int	is_ws;
-	int	has_next_line;
-	int	has_prev_line;
+	t_game	*game;
 
-	is_ws = 0;
-	cnt = 0;
-	i = strlen(line) - 1;
-	while (i >= 0 && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
+	game = ft_game_instance();
+	game->is_ws = 0;
+	game->cnt = 0;
+	game->i = strlen(line);
+	while (--game->i >= 0 && (line[game->i] == 32
+			|| (line[game->i] >= 9 && line[game->i] <= 13)))
+		game->is_ws = 1;
+	if (game->is_ws == 1 && line[game->i] == '1')
 	{
-		i--;
-		is_ws = 1;
-	}
-	if (is_ws == 1 && line[i] == '1')
-	{
-		has_next_line = (map[line_curr + 1] != NULL);
-		has_prev_line = (line_curr > 0);
-		if (i > 0 && line[i - 1] == '1')
-			cnt++;
-		if (line[i + 1] == '1')
-			cnt++;
-		if (has_next_line)
-		{
-			if (i > 0 && map[line_curr + 1][i - 1] == '1')
-				cnt++;
-			if (map[line_curr + 1][i] == '1')
-				cnt++;
-			if (map[line_curr + 1][i + 1] == '1')
-				cnt++;
-		}
-		if (has_prev_line)
-		{
-			if (i > 0 && map[line_curr - 1][i - 1] == '1')
-				cnt++;
-			if (map[line_curr - 1][i] == '1')
-				cnt++;
-			if (map[line_curr - 1][i + 1] == '1')
-				cnt++;
-		}
-		if (cnt >= 2)
+		ft_condition_count_one_algo(line, line_curr, map, game);
+		if (game->cnt >= 2)
 			return (0);
 		else
 			return (1);
 	}
 	else
 	{
-		if (line[i] == '1')
+		if (line[game->i] == '1')
 			return (0);
 		else
 			return (1);

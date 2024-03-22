@@ -6,11 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:30:46 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:16:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../../cub3d.h"
 
 char	*remove_first_spaces_until_first_letter(char *line)
 {

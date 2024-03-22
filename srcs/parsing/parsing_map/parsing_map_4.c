@@ -6,11 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:27:53 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:31:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:16:54 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../../cub3d.h"
 
 t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 {

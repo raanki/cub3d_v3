@@ -6,11 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:28:43 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:16:49 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../../cub3d.h"
 
 void	set_good_angle_with_letter(t_game *game, char c)
 {
