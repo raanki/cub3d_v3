@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:20:43 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 15:28:13 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 	while (1)
 	{
 		game->line = get_next_line(game->fd);
-		if (is_line_color(game->line)
-			|| is_line_texture(game->line) || is_only_space(game->line))
+		if (game->line && is_only_space(game->line)
+			|| is_line_color(game->line) || is_line_texture(game->line))
 		{
 			free(game->line);
 			game->line = NULL;

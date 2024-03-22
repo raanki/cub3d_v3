@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/22 14:19:05 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/22 15:05:05 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,8 +60,8 @@ srcs/parsing/ft_split.c\
 OBJ = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Iminilibx-linux -Wall -Werror -Wextra
-LDFLAGS = -Lminilibx-linux
+CFLAGS = -Iminilibx-linux
+LDFLAGS = -Lminilibx-linux -Wall -Werror -Wextra
 LDLIBS = -lmlx -lbsd -lXext -lX11 -lm
 
 .SILENT:

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:47:52 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 15:22:33 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ int	is_only_space(char *str)
 	int	i;
 
 	i = 0;
-	if (!str || str[0] == '\0')
-	{
-		return (0);
-	}
+	if (str == NULL || str[0] == '\0' || str[0] == '\n' || str[0] == 10)
+		return (1);
 	while (str[i] != '\0')
 	{
 		if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t')
