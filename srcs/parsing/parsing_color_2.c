@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:16:46 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:23:35 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char	*get_type_texture_from_valid_line_color(char *line)
 	return (ret);
 }
 
-unsigned	int rgb_to_hex(int r, int g, int b)
+unsigned	int	rgb_to_hex(int r, int g, int b)
 {
 	unsigned int	hex;
 

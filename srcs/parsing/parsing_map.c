@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 22:06:08 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:22:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 				map->map2d[i] = NULL;
 				i++;
 			}
-			
 			free(map->map2d[i]);
 			map->map2d[i] = NULL;
 			break ;
@@ -66,8 +65,6 @@ t_map	*create_map(t_game *game, t_map *map, char *file)
 		i++;
 	}
 	close(fd);
-	// ft_free_game(game);
-	// exit(1);
 	return (map);
 }
 
