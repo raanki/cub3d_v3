@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_text.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 21:15:41 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/22 23:39:30 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	is_line_texture(char *line)
 	if (cpy_line && ft_strlen(cpy_line) >= 3)
 	{
 		if (!ft_strncmp(cpy_line, "NO ", 3))
-			return (free(tmp), game->current_sprite = 0, 1);
-		else if (!ft_strncmp(cpy_line, "SO ", 3))
-			return (free(tmp), game->current_sprite = 1, 1);
-		else if (!ft_strncmp(cpy_line, "WE ", 3))
 			return (free(tmp), game->current_sprite = 3, 1);
-		else if (!ft_strncmp(cpy_line, "EA ", 3))
+		else if (!ft_strncmp(cpy_line, "SO ", 3))
 			return (free(tmp), game->current_sprite = 2, 1);
+		else if (!ft_strncmp(cpy_line, "WE ", 3))
+			return (free(tmp), game->current_sprite = 0, 1);
+		else if (!ft_strncmp(cpy_line, "EA ", 3))
+			return (free(tmp), game->current_sprite = 1, 1);
 	}
 	free(cpy_line);
 	return (0);
