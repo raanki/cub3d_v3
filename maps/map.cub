@@ -1,29 +1,28 @@
 
-WE ./sprites/three.xpm
 
-C 225,30,1
+F 45,33,27
 
 EA ./sprites/four.xpm
 
-SO ./sprites/two.xpm
+
+
+WE ./sprites/three.xpm
+
+
 
 NO ./sprites/one.xpm
 
-F 122,143,11
+SO ./sprites/two.xpm
 
 
+C 235, 198, 52
 
-
-
-
-
-
-11111
-10101
-10001
-10101
-10001
-10N01
-11111
-
+111111111111
+1         11
+1          1
+111111111111
+10S000000001
+111111111111
+11         1
+111111111111
 

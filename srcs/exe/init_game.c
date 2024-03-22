@@ -6,34 +6,35 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 13:03:55 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 14:44:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-/**
- * EAST
- * SUD
- * WEST
- * NORD
+/*
+	E = 0
+	S = 1
+	W = 2
+	N = 3
 */
 void	set_start_angle_player(t_game *game)
 {
-	game->player->plan_x = FOV;
+	game->player->dir_y = 1;
+	game->player->plan_x = -FOV;
 	game->player->dir_x = 0;
 	game->player->plan_y = 0;
-	game->player->dir_y = -1;
 	if (game->angle_player == 1)
 	{
 		game->player->dir_x = 1;
 		game->player->dir_y = 0;
 		game->player->plan_x = 0;
+		game->player->plan_y = FOV;
 	}
 	else if (game->angle_player == 2)
 	{
-		game->player->dir_y = 1;
-		game->player->plan_x = -FOV;
+		game->player->plan_x = FOV;
+		game->player->dir_y = -1;
 	}
 	else if (game->angle_player == 3)
 	{
