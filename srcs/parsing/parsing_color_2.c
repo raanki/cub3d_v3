@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:42:48 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:16:46 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ char	*remove_first_spaces_until_first_letter(char *line)
 
 int	ft_str_have_three_coma(char *string)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -79,7 +79,7 @@ int	is_line_color(char *line)
 	if (!line || line[0] == '\0')
 		return (0);
 	if (!ft_str_have_three_coma(line))
-	 	return (0);
+		return (0);
 	cpy_line = remove_first_spaces_until_first_letter(line);
 	if (!ft_strncmp(cpy_line, "F ", 2)
 		|| !ft_strncmp(cpy_line, "C ", 2))
@@ -106,7 +106,7 @@ char	*get_type_texture_from_valid_line_color(char *line)
 	return (ret);
 }
 
-unsigned int	rgb_to_hex(int r, int g, int b)
+unsigned	int rgb_to_hex(int r, int g, int b)
 {
 	unsigned int	hex;
 

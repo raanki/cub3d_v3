@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:22:02 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:19:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,30 @@ void	set_good_angle_with_letter(t_game *game, char c)
 		game->angle_player = 2;
 }
 
+void	ft_check_spawn_wall_nothing_any(t_game *game, char **map)
+{
+	if (map[game->i][game->j] == 'N' || map[game->i][game->j] == 'S'
+			|| map[game->i][game->j] == 'E' || map[game->i][game->j] == 'W')
+	{
+		set_good_angle_with_letter(game, map[game->i][game->j]);
+		map[game->i][game->j] = '0';
+		game->player->plyr_y = game->j + 0.5;
+		game->player->plyr_x = game->i + 0.5;
+		game->number_player_letter_find++;
+	}
+	if ((map[game->i][game->j] == '1' || map[game->i][game->j] == '0'
+		|| map[game->i][game->j] == 32
+		|| (map[game->i][game->j] >= 9 && map[game->i][game->j] <= 13)
+	|| map[game->i][game->j] == 49 || map[game->i][game->j] == 79))
+		game->j++;
+	else
+	{
+		ft_free_game(game);
+		printf("no valid\n");
+		exit(27);
+	}
+}
+
 void	first_check(t_game *game, char **map)
 {
 	game->i = 0;
@@ -59,38 +83,15 @@ void	first_check(t_game *game, char **map)
 	{
 		game->j = 0;
 		while (map[game->i][game->j] != '\0' && map[game->i][game->j] != '\n')
-		{
-			if (map[game->i][game->j] == 'N' || map[game->i][game->j] == 'S'
-				|| map[game->i][game->j] == 'E' || map[game->i][game->j] == 'W')
-			{
-				set_good_angle_with_letter(game, map[game->i][game->j]);
-				map[game->i][game->j] = '0';
-				game->player->plyr_y = game->j + 0.5;
-				game->player->plyr_x = game->i + 0.5;
-				game->number_player_letter_find++;
-			}
-			if ((map[game->i][game->j] == '1' || map[game->i][game->j] == '0'
-				|| map[game->i][game->j] == 32
-				|| (map[game->i][game->j] >= 9 && map[game->i][game->j] <= 13)
-			|| map[game->i][game->j] == 49 || map[game->i][game->j] == 79))
-				game->j++;
-			else
-			{
-                ft_free_game(game);
-				printf("no valid\n");
-				exit(27);
-			}
-		}
+			ft_check_spawn_wall_nothing_any(game, map);
 		game->i++;
 	}
-
 	if (game->number_player_letter_find != 1)
 	{
 		ft_free_game(game);
 		printf("You have to put only 1 player\n");
 		exit(27);
 	}
-	
 }
 
 void	condition_stupid_count_one_algo(int *cnt,
