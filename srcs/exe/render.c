@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 23:07:25 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 09:35:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	ft_hook_draw_sprite(t_game *game, int x)
 	}
 	y = -1;
 	
-	while (++y < game->draw_start)
+	while (++y <= game->draw_start && game->draw_start < (game->map->w_map * TILE_SIZE))
 		game->buffer[y][x] = game->color_ceilling;
 	y = game->draw_end - 1;
-	while (++y < SCREEN_HEIGHT)
+	while (++y < SCREEN_HEIGHT && y > 0)
 		game->buffer[y][x] = game->color_floor;
 
 }

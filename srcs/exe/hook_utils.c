@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 21:36:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 10:00:27 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ void	ft_hook_find_hit(t_game *game)
 			game->map_player_y += game->step_y;
 			game->side = 1 ;
 		}
-		if (ft_char_to_int(game->map->map2d
-				[game->map_player_x][game->map_player_y]) > 0)
+		if (game->map_player_y >= game->map->h_map - 1 || game->map_player_x > game->map->w_map
+			|| game->map_player_y <= 0 || game->map_player_x <= 0
+			|| ft_char_to_int(game->map->map2d
+				[game->map_player_x][game->map_player_y]) == 1)
 		{
 			game->hit = 1;
 		}

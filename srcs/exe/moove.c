@@ -6,81 +6,93 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/21 22:10:39 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/22 10:14:25 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	moove_left(int key, t_game	*game)
+void moove_left(int key, t_game *game)
 {
-	if (key == XK_d || key == 100)
-	{
-
-		double	moveX = -game->player->dir_y * game->stepSide;
-    	double	moveY = game->player->dir_x * game->stepSide;
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
-			game->player->plyr_x += moveX;
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
-			game->player->plyr_y += moveY;
-	}
+	double nextX;
+    double nextY;
+	
+    if (key == XK_d || key == 100)
+    {
+        nextX = game->player->plyr_x - game->player->dir_y * game->stepSide;
+        nextY = game->player->plyr_y + game->player->dir_x * game->stepSide;
+        if (nextX >= 1 && nextX < game->map->w_map - game->sure_mode && game->map->map2d[(int)(nextX)][(int)(game->player->plyr_y)] != '1')
+            game->player->plyr_x = nextX;
+        if (nextY >= 1 && nextY < game->map->h_map - game->sure_mode && game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY)] != '1')
+            game->player->plyr_y = nextY;
+    }
 }
 
-void	moove_right(int key, t_game	*game)
+void moove_right(int key, t_game *game)
 {
-	if (key == XK_a || key == 97)
-	{
-		double	moveX = game->player->dir_y * game->stepSide;
-    	double	moveY = -game->player->dir_x * game->stepSide;
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + moveX)][(int)(game->player->plyr_y)]) == 0)
-			game->player->plyr_x += moveX;
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + moveY)]) == 0)
-			game->player->plyr_y += moveY;
-	}
+	double nextX;
+    double nextY;
+	
+    if (key == XK_a || key == 97)
+    {
+        nextX = game->player->plyr_x + game->player->dir_y * game->stepSide;
+        nextY = game->player->plyr_y - game->player->dir_x * game->stepSide;
+        if (nextX >= 1 && nextX < game->map->w_map - game->sure_mode && game->map->map2d[(int)(nextX)][(int)(game->player->plyr_y)] != '1')
+            game->player->plyr_x = nextX;
+        if (nextY >= 1 && nextY < game->map->h_map - game->sure_mode && game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY)] != '1')
+            game->player->plyr_y = nextY;
+    }
 }
 
-void	moove_up(int key, t_game *game)
+void moove_up(int key, t_game *game)
 {
-	if (key == XK_w || key == 122)
-	{
+	double nextX;
+    double nextY;
+	
+    if (key == XK_w || key == 122)
+    {
+        nextX = game->player->plyr_x + game->player->dir_x * game->moveSpeed;
+        nextY = game->player->plyr_y + game->player->dir_y * game->moveSpeed;
 
-		// printf("x = %d et y = %d\n", (int)(game->player->plyr_x + game->player->dir_x *game->moveSpeed - game->sure_mode),(int)(game->player->plyr_y) );
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x + game->player->dir_x * game->moveSpeed - game->sure_mode)][(int)(game->player->plyr_y )]) == 0
-			&& (game->player->plyr_x + game->player->dir_x * game->moveSpeed) < game->map->h_map - 1)
-		{
-			game->player->plyr_x += game->player->dir_x * game->moveSpeed;
-			// printf("pos x est devenu : %f\n", game->player->plyr_x);
-		}
-
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y + game->player->dir_y  * game->moveSpeed)]) == 0)
-		{
-			game->player->plyr_y += game->player->dir_y * game->moveSpeed;
-			// printf("pos y est devenu : %f\n", game->player->plyr_x);
-		}
-	}
+        if (nextX < game->map->w_map - game->sure_mode && nextX > game->sure_mode)
+        {
+            if (game->map->map2d[(int)(nextX)][(int)(game->player->plyr_y)] != '1')
+                game->player->plyr_x = nextX;
+        }
+        if (nextY < game->map->h_map - game->sure_mode && nextY > game->sure_mode)
+        {
+            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY)] != '1')
+                game->player->plyr_y = nextY;
+        }
+    }
 }
 
-void	moove_back(int key, t_game *game)
+
+void moove_back(int key, t_game *game)
 {
-	if (key == XK_s || key == 115)
-	{
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x - game->player->dir_x * game->moveSpeed + game->sure_mode)][(int)(game->player->plyr_y + game->sure_mode)]) == 0
-		&& (game->player->plyr_x  - game->player->dir_x  * game->moveSpeed) > 1)
-		{
-			// printf("\ncar j'ai test : %f\n", game->player->plyr_y - game->player->dir_y * game->moveSpeed + game->sure_mode);
-			game->player->plyr_x  -= game->player->dir_x  * game->moveSpeed;
-			// printf("pos x est devenu : %f\n", game->player->plyr_x);
-		}
-		if(ft_char_to_int(game->map->map2d[(int)(game->player->plyr_x)][(int)(game->player->plyr_y - game->player->dir_y * game->moveSpeed)] == 0)
-		&& (game->player->plyr_y - game->player->dir_y * game->moveSpeed + game->sure_mode) < (game->map->h_map)
-		&& (game->player->plyr_y - game->player->dir_y * game->moveSpeed) > (1))
-		{
-			// printf("\n2 car j'ai test : %f\n",(game->player->plyr_y - game->player->dir_y * game->moveSpeed));
-			game->player->plyr_y -= game->player->dir_y  * game->moveSpeed;
-			// printf("pos y est devenu : %f\n", game->player->plyr_y);
-		}
-	}
+	double nextX;
+    double nextY;
+	
+    if (key == XK_s || key == 115)
+    {
+        nextX = game->player->plyr_x - game->player->dir_x * game->moveSpeed;
+        nextY = game->player->plyr_y - game->player->dir_y * game->moveSpeed;
+
+        if (nextX > game->sure_mode && nextX < game->map->w_map - game->sure_mode)
+        {
+            if (game->map->map2d[(int)(nextX)][(int)(game->player->plyr_y)] != '1')
+                game->player->plyr_x = nextX;
+        }
+
+        if (nextY > game->sure_mode && nextY < game->map->h_map - game->sure_mode)
+        {
+            if (game->map->map2d[(int)(game->player->plyr_x)][(int)(nextY)] != '1')
+                game->player->plyr_y = nextY;
+        }
+    }
 }
+
+
 
 void	rotate_left(int key, t_game *game)
 {
@@ -115,7 +127,7 @@ int	ft_mlx_key(int key, void *gam)
 
 	game = (t_game *)gam;
 	game->moveSpeed = 0.2;
-	game->sure_mode = 0.5;
+	game->sure_mode = 0.1;
 	game->rotSpeed = 0.1;
 	game->stepSide = 0.3;
 	
