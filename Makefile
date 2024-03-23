@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+         #
+#    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/22 21:29:20 by mklimina         ###   ########.fr        #
+#    Updated: 2024/03/23 15:51:29 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,9 @@ srcs/parsing/check_map.c\
 srcs/parsing/flood_fill.c\
 \
 srcs/parsing/flood_fill_2.c\
+\
+srcs/parsing/island.c\
+\
 
 OBJ = $(SRC:.c=.o)
 

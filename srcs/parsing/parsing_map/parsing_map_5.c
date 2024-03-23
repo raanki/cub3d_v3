@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 15:37:33 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 15:49:48 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	int	i;
 
 	i = 0;
-
 	while (src && src[i] && i < n)
 	{
 		dest[i] = src[i];

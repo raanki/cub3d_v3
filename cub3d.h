@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:32:51 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 15:52:21 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,3 +243,6 @@ void				ft_set_array_flood(t_game *game);
 void				ft_check_map_trade_with_arg(t_game *game);
 void				ft_free(void *ptr);
 void				*ft_check_null(void *ptr);
+void				ft_check_read(char *stash, char *buffer, int fd, int ret);
+int					is_only_c_f_number(char *line);
+int					ft_str_have_three_coma(char *string);

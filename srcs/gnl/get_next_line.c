@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2024/03/23 15:33:31 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 15:48:29 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,25 +79,10 @@ char	*get_the_line(char *stash)
 	return (line);
 }
 
-void	ft_check_read(char *stash, char *buffer, int fd, int ret)
-{
-	t_game	*game;
-	
-	game = ft_game_instance();
-	if (ret == -1)
-	{
-		ft_free_game(game);
-		ft_free(stash);
-		ft_free(buffer);
-		ft_e_str("read crash");
-		exit(EXIT_FAILURE);
-	}
-}
-
 char	*init_stash(char *stash, char *buffer, int fd)
 {
 	int	ret;
-	
+
 	if (buffer[0] == '\0')
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);

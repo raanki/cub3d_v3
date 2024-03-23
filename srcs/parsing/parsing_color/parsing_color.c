@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:37:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 15:50:07 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	set_rgb_index(t_game *game)
 unsigned	int	parse_line_color(t_game *game, char *line)
 {
 	char	*save;
+
 	game->i = -1;
 	game->is_ceilling = 0;
 	if (!is_line_color(line))

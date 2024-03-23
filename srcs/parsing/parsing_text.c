@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:21:32 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 15:49:40 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	is_line_texture(char *line)
 			return (ft_free(cpy_line), game->current_sprite = 1, 1);
 	}
 	ft_free(cpy_line);
-	
 	return (0);
 }
 
