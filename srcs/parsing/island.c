@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:01:42 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 15:50:49 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 16:05:01 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_check_read(char *stash, char *buffer, int fd, int ret)
 	if (ret == -1)
 	{
 		ft_free_game(game);
-		ft_free(stash);
-		ft_free(buffer);
 		ft_e_str("read crash");
 		exit(EXIT_FAILURE);
 	}

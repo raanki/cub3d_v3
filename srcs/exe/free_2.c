@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:00:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:23:51 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 16:59:22 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,21 @@ void	ft_free_map(t_game *game, int *i)
 	}
 	if (game->player)
 		ft_free(game->player);
+}
+
+int	check_res(t_game *game)
+{
+	int	x;
+	int	y;
+
+	mlx_get_screen_size((game->mlx->mlx_p), &x, &y);
+	if (x < SCREEN_HEIGHT || y < SCREEN_HEIGHT)
+	{
+		ft_e_str("Resolution too big for screen");
+		game->mlx->win_p = NULL;
+		game->mlx->img = NULL;
+		ft_free_game(game);
+		exit(EXIT_FAILURE);
+	}
+	return (0);
 }

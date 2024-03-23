@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 15:49:40 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 16:53:21 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,17 @@ int	is_line_texture(char *line)
 	if (cpy_line && ft_strlen(cpy_line) >= 3)
 	{
 		if (!ft_strncmp(cpy_line, "NO ", 3))
-			return (ft_free(cpy_line), game->current_sprite = 3, 1);
+			return (game->valid_texture[0] = 1, ft_free(cpy_line)
+				, game->current_sprite = 3, 1);
 		else if (!ft_strncmp(cpy_line, "SO ", 3))
-			return (ft_free(cpy_line), game->current_sprite = 2, 1);
+			return (game->valid_texture[1] = 1, ft_free(cpy_line)
+				, game->current_sprite = 2, 1);
 		else if (!ft_strncmp(cpy_line, "WE ", 3))
-			return (ft_free(cpy_line), game->current_sprite = 0, 1);
+			return (game->valid_texture[2] = 1, ft_free(cpy_line)
+				, game->current_sprite = 0, 1);
 		else if (!ft_strncmp(cpy_line, "EA ", 3))
-			return (ft_free(cpy_line), game->current_sprite = 1, 1);
+			return (game->valid_texture[3] = 1, ft_free(cpy_line)
+				, game->current_sprite = 1, 1);
 	}
 	ft_free(cpy_line);
 	return (0);

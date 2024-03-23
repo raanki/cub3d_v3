@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 21:16:57 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:51:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ t_game	*ft_game_instance(void)
 		game_instance->mlx = NULL;
 		game_instance->current_line = NULL;
 		game_instance->cur_tmp = NULL;
+		game_instance->valid_texture[0] = 0;
+		game_instance->valid_texture[1] = 0;
+		game_instance->valid_texture[2] = 0;
+		game_instance->valid_texture[3] = 0;
 	}
 	return (game_instance);
 }

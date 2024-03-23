@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 15:02:02 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 17:21:09 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,25 @@ void	ft_init_player_map(t_game *game)
 	game->sprite_path[3] = ft_check_null(ft_strdup("nothing but essential"));
 }
 
+int	check_all_texture_is_load(void)
+{
+	t_game	*game;
+	int		i;
+
+	game = ft_game_instance();
+	i = 0;
+	while (i < 4)
+	{
+		if (game->valid_texture[i] == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	ft_set_map_color_texture(t_game *game)
 {
-	while ((game->current_line != NULL && (game->count_valid_texture < 4
+	while ((game->current_line != NULL && (!check_all_texture_is_load()
 				|| game->count_valid_color < 2)) || game->first)
 	{
 		game->first = 0;
@@ -75,23 +91,6 @@ void	ft_check_texture_color_fetch(t_game *game, char *arg)
 	ft_check_null(game->map);
 }
 
-int	check_res(t_game *game)
-{
-	int	x;
-	int	y;
-
-	mlx_get_screen_size((game->mlx->mlx_p), &x, &y);
-	if (x < SCREEN_HEIGHT || y < SCREEN_HEIGHT)
-	{
-		ft_e_str("Resolution too big for screen");
-		game->mlx->win_p = NULL;
-		game->mlx->img = NULL;
-		ft_free_game(game);
-		exit(EXIT_FAILURE);
-	}
-	return (0);
-}
-
 //ft_replace_2d(game->map->map2d, '\n', ' ');
 void	ft_init_map(t_game *game, char *arg)
 {
@@ -108,6 +107,7 @@ void	ft_init_map(t_game *game, char *arg)
 	game->map = game->map;
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;
+	ft_replace_2d(game->map->map2d, ' ', 'T');
 	if (mapvalid(game->map->map2d, game->map->h_map, game->map->w_map,
 			game) == 0)
 	{
@@ -115,4 +115,5 @@ void	ft_init_map(t_game *game, char *arg)
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
+	ft_replace_2d(game->map->map2d, 'T', '1');
 }

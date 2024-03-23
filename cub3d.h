@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 15:52:21 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 16:51:10 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ typedef struct s_game
 	int				now_is_map;
 	int				dirs[4][2];
 	int				index_spaces;
+	int				valid_texture[4];
 
 }					t_game;
 
