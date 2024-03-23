@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 22:15:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 13:45:46 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_copy_line_map(t_game *game, t_map *map)
 	strncpy(map->map2d[game->i], game->line, ft_strlen(game->line));
 	if (game->line)
 	{
-		free(game->line);
+		ft_free(game->line);
 		game->line = NULL;
 	}
 	game->i++;
@@ -52,7 +52,7 @@ void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 		if (game->line && is_only_space(game->line)
 			|| is_line_color(game->line) || is_line_texture(game->line))
 		{
-			free(game->line);
+			ft_free(game->line);
 			game->line = NULL;
 			continue ;
 		}
@@ -60,11 +60,11 @@ void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 		{
 			while (game->i < map -> h_map)
 			{
-				free(map->map2d[game->i]);
+				ft_free(map->map2d[game->i]);
 				map->map2d[game->i] = NULL;
 				game->i++;
 			}
-			free(map->map2d[game->i]);
+			ft_free(map->map2d[game->i]);
 			map->map2d[game->i] = NULL;
 			break ;
 		}

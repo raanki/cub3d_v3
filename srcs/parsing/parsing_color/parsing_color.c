@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 21:16:07 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:18:59 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*get_color_from_valid_line_color(char *line)
 	char	*color_str;
 
 	color_str = remove_first_spaces_until_first_letter(line + 2);
+	ft_free(line);
 	return (color_str);
 }
 
@@ -65,7 +66,7 @@ int	ft_check_split(char **split)
 void	set_rgb_index(t_game *game)
 {
 	game->split_rgb = ft_split(game->cpy_line, ',');
-	free(game->cpy_line);
+	ft_free(game->cpy_line);
 	game->cpy_line = NULL;
 	while (game->split_rgb && game->split_rgb[++(game->i)])
 		if (game->i == 0)
@@ -81,10 +82,10 @@ void	set_rgb_index(t_game *game)
 	{
 		game->i = -1;
 		while (game->split_rgb && game->split_rgb[++game->i])
-			free(game->split_rgb[game->i]);
-		free(game->split_rgb);
-		free(game->cur_tmp);
-		free(game->current_line);
+			ft_free(game->split_rgb[game->i]);
+		ft_free(game->split_rgb);
+		ft_free(game->cur_tmp);
+		ft_free(game->current_line);
 		ft_free_game(game);
 		ft_e_str("not valid line color");
 		exit(1);
@@ -93,6 +94,7 @@ void	set_rgb_index(t_game *game)
 
 unsigned	int	parse_line_color(t_game *game, char *line)
 {
+	char	*save;
 	game->i = -1;
 	game->is_ceilling = 0;
 	if (!is_line_color(line))
@@ -101,12 +103,14 @@ unsigned	int	parse_line_color(t_game *game, char *line)
 	if (line && (line[0] == 'C'))
 		game->is_ceilling = 1;
 	game->cpy_line = get_color_from_valid_line_color(game->cpy_line);
+	save = game->cpy_line;
 	game->cpy_line = remove_all_space(game->cpy_line);
+	ft_free(save);
 	set_rgb_index(game);
 	game->i = 0;
 	while (game->split_rgb && game->split_rgb[game->i])
-		free(game->split_rgb[(game->i)++]);
-	free(game->split_rgb);
+		ft_free(game->split_rgb[(game->i)++]);
+	ft_free(game->split_rgb);
 	game->split_rgb = NULL;
 	if (game->is_ceilling)
 		game->color_ceilling = rgb_to_hex(game->r, game->g, game->b);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 23:39:30 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:17:22 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,26 @@ int	is_line_texture(char *line)
 {
 	char	*cpy_line;
 	t_game	*game;
-	char	*tmp;
 
 	game = ft_game_instance();
 	if (!(line && line[0] != '\0'))
 		return (0);
-	tmp = ft_strdup(line);
-	cpy_line = remove_first_spaces_until_first_letter(tmp);
+	cpy_line = remove_first_spaces_until_first_letter(line);
+	if (game->index_spaces > 0)
+		printf("is line texture 2\n");
 	if (cpy_line && ft_strlen(cpy_line) >= 3)
 	{
 		if (!ft_strncmp(cpy_line, "NO ", 3))
-			return (free(tmp), game->current_sprite = 3, 1);
+			return (ft_free(cpy_line), game->current_sprite = 3, 1);
 		else if (!ft_strncmp(cpy_line, "SO ", 3))
-			return (free(tmp), game->current_sprite = 2, 1);
+			return (ft_free(cpy_line), game->current_sprite = 2, 1);
 		else if (!ft_strncmp(cpy_line, "WE ", 3))
-			return (free(tmp), game->current_sprite = 0, 1);
+			return (ft_free(cpy_line), game->current_sprite = 0, 1);
 		else if (!ft_strncmp(cpy_line, "EA ", 3))
-			return (free(tmp), game->current_sprite = 1, 1);
+			return (ft_free(cpy_line), game->current_sprite = 1, 1);
 	}
-	free(cpy_line);
+	ft_free(cpy_line);
+	
 	return (0);
 }
 
@@ -75,12 +76,14 @@ char	*get_path_from_valid_line_texture(char *line)
 	char	*path_line;
 
 	path_line = remove_first_spaces_until_first_letter(line + 3);
+	ft_free(line);
 	return (path_line);
 }
 
 char	*parse_lt(char *line)
 {
 	char	*cpy_line;
+	char	*save;
 
 	if (!is_line_texture(line))
 	{
@@ -89,6 +92,8 @@ char	*parse_lt(char *line)
 	}
 	cpy_line = remove_first_spaces_until_first_letter(line);
 	cpy_line = get_path_from_valid_line_texture(cpy_line);
+	save = cpy_line;
 	cpy_line = remove_last_spaces(cpy_line);
+	ft_free(save);
 	return (cpy_line);
 }

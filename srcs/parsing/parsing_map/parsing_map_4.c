@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:27:53 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 22:55:41 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:15:49 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 			width = is_line_bigger(line, width);
 			i++;
 		}
-		free(line);
+		ft_free(line);
 	}
 	close(fd);
 	map -> w_map = width - 1;
@@ -53,7 +53,7 @@ char	*remove_last_spaces(char *line)
 		&& index_last_letter >= 0)
 		index_last_letter--;
 	if (index_last_letter < 0)
-		return (line);
+		return (ft_strdup(line));
 	index_last_letter++;
 	ret = malloc(2 * size_line - index_last_letter + 1);
 	if (!ret)

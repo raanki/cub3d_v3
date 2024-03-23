@@ -6,31 +6,43 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 16:43:41 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 13:54:10 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../cub3d.h"
 
+void *ft_free(void *ptr)
+{
+	if (ptr != NULL)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
+}
+
 char	*remove_first_spaces_until_first_letter(char *line)
 {
 	int		index_last_space;
 	char	*ret;
+	t_game	*game;
 
+	game = ft_game_instance();
 	index_last_space = 0;
+	game->index_spaces = 0;
 	if (!line)
-		return (line);
+		return NULL;
 	while (line[index_last_space] == ' ')
 		index_last_space++;
-	if (!index_last_space)
-		return (line);
+	game->index_spaces = index_last_space;
+	if (index_last_space == 0)
+		return (ft_strdup(line));
 	ret = ft_strdup(line + index_last_space);
 	if (!ret)
 	{
 		ft_e_str("malloc");
 		return (NULL);
 	}
-	free(line);
 	return (ret);
 }
 
@@ -61,11 +73,16 @@ int	is_line_color(char *line)
 	if (!ft_str_have_three_coma(line))
 		return (0);
 	cpy_line = remove_first_spaces_until_first_letter(line);
+	t_game *game = ft_game_instance();
+	if (game->index_spaces > 0)
+		printf("is line color\n");
 	if (!ft_strncmp(cpy_line, "F ", 2)
 		|| !ft_strncmp(cpy_line, "C ", 2))
 	{
+		ft_free(cpy_line);
 		return (1);
 	}
+	ft_free(cpy_line);
 	return (0);
 }
 
@@ -82,7 +99,7 @@ char	*get_type_texture_from_valid_line_color(char *line)
 	ret[0] = line[0];
 	ret[1] = line[1];
 	ret[2] = '\0';
-	free(line);
+	ft_free(line);
 	return (ret);
 }
 
