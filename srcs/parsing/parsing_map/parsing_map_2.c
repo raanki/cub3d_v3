@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 23:23:22 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:43:02 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ int	open_fd(t_game *game, char *name)
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
 	{
+		ft_e_str("File not found");
 		ft_free_game(game);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	return (fd);
 }
