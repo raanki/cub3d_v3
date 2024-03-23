@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 23:29:51 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:21:53 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_check_spawn_wall_nothing_any(t_game *game, char **map)
 	else
 	{
 		ft_free_game(game);
-		printf("no valid\n");
+		ft_e_str("no valid\n");
 		exit(27);
 	}
 }
@@ -62,7 +62,7 @@ void	first_check(t_game *game, char **map)
 	if (game->number_player_letter_find != 1)
 	{
 		ft_free_game(game);
-		printf("You have to put only 1 player\n");
+		ft_e_str("You have to put only 1 player\n");
 		exit(27);
 	}
 }

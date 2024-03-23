@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:17:01 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:21:48 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_condition_test_map(t_game *game, t_map *map)
 				game->i, game->check_map, map);
 		if (game->flag == 1)
 		{
-			printf("Map is not valid\n");
+			ft_e_str("Map is not valid\n");
 			ft_free_game(game);
 			exit(27);
 		}
@@ -90,7 +90,7 @@ void	ft_condition_test_map(t_game *game, t_map *map)
 				game->i, game->check_map);
 		if (game->flag == 1 || game->flag_1 == 1)
 		{
-			printf("Map is not valid\n");
+			ft_e_str("Map is not valid\n");
 			ft_free_game(game);
 			exit(27);
 		}

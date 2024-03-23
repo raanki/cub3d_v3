@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:55:01 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:17:22 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:21:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	is_line_texture(char *line)
 	if (!(line && line[0] != '\0'))
 		return (0);
 	cpy_line = remove_first_spaces_until_first_letter(line);
-	if (game->index_spaces > 0)
-		printf("is line texture 2\n");
 	if (cpy_line && ft_strlen(cpy_line) >= 3)
 	{
 		if (!ft_strncmp(cpy_line, "NO ", 3))

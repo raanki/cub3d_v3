@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 13:54:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:22:30 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ int	is_line_color(char *line)
 	if (!ft_str_have_three_coma(line))
 		return (0);
 	cpy_line = remove_first_spaces_until_first_letter(line);
-	t_game *game = ft_game_instance();
-	if (game->index_spaces > 0)
-		printf("is line color\n");
 	if (!ft_strncmp(cpy_line, "F ", 2)
 		|| !ft_strncmp(cpy_line, "C ", 2))
 	{
