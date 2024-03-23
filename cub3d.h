@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 13:46:40 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:32:51 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,4 +241,5 @@ int					check_line_from_left(char **map, int mapWidth, int i);
 int					check_line_from_right(char **map, int mapWidth, int i);
 void				ft_set_array_flood(t_game *game);
 void				ft_check_map_trade_with_arg(t_game *game);
-void				*ft_free(void *ptr);
+void				ft_free(void *ptr);
+void				*ft_check_null(void *ptr);

@@ -6,19 +6,34 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:22:30 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:32:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../cub3d.h"
 
-void *ft_free(void *ptr)
+void	ft_free(void *ptr)
 {
 	if (ptr != NULL)
 	{
 		free(ptr);
 		ptr = NULL;
 	}
+}
+
+void	*ft_check_null(void *ptr)
+{
+	t_game *game;
+
+	game = ft_game_instance();
+	if (ptr == NULL)
+	{
+		ft_e_str("ptr is null");
+		ft_free_game(game);
+		exit(EXIT_FAILURE);
+	}
+
+	return (ptr);
 }
 
 char	*remove_first_spaces_until_first_letter(char *line)
@@ -36,13 +51,9 @@ char	*remove_first_spaces_until_first_letter(char *line)
 		index_last_space++;
 	game->index_spaces = index_last_space;
 	if (index_last_space == 0)
-		return (ft_strdup(line));
+		return (ft_check_null(ft_strdup(line)));
 	ret = ft_strdup(line + index_last_space);
-	if (!ret)
-	{
-		ft_e_str("malloc");
-		return (NULL);
-	}
+	ft_check_null(ret);
 	return (ret);
 }
 
@@ -88,11 +99,7 @@ char	*get_type_texture_from_valid_line_color(char *line)
 	char	*ret;
 
 	ret = malloc(2 + 1);
-	if (!ret)
-	{
-		ft_e_str("malloc");
-		return (NULL);
-	}
+	ft_check_null(ret);
 	ret[0] = line[0];
 	ret[1] = line[1];
 	ret[2] = '\0';

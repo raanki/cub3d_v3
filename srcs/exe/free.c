@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 12:20:18 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 19:18:41 by mklimina         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:23:51 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	ft_free_sprite(t_game *game)
 			continue ;
 		}
 		if (game->sprite[i]->pixel_colors)
-			free(game->sprite[i]->pixel_colors);
+			ft_free(game->sprite[i]->pixel_colors);
 		if (game->sprite[i]->img)
 			mlx_destroy_image(game->mlx->mlx_p, game->sprite[i]->img);
-		free(game->sprite[i]);
+		ft_free(game->sprite[i]);
 		i++;
 	}
-	free(game->sprite);
+	ft_free(game->sprite);
 }
 
 void	ft_free_game(t_game *game)
@@ -41,7 +41,7 @@ void	ft_free_game(t_game *game)
 	i = 0;
 	ft_free_map(game, &i);
 	if (game->arg)
-		free(game->arg);
+		ft_free(game->arg);
 	i = 0;
 	if (game->sprite)
 		ft_free_sprite(game);
@@ -50,13 +50,13 @@ void	ft_free_game(t_game *game)
 		while (i < 4)
 		{
 			if (game->sprite_path[i])
-				free(game->sprite_path[i]);
+				ft_free(game->sprite_path[i]);
 			i++;
 		}
-		free(game->sprite_path);
+		ft_free(game->sprite_path);
 	}
 	ft_free_mlx(game);
-	free(game);
+	ft_free(game);
 }
 
 int	ft_reles(int key, t_game *game)

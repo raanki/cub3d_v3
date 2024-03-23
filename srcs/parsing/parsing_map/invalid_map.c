@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 13:45:46 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:41:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_set_up_all(t_game *game)
 		game->save = NULL;
 	}
 	if (game->line)
-		game->save = ft_strdup(game->line);
+		game->save = ft_check_null(ft_strdup(game->line));
 	else
 		game->save = NULL;
 }

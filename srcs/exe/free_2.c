@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:00:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/20 23:03:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:23:51 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,22 @@ void	ft_free_mlx(t_game *game)
 		if (game->mlx->mlx_p)
 		{
 			mlx_destroy_display(game->mlx->mlx_p);
-			free(game->mlx->mlx_p);
+			ft_free(game->mlx->mlx_p);
 		}
-		free(game->mlx);
+		ft_free(game->mlx);
 	}
 }
 
 void	ft_free_map(t_game *game, int *i)
 {
 	while (game && game->map && game->map->map2d && game->map->map2d[*i])
-		free(game->map->map2d[(*i)++]);
+		ft_free(game->map->map2d[(*i)++]);
 	if (game->map && game->map->map2d)
-		free(game->map->map2d);
+		ft_free(game->map->map2d);
 	if (game->map)
 	{
-		free(game->map);
+		ft_free(game->map);
 	}
 	if (game->player)
-		free(game->player);
+		ft_free(game->player);
 }

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 13:09:08 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:35:26 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,16 @@
 void	ft_init_player_map(t_game *game)
 {
 	game->map = malloc(sizeof(t_map));
-	if (!game->map)
-	{
-		ft_free_game(game);
-		exit(EXIT_FAILURE);
-	}
+	ft_check_null(game->map);
 	game->map->map2d = NULL;
 	game->player = malloc(sizeof(t_player));
-	if (game->player == NULL)
-	{
-		ft_free_game(game);
-		exit(EXIT_FAILURE);
-	}
+	ft_check_null(game->player);
 	game->sprite_path = ft_calloc(5, sizeof(char *));
-	if (!game->sprite_path)
-	{
-		ft_free_game(game);
-		exit(EXIT_FAILURE);
-	}
-	game->sprite_path[0] = ft_strdup("nothing but essential");
-	game->sprite_path[1] = ft_strdup("nothing but essential");
-	game->sprite_path[2] = ft_strdup("nothing but essential");
-	game->sprite_path[3] = ft_strdup("nothing but essential");
+	ft_check_null(game->sprite_path);
+	game->sprite_path[0] = ft_check_null(ft_strdup("nothing but essential"));
+	game->sprite_path[1] = ft_check_null(ft_strdup("nothing but essential"));
+	game->sprite_path[2] = ft_check_null(ft_strdup("nothing but essential"));
+	game->sprite_path[3] = ft_check_null(ft_strdup("nothing but essential"));
 }
 
 void	ft_set_map_color_texture(t_game *game)
@@ -48,11 +36,11 @@ void	ft_set_map_color_texture(t_game *game)
 		game->current_line = get_next_line(game->fd);
 		if (!game->current_line)
 			break ;
-		game->cur_tmp = ft_strdup(game->current_line);
+		game->cur_tmp = ft_check_null(ft_strdup(game->current_line));
 		if (is_line_texture(game->current_line))
 		{
 			if (game->sprite_path[game->current_sprite])
-				free(game->sprite_path[game->current_sprite]);
+				ft_free(game->sprite_path[game->current_sprite]);
 			game->sprite_path[game->current_sprite] = parse_lt(game->cur_tmp);
 			game->count_valid_texture++;
 			game->index_sprite_path++;
@@ -63,8 +51,8 @@ void	ft_set_map_color_texture(t_game *game)
 			game->count_valid_color++;
 		}
 		ft_check_map_trade_with_arg(game);
-		free(game->cur_tmp);
-		free(game->current_line);
+		ft_free(game->cur_tmp);
+		ft_free(game->current_line);
 	}
 }
 
@@ -84,11 +72,7 @@ void	ft_check_texture_color_fetch(t_game *game, char *arg)
 		exit(EXIT_FAILURE);
 	}
 	game->map = fetch_map_params(game->fd, game->map, arg, game);
-	if (!game->map->map2d)
-	{
-		ft_free_game(game);
-		exit(EXIT_FAILURE);
-	}
+	ft_check_null(game->map);
 }
 
 int	check_res(t_game *game)

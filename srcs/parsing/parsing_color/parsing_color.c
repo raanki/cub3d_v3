@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:18:59 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:37:54 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ char	*remove_all_space(char *str)
 		if (str[i] == ' ' || str[i] == '\n')
 			size_return++;
 	ret = malloc(size_str - size_return + 1);
-	if (!ret)
-		return (0);
+	ft_check_null(ret);
 	i = -1;
 	while (str && str[++i])
 		if (str[i] != ' ' && str[i] != '\n')
@@ -98,7 +97,7 @@ unsigned	int	parse_line_color(t_game *game, char *line)
 	game->i = -1;
 	game->is_ceilling = 0;
 	if (!is_line_color(line))
-		return (ft_e_str("not valid line color"), 0);
+		return (0);
 	game->cpy_line = remove_first_spaces_until_first_letter(line);
 	if (line && (line[0] == 'C'))
 		game->is_ceilling = 1;

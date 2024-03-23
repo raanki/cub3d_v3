@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 23:38:14 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:33:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,16 @@ void	ft_start_the_game(t_game *game)
 	t_mlx	*mlx;
 
 	mlx = ft_calloc(1, sizeof(t_mlx));
-	if (!mlx)
-		exit(EXIT_FAILURE);
+	ft_check_null(mlx);
 	game->mlx = mlx;
 	game->mlx->mlx_p = mlx_init();
-	if (!game->mlx->mlx_p)
-	{
-		exit (EXIT_FAILURE);
-	}
+	ft_check_null(game->mlx->mlx_p);
 	check_res(game);
 	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH,
 			SCREEN_HEIGHT, "Cub3D");
+	ft_check_null(mlx->win_p);
 	mlx->img = mlx_new_image(mlx->mlx_p, SCREEN_WIDTH, SCREEN_HEIGHT);
+	ft_check_null(mlx->img);
 	ft_load_sprite(game);
 	mlx_loop_hook(mlx->mlx_p, &ft_game_loop, game);
 	mlx_hook(game->mlx->win_p, KeyRelease, KeyReleaseMask, &ft_reles, game);

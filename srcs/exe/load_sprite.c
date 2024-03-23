@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 19:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 14:20:21 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 14:36:37 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 void	init_sprite_memory(t_game *game, int *i, int *height, int *width)
 {
 	game->sprite[*i] = ft_calloc(1, sizeof(t_sprite));
-	if (!game->sprite[*i])
-	{
-		ft_free_game(game);
-		exit(EXIT_FAILURE);
-	}
+	ft_check_null(game->sprite[*i]);
 	game->sprite[*i]->pixel_colors = NULL;
 	if (game->sprite_path[*i])
 	{
@@ -93,11 +89,7 @@ void	ft_manage_sprite(t_game *game)
 		ft_manage_create_sprite(game, &i);
 		game->sprite[i]->pixel_colors = ft_calloc((TILE_SIZE
 					* TILE_SIZE + 1), sizeof(int));
-		if (!game->sprite[i]->pixel_colors)
-		{
-			ft_free_game(game);
-			exit(EXIT_FAILURE);
-		}
+		ft_check_null(game->sprite[i]->pixel_colors);
 		ft_manage_color_sprite(game, &i);
 		i++;
 	}
@@ -106,10 +98,6 @@ void	ft_manage_sprite(t_game *game)
 void	ft_load_sprite(t_game *game)
 {
 	game->sprite = ft_calloc(4, sizeof(t_sprite *));
-	if (!game->sprite)
-	{
-		ft_free_game(game);
-		exit(EXIT_FAILURE);
-	}
+	ft_check_null(game->sprite);
 	ft_manage_sprite(game);
 }
