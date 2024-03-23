@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 15:50:07 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 23:36:33 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void	set_rgb_index(t_game *game)
 	game->cpy_line = NULL;
 	while (game->split_rgb && game->split_rgb[++(game->i)])
 		if (game->i == 0)
-			game->r = atoi(game->split_rgb[0]);
+			game->r = ft_atoi(game->split_rgb[0]);
 	else if (game->i == 1)
-		game->g = atoi(game->split_rgb[1]);
+		game->g = ft_atoi(game->split_rgb[1]);
 	else if (game->i == 2)
-		game->b = atoi(game->split_rgb[2]);
+		game->b = ft_atoi(game->split_rgb[2]);
 	if (game->r < 0 || game->r > 255
 		|| game->g < 0 || game->g > 255
 		|| game->b < 0 || game->b > 255

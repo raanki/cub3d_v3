@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 12:38:43 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 00:54:36 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_draw_buffer(t_game *game)
 	}
 }
 
+
 void	draw_ceilling_floor(t_game *game, int x)
 {
 	game->i = -1;
@@ -38,6 +39,7 @@ void	draw_ceilling_floor(t_game *game, int x)
 	game->i = game->draw_end - 1;
 	while (++game->i < SCREEN_HEIGHT)
 		game->buffer[game->i][x] = game->color_round;
+	draw_minimap();
 }
 
 void	ft_hook_draw_sprite(t_game *game, int x)
@@ -96,7 +98,10 @@ int	ft_game_loop(void)
 			&game->mlx->endian);
 	ft_hook(game);
 	ft_draw_buffer(game);
+	draw_minimap();
 	mlx_put_image_to_window(game->mlx->mlx_p, game->mlx->win_p,
 		game->mlx->img, 0, 0);
+	if (game->mouse_is_press)
+			mouse_moove(game->x_prev_mouse, 0,  (void *)ft_game_instance());
 	return (0);
 }

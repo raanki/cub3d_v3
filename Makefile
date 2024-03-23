@@ -6,14 +6,15 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/23 15:51:29 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/24 00:15:30 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d 
 
-SRC = main.c \
-srcs/exe/init_game.c\
+NAME_BONUS = cub3d_bonus
+
+SRC = srcs/exe/init_game.c\
 \
 srcs/exe/init_map.c\
 \
@@ -30,6 +31,8 @@ srcs/exe/utils.c\
 srcs/exe/free.c\
 \
 srcs/exe/free_2.c\
+\
+srcs/exe/ft_atoi.c\
 \
 srcs/exe/load_sprite.c\
 \
@@ -65,31 +68,44 @@ srcs/parsing/flood_fill_2.c\
 \
 srcs/parsing/island.c\
 \
+srcs/bonus/mouse_moove_bonus.c\
+\
+srcs/bonus/minimap_bonus.c\
+\
 
-OBJ = $(SRC:.c=.o)
+MAIN = main.c
+MAIN_BONUS = main_bonus.c
+
+OBJ = $(SRC:.c=.o) $(MAIN:.c=.o)
+OBJ_BONUS = $(SRC:.c=.o) $(MAIN_BONUS:.c=.o)
 
 CC = cc
 CFLAGS = -g3 -Iminilibx-linux
 LDFLAGS = -Lminilibx-linux  -Wall -Werror -Wextra
 LDLIBS = -lmlx -lbsd -lXext -lX11 -lm
+HEADER = cub3d.h
 
 .SILENT:
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEADER)
 	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) $(LDLIBS)
 	@echo "Compilation is complete. \nYou can run with \"./cub3d \" 😎"
 
-all: $(NAME)
+bonus: $(OBJ_BONUS) $(HEADER)
+	$(CC) $(OBJ_BONUS) -o $(NAME_BONUS) $(LDFLAGS) $(LDLIBS)
+	@echo "Compilation with bonus is complete. \nYou can run with \"./cub3d_bonus \" 😎"
+
+all: $(NAME) ascii
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
-	rm -f $(NAME)
-	@echo "File are deleted correctly."
+	rm -f $(NAME) $(NAME_BONUS)
+	@echo "Files were deleted correctly."
 
 re: fclean all
 
@@ -102,8 +118,8 @@ ASCII1 = echo "                	      .--..--..--..--..--..--. \n"\
 	"                	   |_.'  |    /    .-\\-.  \\  | \n"\
 	"                	   \\     0|    |   ( O| O) | o| \n"\
 	"                	    |  _  |  .--.____.'._.-.  |      Welcome to our \n"\
-	"                	    \\ (_) | o         -\` .-\`  |         Minishell ! \n"\
-	"                	     |    \\   |-\`-._ _ _ _ _\\ /   (by ranki & mklimina) \n"\
+	"                	    \\ (_) | o         -\` .-\`  |         cub3d ! \n"\
+	"                	     |    \\   |-\`-._ _ _ _ _\\ /    \n"\
 	"                	     \\    |   |  \`. |_||_|   | \n"\
 	"                	     | o  |    \\_      \\     |     -.   .-. \n"\
 	"                	     |.-.  \\     \`--..-'   O |     \`.\`-' .' \n"\

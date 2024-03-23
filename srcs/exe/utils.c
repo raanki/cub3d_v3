@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 16:51:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 00:51:52 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,22 @@ int	ft_char_to_int(char c)
 		return (-1);
 }
 
+void	ft_check_const(void)
+{
+	if (SCREEN_HEIGHT < 200 || SCREEN_WIDTH < 400)
+	{
+		ft_e_str("Resolution isn't good ! H_MIN : 200 W_MIN: 400");
+		exit(EXIT_FAILURE);
+	}
+}
+
 t_game	*ft_game_instance(void)
 {
 	static t_game	*game_instance;
 
 	if (game_instance == NULL)
 	{
+		ft_check_const();
 		game_instance = ft_calloc(1, sizeof(t_game));
 		if (!game_instance)
 			exit(EXIT_FAILURE);
@@ -40,6 +50,8 @@ t_game	*ft_game_instance(void)
 		game_instance->valid_texture[1] = 0;
 		game_instance->valid_texture[2] = 0;
 		game_instance->valid_texture[3] = 0;
+		game_instance->x_prev_mouse = 0;
+		game_instance->mouse_is_press = 0;
 	}
 	return (game_instance);
 }

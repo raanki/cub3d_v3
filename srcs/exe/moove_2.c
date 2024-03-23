@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:49:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 22:31:40 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 23:39:00 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	rotate_right(int key, t_game *game)
 int	find_nice_pitch(void)
 {
 	if (SCREEN_HEIGHT <= 500)
-		return (100);
+		return (50);
 	if (SCREEN_HEIGHT <= 700)
 		return (50);
 	if (SCREEN_HEIGHT <= 800)

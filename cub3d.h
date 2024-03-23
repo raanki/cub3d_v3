@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 16:51:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 00:50:48 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,17 @@
 //****************************************************************
 //****************************************************************
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 400
+#define SCREEN_WIDTH 400
+#define SCREEN_HEIGHT 200
 #define M_PI 3.14159265358979323846
 #define TILE_SIZE 64
 #define FOV 0.66
+#define PLAYER_COLOR 0xFF0000
+#define OFFSET_X 20
+#define OFFSET_Y 20
+#define EMPTY_IN_MINIMAP 0x000000
+#define WALL_OUT_MINIMAP 0xFFFFFF
+#define TILE_SIZE_MINIMAP 5
 
 #include "srcs/gnl/get_next_line.h"
 //*****************************************************************
@@ -124,6 +130,7 @@ typedef struct s_game
 	double			move_speed;
 	double			sure_mode;
 	double			rot_speed;
+	double			rot_speed_mouse;
 	double			step_side;
 	char			**sprite_path;
 	char			*cpy_line;
@@ -161,7 +168,11 @@ typedef struct s_game
 	int				dirs[4][2];
 	int				index_spaces;
 	int				valid_texture[4];
-
+	int				x_prev_mouse;
+	int				mouse_is_press;
+	int				tile_size_minimap;
+	int				offset_x;
+	int				offset_y;
 }					t_game;
 
 //************************************************************
@@ -202,6 +213,7 @@ void				rotate_left(int key, t_game *game);
 void				rotate_right(int key, t_game *game);
 int					find_nice_pitch(void);
 int					check_res(t_game *game);
+int					ft_atoi(const char *s);
 
 //************************************************************
 //************************* PARSING **************************
@@ -247,3 +259,10 @@ void				*ft_check_null(void *ptr);
 void				ft_check_read(char *stash, char *buffer, int fd, int ret);
 int					is_only_c_f_number(char *line);
 int					ft_str_have_three_coma(char *string);
+
+//BONUS
+
+int					mouse_moove(int x, int y, void *param);
+int					mouse_press(int button, int x, int y, void *game);
+int					mouse_release(int button, int x, int y, void *game);
+void				draw_minimap(void);
