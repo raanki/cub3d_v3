@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:27:53 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:15:49 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 15:39:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ char	*ft_strdup(const char *src)
 	int		i;
 
 	i = 0;
-	cpy = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (cpy == NULL)
+	if (!src)
 		return (NULL);
+	cpy = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	ft_check_null(cpy);
 	while (src[i] != '\0')
 	{
 		cpy[i] = src[i];

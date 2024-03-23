@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2024/03/20 22:59:05 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/23 15:33:31 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,30 @@ char	*get_the_line(char *stash)
 	return (line);
 }
 
+void	ft_check_read(char *stash, char *buffer, int fd, int ret)
+{
+	t_game	*game;
+	
+	game = ft_game_instance();
+	if (ret == -1)
+	{
+		ft_free_game(game);
+		ft_free(stash);
+		ft_free(buffer);
+		ft_e_str("read crash");
+		exit(EXIT_FAILURE);
+	}
+}
+
 char	*init_stash(char *stash, char *buffer, int fd)
 {
+	int	ret;
+	
 	if (buffer[0] == '\0')
-		read(fd, buffer, BUFFER_SIZE);
+	{
+		ret = read(fd, buffer, BUFFER_SIZE);
+		ft_check_read(stash, buffer, fd, ret);
+	}
 	stash = NULL;
 	stash = ft_strjoin("", buffer);
 	return (stash);
@@ -105,6 +125,7 @@ char	*get_next_line(int fd)
 	{
 		ft__bzero(buffer, BUFFER_SIZE);
 		bytes = read(fd, buffer, BUFFER_SIZE);
+		ft_check_read(stash, buffer, fd, bytes);
 		if ((bytes == 0 && check_the_line(buffer) == 0) || (bytes == -1))
 			break ;
 		if (ft_do_ze_line(&line, buffer, &stash))
