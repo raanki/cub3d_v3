@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:31:20 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 19:42:43 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_stupid_count_one_algo_right(char *line, int line_curr, char **map)
 	game = ft_game_instance();
 	game->is_ws = 0;
 	game->cnt = 0;
-	game->i = strlen(line);
+	game->i = ft_strlen(line);
 	while (--game->i >= 0 && (line[game->i] == 32
 			|| (line[game->i] >= 9 && line[game->i] <= 13)))
 		game->is_ws = 1;

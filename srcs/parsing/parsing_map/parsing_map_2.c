@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:38:53 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 19:42:49 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_is_line_bigger(char *str, int old_len)
 	int	new_len;
 
 	if (str)
-		new_len = strlen(str);
+		new_len = ft_strlen(str);
 	if (old_len == -1)
 		return (new_len);
 	else
@@ -67,7 +67,7 @@ int	ft_find_last_non_whitespace_char(char *line)
 {
 	int	i;
 
-	i = strlen(line) - 1;
+	i = ft_strlen(line) - 1;
 	while (i >= 0 && (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13)))
 	{
 		i--;
