@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 02:14:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 02:42:19 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,88 +95,91 @@ typedef struct s_sprite
 
 typedef struct s_game
 {
-	t_map		*map;
-	t_player	*player;
-	t_mlx		*mlx;
-	t_sprite	**sprite;
-	double		camera_x;
-	double		camera_y;
-	double		ray_dir_x;
-	double		ray_dir_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		perp_wall_dist;
-	double		wall_x;
-	double		step;
-	double		tex_pos;
-	double		move_speed;
-	double		sure_mode;
-	double		rot_speed;
-	double		rot_speed_mouse;
-	double		step_side;
-	double		sure_mode_h;
-	int			map_player_x;
-	int			map_player_y;
-	int			pitch;
-	int			step_x;
-	int			step_y;
-	int			side;
-	int			line_height;
-	int			hit;
-	int			draw_start;
-	int			draw_end;
-	int			tex_num;
-	int			tex_x;
-	int			tex_y;
-	int			color;
-	int			b;
-	int			r;
-	int			g;
-	int			i;
-	int			j;
-	int			is_ceilling;
-	int			number_player_letter_find;
-	int			angle_player;
-	int			current_sprite;
-	int			index_sprite_path;
-	int			count_valid_texture;
-	int			count_valid_color;
-	int			first;
-	int			fd;
-	int			flag;
-	int			flag_1;
-	int			cnt;
-	int			is_ws;
-	int			has_next_line;
-	int			has_prev_line;
-	int			now_is_map;
-	int			index_spaces;
-	int			x_prev_mouse;
-	int			mouse_is_press;
-	int			tile_size_minimap;
-	int			offset_x;
-	int			offset_y;
-	char		**sprite_path;
-	char		*cpy_line;
-	char		*type_text;
-	char		*path;
-	char		**split_rgb;
-	char		*current_line;
-	char		*cur_tmp;
-	char		**check_map;
-	char		*line;
-	char		*arg;
-	char		*save;
-	int			valid_texture[4];
-	int 		dirs[4][2];
-	unsigned	int	color_ceilling;
-	unsigned	int	color_round;
-	unsigned	int buffer[SCREEN_HEIGHT + 1][SCREEN_WIDTH + 1];
-
-} t_game;
-
+	t_map			*map;
+	t_player		*player;
+	t_mlx			*mlx;
+	t_sprite		**sprite;
+	double			camera_x;
+	double			camera_y;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	double			move_speed;
+	double			sure_mode;
+	double			rot_speed;
+	double			rot_speed_mouse;
+	double			step_side;
+	double			sure_mode_h;
+	int				map_player_x;
+	int				map_player_y;
+	int				pitch;
+	int				step_x;
+	int				step_y;
+	int				side;
+	int				line_height;
+	int				hit;
+	int				draw_start;
+	int				draw_end;
+	int				tex_num;
+	int				tex_x;
+	int				tex_y;
+	int				color;
+	int				b;
+	int				r;
+	int				g;
+	int				i;
+	int				j;
+	int				is_ceilling;
+	int				number_player_letter_find;
+	int				angle_player;
+	int				current_sprite;
+	int				index_sprite_path;
+	int				count_valid_texture;
+	int				count_valid_color;
+	int				first;
+	int				fd;
+	int				flag;
+	int				flag_1;
+	int				cnt;
+	int				is_ws;
+	int				has_next_line;
+	int				has_prev_line;
+	int				now_is_map;
+	int				index_spaces;
+	int				x_prev_mouse;
+	int				mouse_is_press;
+	int				tile_size_minimap;
+	int				offset_x;
+	int				offset_y;
+	int				dx;
+	int				sx;
+	int				dy;
+	int				sy;
+	int				err;
+	char			**sprite_path;
+	char			*cpy_line;
+	char			*type_text;
+	char			*path;
+	char			**split_rgb;
+	char			*current_line;
+	char			*cur_tmp;
+	char			**check_map;
+	char			*line;
+	char			*arg;
+	char			*save;
+	int				valid_texture[4];
+	int				dirs[4][2];
+	unsigned int	color_ceilling;
+	unsigned int	color_round;
+	unsigned int	buffer[SCREEN_HEIGHT + 1][SCREEN_WIDTH + 1];
+}	t_game;
 
 //************************************************************
 //************************************************************
@@ -218,9 +221,6 @@ void				ft_free_map(t_game *game, int *i);
 void				rotate_left(int key, t_game *game);
 void				rotate_right(int key, t_game *game);
 void				draw_minimap_direction(t_game *game);
-
-
-
 
 //************************************************************
 //************************* PARSING **************************
@@ -266,8 +266,6 @@ void				set_start_angle_player(t_game *game);
 void				ft_check_invalid_char_map(t_game *game);
 void				ft_replace_2d(char **array, char to_find, char to_replace);
 void				prnt(char **arr);
-
-
 
 //BONUS
 

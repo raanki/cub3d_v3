@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 01:27:49 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 02:42:34 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_draw_buffer(t_game *game)
 		x++;
 	}
 }
-
 
 void	draw_ceilling_floor(t_game *game, int x)
 {
