@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 02:42:34 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 03:54:27 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ int	ft_game_loop(void)
 	mlx_put_image_to_window(game->mlx->mlx_p, game->mlx->win_p,
 		game->mlx->img, 0, 0);
 	if (game->mouse_is_press)
-			mouse_moove(game->x_prev_mouse, 0,  (void *)ft_game_instance());
+		mouse_moove(game->x_prev_mouse, 0, (void *)ft_game_instance());
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:50:03 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 03:58:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ int					ft_game_loop(void);
 int					find_nice_pitch(void);
 int					check_res(t_game *game);
 int					ft_exit(void *param);
-int					ft_atoi(const char *s);
+int					ft_atoi(char *s);
 int					ft_which_wall(t_game *game, double ray_angle, int side);
 void				ft_start_the_game(t_game *game);
 void				ft_init_map(t_game *game, char *args);

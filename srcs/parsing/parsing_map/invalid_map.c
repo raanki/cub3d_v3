@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 17:57:45 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 03:53:41 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_check_up_all(t_game *game)
 void	ft_check_island(t_game *game)
 {
 	if (game->now_is_map == 1 && (is_only_space(game->line)
-		|| !ft_valid_char(game->line)))
+			|| !ft_valid_char(game->line)))
 	{
 		if (game->save)
 			ft_free(game->save);

@@ -6,19 +6,11 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 00:51:52 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 03:59:11 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-int	ft_char_to_int(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (c - '0');
-	else
-		return (-1);
-}
 
 void	ft_check_const(void)
 {
