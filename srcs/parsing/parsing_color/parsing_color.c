@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 23:36:33 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:29:10 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_color_from_valid_line_color(char *line)
 {
 	char	*color_str;
 
-	color_str = remove_first_spaces_until_first_letter(line + 2);
+	color_str = ft_remove_first_spaces_until_first_letter(line + 2);
 	ft_free(line);
 	return (color_str);
 }
@@ -91,15 +91,15 @@ void	set_rgb_index(t_game *game)
 	}
 }
 
-unsigned	int	parse_line_color(t_game *game, char *line)
+unsigned	int	ft_parse_line_color(t_game *game, char *line)
 {
 	char	*save;
 
 	game->i = -1;
 	game->is_ceilling = 0;
-	if (!is_line_color(line))
+	if (!ft_is_line_color(line))
 		return (0);
-	game->cpy_line = remove_first_spaces_until_first_letter(line);
+	game->cpy_line = ft_remove_first_spaces_until_first_letter(line);
 	if (line && (line[0] == 'C'))
 		game->is_ceilling = 1;
 	game->cpy_line = get_color_from_valid_line_color(game->cpy_line);
@@ -113,8 +113,8 @@ unsigned	int	parse_line_color(t_game *game, char *line)
 	ft_free(game->split_rgb);
 	game->split_rgb = NULL;
 	if (game->is_ceilling)
-		game->color_ceilling = rgb_to_hex(game->r, game->g, game->b);
+		game->color_ceilling = ft_rgb_to_hex(game->r, game->g, game->b);
 	else
-		game->color_round = rgb_to_hex(game->r, game->g, game->b);
-	return (rgb_to_hex(game->r, game->g, game->b));
+		game->color_round = ft_rgb_to_hex(game->r, game->g, game->b);
+	return (ft_rgb_to_hex(game->r, game->g, game->b));
 }

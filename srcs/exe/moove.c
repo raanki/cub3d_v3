@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:35 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 00:32:26 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:27:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int	ft_mlx_key(int key, void *gam)
 	moove_right(key, game);
 	moove_up(key, game);
 	moove_back(key, game);
-	rotate_left(key, game);
-	rotate_right(key, game);
+	ft_rotate_left(key, game);
+	ft_rotate_right(key, game);
 	return (0);
 }

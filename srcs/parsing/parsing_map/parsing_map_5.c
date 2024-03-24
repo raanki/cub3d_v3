@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 04:02:44 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:29:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 	while (1)
 	{
 		game->line = get_next_line(game->fd);
-		if ((game->line && is_only_space(game->line))
-			|| is_line_color(game->line) || is_line_texture(game->line))
+		if ((game->line && ft_is_only_space(game->line))
+			|| ft_is_line_color(game->line) || ft_is_line_texture(game->line))
 		{
 			ft_free(game->line);
 			game->line = NULL;
@@ -89,11 +89,11 @@ void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 	}
 }
 
-t_map	*create_map(t_game *game, t_map *map, char *file)
+t_map	*ft_create_map(t_game *game, t_map *map, char *file)
 {
 	game->i = 0;
 	game->line = NULL;
-	game->fd = open_fd(game, file);
+	game->fd = ft_open_fd(game, file);
 	map->map2d = ft_calloc(map -> h_map + 1, sizeof(char *));
 	map->map2d[map -> h_map] = NULL;
 	while (game->i < map -> h_map)

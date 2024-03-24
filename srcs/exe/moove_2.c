@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 12:49:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 23:39:00 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:27:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	rotate_left(int key, t_game *game)
+void	ft_rotate_left(int key, t_game *game)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -32,7 +32,7 @@ void	rotate_left(int key, t_game *game)
 	}
 }
 
-void	rotate_right(int key, t_game *game)
+void	ft_rotate_right(int key, t_game *game)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -52,7 +52,7 @@ void	rotate_right(int key, t_game *game)
 	}
 }
 
-int	find_nice_pitch(void)
+int	ft_find_nice_pitch(void)
 {
 	if (SCREEN_HEIGHT <= 500)
 		return (50);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:21:48 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:28:01 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
 	}
 }
 
-void	ft_condition_test_map(t_game *game, t_map *map)
+void	ft_condition_ft_test_map(t_game *game, t_map *map)
 {
 	if (game->i == 0 || game->i == map->h_map - 1)
 	{
@@ -98,7 +98,7 @@ void	ft_condition_test_map(t_game *game, t_map *map)
 	game->flag = -1;
 }
 
-t_map	*test_map(t_game *game, t_map *map)
+t_map	*ft_test_map(t_game *game, t_map *map)
 {
 	game->flag = -1;
 	game->i = 0;
@@ -106,7 +106,7 @@ t_map	*test_map(t_game *game, t_map *map)
 	first_check(game, map -> map2d);
 	while (game->check_map[game->i] != NULL)
 	{
-		ft_condition_test_map(game, map);
+		ft_condition_ft_test_map(game, map);
 		game->i++;
 	}
 	return (map);

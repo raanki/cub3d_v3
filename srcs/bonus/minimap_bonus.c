@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 00:07:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 04:17:55 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:27:46 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_line(int x0, int y0, int x1, int y1)
 	}
 }
 
-void	draw_minimap_direction(t_game *game)
+void	ft_draw_minimap_direction(t_game *game)
 {
 	int	player_minimap_x;
 	int	player_minimap_y;

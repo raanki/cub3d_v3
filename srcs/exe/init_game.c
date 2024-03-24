@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 04:12:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:27:19 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_start_the_game(t_game *game)
 	game->mlx = mlx;
 	game->mlx->mlx_p = mlx_init();
 	ft_check_null(game->mlx->mlx_p);
-	check_res(game);
+	ft_check_res(game);
 	mlx->win_p = mlx_new_window(mlx->mlx_p, SCREEN_WIDTH,
 			SCREEN_HEIGHT, "Cub3D");
 	ft_check_null(mlx->win_p);

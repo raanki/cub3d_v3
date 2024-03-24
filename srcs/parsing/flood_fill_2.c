@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:08:41 by mklimina          #+#    #+#             */
-/*   Updated: 2024/03/23 17:13:36 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:29:57 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int	check_column_from_top(char **map, int mapHeight, int j)
+int	ft_check_column_from_top(char **map, int mapHeight, int j)
 {
 	int	i;
 	int	foundonefromtop;
@@ -35,7 +35,7 @@ int	check_column_from_top(char **map, int mapHeight, int j)
 	return (1);
 }
 
-int	check_column_from_bottom(char **map, int mapHeight, int j)
+int	ft_check_column_from_bottom(char **map, int mapHeight, int j)
 {
 	int	i;
 	int	foundonefrombottom;
@@ -108,9 +108,9 @@ void	ft_check_map_trade_with_arg(t_game *game)
 {
 	if (game->count_valid_color != 2
 		&& game->count_valid_texture != 4
-		&& (!is_only_space(game->current_line)
-			&& !is_line_color(game->current_line)
-			&& !is_line_texture(game->current_line)))
+		&& (!ft_is_only_space(game->current_line)
+			&& !ft_is_line_color(game->current_line)
+			&& !ft_is_line_texture(game->current_line)))
 	{
 		ft_free(game->cur_tmp);
 		ft_free(game->current_line);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:00:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 16:59:22 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:27:19 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_free_map(t_game *game, int *i)
 		ft_free(game->player);
 }
 
-int	check_res(t_game *game)
+int	ft_check_res(t_game *game)
 {
 	int	x;
 	int	y;

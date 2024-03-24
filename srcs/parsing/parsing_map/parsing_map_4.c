@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:27:53 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 15:39:47 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:29:15 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../cub3d.h"
 
-t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
+t_map	*ft_fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 {
 	char	*line;
 	int		width;
@@ -24,7 +24,7 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
-		if (line && !is_only_space(line))
+		if (line && !ft_is_only_space(line))
 		{
 			width = is_line_bigger(line, width);
 			i++;
@@ -34,12 +34,12 @@ t_map	*fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 	close(fd);
 	map -> w_map = width - 1;
 	map -> h_map = i;
-	map = create_map(game, map, file);
-	map = test_map(game, map);
+	map = ft_create_map(game, map, file);
+	map = ft_test_map(game, map);
 	return (map);
 }
 
-char	*remove_last_spaces(char *line)
+char	*ft_remove_last_spaces(char *line)
 {
 	int		index_last_letter;
 	int		i;

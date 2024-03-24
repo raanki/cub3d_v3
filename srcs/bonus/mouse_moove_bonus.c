@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:02:17 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 04:12:15 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:27:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	rotate_left_mouse(t_game *game)
+void	ft_rotate_left_mouse(t_game *game)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -61,13 +61,13 @@ int	mouse_moove(int x, int y, void *param)
 			|| x % 60 == 0) && game->mouse_is_press)
 	{
 		if (x > x_max)
-			rotate_right(65363, game);
+			ft_rotate_right(65363, game);
 		else if ((SCREEN_WIDTH / 5 > x))
-			rotate_left(65361, game);
+			ft_rotate_left(65361, game);
 		else if (game->x_prev_mouse > x)
-			rotate_left(65361, game);
+			ft_rotate_left(65361, game);
 		else
-			rotate_right(65363, game);
+			ft_rotate_right(65363, game);
 	}
 	game->x_prev_mouse = x;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:53:41 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:29:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_check_up_all(t_game *game)
 
 void	ft_check_island(t_game *game)
 {
-	if (game->now_is_map == 1 && (is_only_space(game->line)
+	if (game->now_is_map == 1 && (ft_is_only_space(game->line)
 			|| !ft_valid_char(game->line)))
 	{
 		if (game->save)
@@ -69,8 +69,8 @@ void	ft_check_invalid_char_map(t_game *game)
 	while (1)
 	{
 		ft_set_up_all(game);
-		if (game->line && ((is_only_space(game->line) && !game->now_is_map)
-				|| is_line_color(game->line) || is_line_texture(game->line)))
+		if (game->line && ((ft_is_only_space(game->line) && !game->now_is_map)
+				|| ft_is_line_color(game->line) || ft_is_line_texture(game->line)))
 		{
 			ft_free(game->line);
 			if (game->save)
@@ -88,5 +88,5 @@ void	ft_check_invalid_char_map(t_game *game)
 		ft_check_island(game);
 	}
 	close(game->fd);
-	game->fd = open_fd(game, game->arg);
+	game->fd = ft_open_fd(game, game->arg);
 }

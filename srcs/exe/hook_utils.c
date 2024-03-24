@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 10:47:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 22:52:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:27:11 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_hook_target_draw(t_game *game)
 		game->perp_wall_dist = (game->side_dist_x - game->delta_dist_x);
 	else
 		game->perp_wall_dist = (game->side_dist_y - game->delta_dist_y);
-	game->pitch = find_nice_pitch();
+	game->pitch = ft_find_nice_pitch();
 	game->line_height = (int)(SCREEN_HEIGHT / game->perp_wall_dist);
 	game->draw_start = -game->line_height / 2 + SCREEN_HEIGHT / 2 + game->pitch;
 	if (game->draw_start < 0)

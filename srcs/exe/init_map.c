@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 00:47:27 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:29:42 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ void	ft_set_map_color_texture(t_game *game)
 		if (!game->current_line)
 			break ;
 		game->cur_tmp = ft_check_null(ft_strdup(game->current_line));
-		if (is_line_texture(game->current_line))
+		if (ft_is_line_texture(game->current_line))
 		{
 			if (game->sprite_path[game->current_sprite])
 				ft_free(game->sprite_path[game->current_sprite]);
-			game->sprite_path[game->current_sprite] = parse_lt(game->cur_tmp);
+			game->sprite_path[game->current_sprite] = ft_parse_lt(game->cur_tmp);
 			game->count_valid_texture++;
 			game->index_sprite_path++;
 		}
-		else if (is_line_color(game->current_line))
+		else if (ft_is_line_color(game->current_line))
 		{
-			parse_line_color(game, game->cur_tmp);
+			ft_parse_line_color(game, game->cur_tmp);
 			game->count_valid_color++;
 		}
 		ft_check_map_trade_with_arg(game);
@@ -87,7 +87,7 @@ void	ft_check_texture_color_fetch(t_game *game, char *arg)
 		printf("You have to put 2 valid colors\n");
 		exit(EXIT_FAILURE);
 	}
-	game->map = fetch_map_params(game->fd, game->map, arg, game);
+	game->map = ft_fetch_map_params(game->fd, game->map, arg, game);
 	ft_check_null(game->map);
 }
 
@@ -95,7 +95,7 @@ void	ft_check_texture_color_fetch(t_game *game, char *arg)
 void	ft_init_map(t_game *game, char *arg)
 {
 	ft_init_player_map(game);
-	game->fd = open_fd(game, arg);
+	game->fd = ft_open_fd(game, arg);
 	game->index_sprite_path = 0;
 	game->current_sprite = 0;
 	game->count_valid_texture = 0;
@@ -108,7 +108,7 @@ void	ft_init_map(t_game *game, char *arg)
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;
 	ft_replace_2d(game->map->map2d, ' ', 'T');
-	if (mapvalid(game->map->map2d, game->map->h_map, game->map->w_map,
+	if (ft_mapvalid(game->map->map2d, game->map->h_map, game->map->w_map,
 			game) == 0)
 	{
 		printf("Not Close\n");
