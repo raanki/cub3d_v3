@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 03:49:16 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 04:13:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:31:48 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_launch_hook(void)
 	mlx_hook(g->mlx->win_p, 33, 1L << 17, ft_exit, g);
 	if (g->is_bonus == 0)
 		return ;
-	mlx_hook(g->mlx->win_p, MotionNotify, PointerMotionMask, mouse_moove, g);
-	mlx_hook(g->mlx->win_p, ButtonPress, ButtonPressMask, mouse_press, g);
-	mlx_hook(g->mlx->win_p, ButtonRelease, ButtonReleaseMask, mouse_release, g);
+	mlx_hook(g->mlx->win_p, MotionNotify, PointerMotionMask, ft_mouse_moove, g);
+	mlx_hook(g->mlx->win_p, ButtonPress, ButtonPressMask, ft_mouse_press, g);
+	mlx_hook(g->mlx->win_p, ButtonRelease, ButtonReleaseMask, ft_mouse_release, g);
 }

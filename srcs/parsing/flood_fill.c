@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:08:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:29:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:30:33 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	checklines(char **map, int mapHeight, int mapWidth)
 	i = 0;
 	while (i < mapHeight)
 	{
-		if (!check_line_from_left(map, mapWidth, i)
-			|| !check_line_from_right(map, mapWidth, i))
+		if (!ft_check_line_from_left(map, mapWidth, i)
+			|| !ft_check_line_from_right(map, mapWidth, i))
 		{
 			return (0);
 		}

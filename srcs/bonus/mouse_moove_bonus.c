@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_moove_bonus.c                                :+:      :+:    :+:   */
+/*   ft_mouse_moove_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -46,7 +46,7 @@ void	rotate_rigth_mouse(t_game *game)
 		+ game->player->plan_y * cos(game->rot_speed_mouse);
 }
 
-int	mouse_moove(int x, int y, void *param)
+int	ft_mouse_moove(int x, int y, void *param)
 {
 	t_game	*game;
 	int		x_max;
@@ -73,7 +73,7 @@ int	mouse_moove(int x, int y, void *param)
 	return (1);
 }
 
-int	mouse_press(int button, int x, int y, void *gam)
+int	ft_mouse_press(int button, int x, int y, void *gam)
 {
 	t_game	*game;
 
@@ -85,7 +85,7 @@ int	mouse_press(int button, int x, int y, void *gam)
 	return (0);
 }
 
-int	mouse_release(int button, int x, int y, void *gam)
+int	ft_mouse_release(int button, int x, int y, void *gam)
 {
 	t_game	*game;
 

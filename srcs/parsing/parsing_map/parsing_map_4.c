@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:27:53 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:29:15 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:30:48 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_map	*ft_fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 		line = get_next_line(fd);
 		if (line && !ft_is_only_space(line))
 		{
-			width = is_line_bigger(line, width);
+			width = ft_is_line_bigger(line, width);
 			i++;
 		}
 		ft_free(line);

@@ -6,13 +6,13 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:29:32 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:31:28 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../cub3d.h"
 
-void	prnt(char **arr)
+void	ft_prnt(char **arr)
 {
 	int	i;
 	int	j;
@@ -45,7 +45,7 @@ int	ft_open_fd(t_game *game, char *name)
 	return (fd);
 }
 
-int	is_line_bigger(char *str, int old_len)
+int	ft_is_line_bigger(char *str, int old_len)
 {
 	int	new_len;
 
@@ -63,7 +63,7 @@ int	is_line_bigger(char *str, int old_len)
 	return (old_len);
 }
 
-int	find_last_non_whitespace_char(char *line)
+int	ft_find_last_non_whitespace_char(char *line)
 {
 	int	i;
 
@@ -75,7 +75,7 @@ int	find_last_non_whitespace_char(char *line)
 	return (i);
 }
 
-int	scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info)
+int	ft_scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info)
 {
 	int	i;
 	int	is_ws;

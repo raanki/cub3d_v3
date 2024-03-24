@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 14:21:53 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:31:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_check_spawn_wall_nothing_any(t_game *game, char **map)
 	}
 }
 
-void	first_check(t_game *game, char **map)
+void	ft_first_check(t_game *game, char **map)
 {
 	game->i = 0;
 	game->number_player_letter_find = 0;
@@ -67,7 +67,7 @@ void	first_check(t_game *game, char **map)
 	}
 }
 
-void	condition_stupid_count_one_algo(int *cnt,
+void	condition_ft_stupid_count_one_algo(int *cnt,
 		int line_curr, char **map, int i)
 {
 	if (map[line_curr + 1][i - 1] == '1'
@@ -83,7 +83,7 @@ void	condition_stupid_count_one_algo(int *cnt,
 		cnt++;
 }
 
-int	stupid_count_one_algo(char *line, int line_curr, char **map)
+int	ft_stupid_count_one_algo(char *line, int line_curr, char **map)
 {
 	int	i;
 	int	cnt;
@@ -96,7 +96,7 @@ int	stupid_count_one_algo(char *line, int line_curr, char **map)
 		is_ws = 1;
 	if (is_ws == 1 && line[i] == '1')
 	{
-		condition_stupid_count_one_algo(&cnt, line_curr, map, i);
+		condition_ft_stupid_count_one_algo(&cnt, line_curr, map, i);
 		if (cnt >= 2)
 			return (0);
 		else

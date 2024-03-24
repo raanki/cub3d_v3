@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 18:02:22 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:28:01 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:31:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_condition_count_one_algo(char *line, int line_curr,
 	}
 }
 
-int	stupid_count_one_algo_right(char *line, int line_curr, char **map)
+int	ft_stupid_count_one_algo_right(char *line, int line_curr, char **map)
 {
 	t_game	*game;
 
@@ -73,7 +73,7 @@ void	ft_condition_ft_test_map(t_game *game, t_map *map)
 {
 	if (game->i == 0 || game->i == map->h_map - 1)
 	{
-		game->flag = scan_first_last_line(game->check_map[game->i],
+		game->flag = ft_scan_first_last_line(game->check_map[game->i],
 				game->i, game->check_map, map);
 		if (game->flag == 1)
 		{
@@ -84,9 +84,9 @@ void	ft_condition_ft_test_map(t_game *game, t_map *map)
 	}
 	else
 	{
-		game->flag = stupid_count_one_algo(game->check_map[game->i],
+		game->flag = ft_stupid_count_one_algo(game->check_map[game->i],
 				game->i, game->check_map);
-		game->flag_1 = stupid_count_one_algo_right(game->check_map[game->i],
+		game->flag_1 = ft_stupid_count_one_algo_right(game->check_map[game->i],
 				game->i, game->check_map);
 		if (game->flag == 1 || game->flag_1 == 1)
 		{
@@ -103,7 +103,7 @@ t_map	*ft_test_map(t_game *game, t_map *map)
 	game->flag = -1;
 	game->i = 0;
 	game->check_map = map ->map2d;
-	first_check(game, map -> map2d);
+	ft_first_check(game, map -> map2d);
 	while (game->check_map[game->i] != NULL)
 	{
 		ft_condition_ft_test_map(game, map);

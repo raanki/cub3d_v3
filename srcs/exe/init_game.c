@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:02 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:27:19 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:31:13 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 
 */
-void	set_start_angle_player(t_game *game)
+void	ft_set_start_angle_player(t_game *game)
 {
 	game->player->dir_y = 1;
 	game->player->plan_x = -FOV;

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:29:42 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:31:13 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_init_map(t_game *game, char *arg)
 	game->first = 1;
 	ft_set_map_color_texture(game);
 	ft_check_texture_color_fetch(game, arg);
-	set_start_angle_player(game);
+	ft_set_start_angle_player(game);
 	game->map = game->map;
 	game->delta_dist_x = 0;
 	game->delta_dist_y = 0;

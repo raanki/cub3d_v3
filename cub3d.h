@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:29:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:31:54 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ void				ft_free_mlx(t_game *game);
 void				ft_free_map(t_game *game, int *i);
 void				ft_rotate_left(int key, t_game *game);
 void				ft_rotate_right(int key, t_game *game);
-void				ft_draw_minimap_direction(t_game *game);
+void				ft_ft_draw_minimap_direction(t_game *game);
 void				ft_calc_pos_minimap(int x, int y, int color);
 
 //************************************************************
@@ -249,31 +249,31 @@ int					ft_mapvalid(char **map, int mapHeight, int mapWidth,
 						t_game *game);
 int					ft_check_column_from_top(char **map, int mapHeight, int j);
 int					ft_check_column_from_bottom(char **map, int mapHeight, int j);
-int					check_line_from_left(char **map, int mapWidth, int i);
-int					check_line_from_right(char **map, int mapWidth, int i);
-int					is_only_c_f_number(char *line);
+int					ft_check_line_from_left(char **map, int mapWidth, int i);
+int					ft_check_line_from_right(char **map, int mapWidth, int i);
+int					ft_is_only_c_f_number(char *line);
 int					ft_str_have_three_coma(char *string);
-int					is_line_bigger(char *str, int old_len);
-int					find_last_non_whitespace_char(char *line);
-int					scan_first_last_line(char *line, int line_curr, char **map,
+int					ft_is_line_bigger(char *str, int old_len);
+int					ft_find_last_non_whitespace_char(char *line);
+int					ft_scan_first_last_line(char *line, int line_curr, char **map,
 						t_map *map_info);
-int					stupid_count_one_algo(char *line, int line_curr,
+int					ft_stupid_count_one_algo(char *line, int line_curr,
 						char **map);
 void				ft_set_array_flood(t_game *game);
 void				ft_check_map_trade_with_arg(t_game *game);
 void				ft_free(void *ptr);
 void				*ft_check_null(void *ptr);
 void				ft_check_read(char *stash, char *buffer, int fd, int ret);
-void				first_check(t_game *game, char **map);
-void				set_start_angle_player(t_game *game);
+void				ft_first_check(t_game *game, char **map);
+void				ft_set_start_angle_player(t_game *game);
 void				ft_check_invalid_char_map(t_game *game);
 void				ft_replace_2d(char **array, char to_find, char to_replace);
-void				prnt(char **arr);
+void				ft_prnt(char **arr);
 
 //BONUS
 
-int					mouse_moove(int x, int y, void *param);
-int					mouse_press(int button, int x, int y, void *game);
-int					mouse_release(int button, int x, int y, void *game);
-void				draw_minimap(void);
+int					ft_mouse_moove(int x, int y, void *param);
+int					ft_mouse_press(int button, int x, int y, void *game);
+int					ft_mouse_release(int button, int x, int y, void *game);
+void				ft_draw_minimap(void);
 void				ft_launch_hook(void);

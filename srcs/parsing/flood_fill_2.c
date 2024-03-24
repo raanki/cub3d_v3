@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:08:41 by mklimina          #+#    #+#             */
-/*   Updated: 2024/03/24 17:29:57 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:30:33 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_check_column_from_bottom(char **map, int mapHeight, int j)
 	return (1);
 }
 
-int	check_line_from_left(char **map, int mapWidth, int i)
+int	ft_check_line_from_left(char **map, int mapWidth, int i)
 {
 	int	j;
 	int	foundonefromleft;
@@ -81,7 +81,7 @@ int	check_line_from_left(char **map, int mapWidth, int i)
 	return (1);
 }
 
-int	check_line_from_right(char **map, int mapWidth, int i)
+int	ft_check_line_from_right(char **map, int mapWidth, int i)
 {
 	int	j;
 	int	foundonefromright;
