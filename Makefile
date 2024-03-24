@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/24 03:50:58 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/24 03:59:42 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,8 +83,8 @@ OBJ = $(SRC:.c=.o) $(MAIN:.c=.o)
 OBJ_BONUS = $(SRC:.c=.o) $(MAIN_BONUS:.c=.o)
 
 CC = cc
-CFLAGS = -g3 -Iminilibx-linux
-LDFLAGS = -Lminilibx-linux  -Wall -Werror -Wextra
+CFLAGS = -g3 -Iminilibx-linux -Wall -Werror -Wextra
+LDFLAGS = -Lminilibx-linux
 LDLIBS = -lmlx -lbsd -lXext -lX11 -lm
 HEADER = cub3d.h
 

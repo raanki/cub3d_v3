@@ -6,22 +6,23 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 23:32:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:59:14 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:06:02 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_atoi_short(int *i, char *s, int *sign)
+int	ft_atoi_short(int *i, char *s, int *sign)
 {
 	while (s[*i] == '\f' || s[*i] == ' ' || s[*i] == '\n'
 		|| s[*i] == '\t' || s[*i] == '\v' || s[*i] == '\r' )
-		*i++;
+		(*i)++;
 	if (s[*i] == '-')
 	{
 		*sign = -1;
-		*i++;
+		(*i)++;
 	}
 	else if (s[*i] == '+')
-		*i++;
+		(*i)++;
+	return (*i);
 }
 
 int	ft_atoi(char *s)
@@ -34,7 +35,7 @@ int	ft_atoi(char *s)
 	n = 0;
 	sign = 1;
 	i = 0;
-	ft_atoi_short(&i, s, &sign);
+	i = ft_atoi_short(&i, s, &sign);
 	while (s[i] != 0 && s[i] >= '0' && s[i] <= '9')
 	{
 		test = 10 * n + (s[i] - '0');

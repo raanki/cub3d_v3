@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:14:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/23 17:57:34 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:02:44 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	int	i;
 
 	i = 0;
-	while (src && src[i] && i < n)
+	while (src && src[i] && i < (int)n)
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	while (i < n)
+	while (i < (int)n)
 	{
 		dest[i++] = '\0';
 	}
@@ -66,7 +66,7 @@ void	ft_create_real_map_skip_rest(t_game *game, t_map *map)
 	while (1)
 	{
 		game->line = get_next_line(game->fd);
-		if (game->line && is_only_space(game->line)
+		if ((game->line && is_only_space(game->line))
 			|| is_line_color(game->line) || is_line_texture(game->line))
 		{
 			ft_free(game->line);

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:02:17 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:54:09 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:05:20 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	mouse_moove(int x, int y, void *param)
 	t_game	*game;
 	int		x_max;
 
+	(void)y;
 	game = (t_game *)param;
 	game->rot_speed_mouse = 0.0000001;
 	game->move_speed = 0.21;
@@ -69,12 +70,14 @@ int	mouse_moove(int x, int y, void *param)
 			rotate_right(65363, game);
 	}
 	game->x_prev_mouse = x;
+	return (1);
 }
 
 int	mouse_press(int button, int x, int y, void *gam)
 {
 	t_game	*game;
 
+	(void)button;
 	game = (t_game *)gam;
 	(void)x;
 	(void)y;
@@ -86,6 +89,7 @@ int	mouse_release(int button, int x, int y, void *gam)
 {
 	t_game	*game;
 
+	(void)button;
 	game = (t_game *)gam;
 	(void)x;
 	(void)y;
