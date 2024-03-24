@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 00:54:36 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 01:27:49 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	draw_ceilling_floor(t_game *game, int x)
 	game->i = game->draw_end - 1;
 	while (++game->i < SCREEN_HEIGHT)
 		game->buffer[game->i][x] = game->color_round;
-	draw_minimap();
 }
 
 void	ft_hook_draw_sprite(t_game *game, int x)
@@ -51,6 +50,8 @@ void	ft_hook_draw_sprite(t_game *game, int x)
 	if (game->draw_start < 0)
 		game->draw_start = 0;
 	game->i = game->draw_start;
+	draw_minimap();
+	draw_minimap_direction(game);
 	while (game->i < game->draw_end)
 	{
 		tex_y = (int)game->tex_pos & (TILE_SIZE - 1);
