@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:54:27 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:19:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	ft_hook_draw_sprite(t_game *game, int x)
 	if (game->draw_start < 0)
 		game->draw_start = 0;
 	game->i = game->draw_start;
-	draw_minimap();
+	if (game->is_bonus == 1)
+		draw_minimap();
 	draw_minimap_direction(game);
 	while (game->i < game->draw_end)
 	{
@@ -98,7 +99,6 @@ int	ft_game_loop(void)
 			&game->mlx->endian);
 	ft_hook(game);
 	ft_draw_buffer(game);
-	draw_minimap();
 	mlx_put_image_to_window(game->mlx->mlx_p, game->mlx->win_p,
 		game->mlx->img, 0, 0);
 	if (game->mouse_is_press)

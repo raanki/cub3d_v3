@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 00:07:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:49:45 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:17:55 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	draw_minimap_direction(t_game *game)
 	int	player_minimap_x;
 	int	player_minimap_y;
 
+	if (game->is_bonus == 0)
+		return ;
 	player_minimap_x = game->offset_x
 		+ floor(game->player->plyr_x) * game->tile_size_minimap;
 	player_minimap_y = game->offset_y
@@ -81,6 +83,8 @@ void	draw_minimap_direction(t_game *game)
 
 void	ft_draw_player_minimap(t_game *game)
 {
+	if (game->is_bonus == 0)
+		return ;
 	game->dy = 0;
 	while (game->dy < game->tile_size_minimap)
 	{

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:13 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/22 16:39:11 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:14:18 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		game = ft_game_instance();
+		game->is_bonus = 0;
 		game->arg = ft_strdup(argv[1]);
 		if (!game->arg)
 			ft_free_game(game);

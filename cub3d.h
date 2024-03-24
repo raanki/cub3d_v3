@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:58:47 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:21:09 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 //****************************************************************
 //****************************************************************
 
-#define SCREEN_WIDTH 2000
-#define SCREEN_HEIGHT 1000
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 400
 #define M_PI 3.14159265358979323846
 #define TILE_SIZE 64
 #define FOV 0.66
@@ -164,6 +164,7 @@ typedef struct s_game
 	int				sy;
 	int				err;
 	int				e2;
+	int				is_bonus;
 	char			**sprite_path;
 	char			*cpy_line;
 	char			*type_text;
@@ -275,3 +276,4 @@ int					mouse_moove(int x, int y, void *param);
 int					mouse_press(int button, int x, int y, void *game);
 int					mouse_release(int button, int x, int y, void *game);
 void				draw_minimap(void);
+void				ft_launch_hook(void);

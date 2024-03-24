@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 03:49:16 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:53:19 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 04:13:35 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,19 @@ void	ft_calc_pos_minimap(int x, int y, int color)
 		game->dx++;
 	}
 	game->dy++;
+}
+
+void	ft_launch_hook(void)
+{
+	t_game	*g;
+
+	g = ft_game_instance();
+	mlx_hook(g->mlx->win_p, KeyRelease, KeyReleaseMask, &ft_reles, g);
+	mlx_hook(g->mlx->win_p, KeyPress, KeyPressMask, ft_mlx_key, g);
+	mlx_hook(g->mlx->win_p, 33, 1L << 17, ft_exit, g);
+	if (g->is_bonus == 0)
+		return ;
+	mlx_hook(g->mlx->win_p, MotionNotify, PointerMotionMask, mouse_moove, g);
+	mlx_hook(g->mlx->win_p, ButtonPress, ButtonPressMask, mouse_press, g);
+	mlx_hook(g->mlx->win_p, ButtonRelease, ButtonReleaseMask, mouse_release, g);
 }
