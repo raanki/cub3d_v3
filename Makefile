@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/24 00:15:30 by ranki            ###   ########.fr        #
+#    Updated: 2024/03/24 03:50:58 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,9 @@ srcs/bonus/mouse_moove_bonus.c\
 \
 srcs/bonus/minimap_bonus.c\
 \
+srcs/bonus/minimap_bonus_2.c\
+\
+
 
 MAIN = main.c
 MAIN_BONUS = main_bonus.c

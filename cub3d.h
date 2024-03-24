@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 02:42:19 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 03:50:03 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ typedef struct s_game
 	int				dy;
 	int				sy;
 	int				err;
+	int				e2;
 	char			**sprite_path;
 	char			*cpy_line;
 	char			*type_text;
@@ -221,6 +222,7 @@ void				ft_free_map(t_game *game, int *i);
 void				rotate_left(int key, t_game *game);
 void				rotate_right(int key, t_game *game);
 void				draw_minimap_direction(t_game *game);
+void				ft_calc_pos_minimap(int x, int y, int color);
 
 //************************************************************
 //************************* PARSING **************************
