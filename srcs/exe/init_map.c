@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:31:13 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:37:26 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,32 @@ int	check_all_texture_is_load(void)
 	return (1);
 }
 
-void	ft_set_map_color_texture(t_game *game)
+void	ft_set_map_color_texture(t_game *g)
 {
-	while ((game->current_line != NULL && (!check_all_texture_is_load()
-				|| game->count_valid_color < 2)) || game->first)
+	while ((g->current_line != NULL && (!check_all_texture_is_load()
+				|| g->count_valid_color < 2)) || g->first)
 	{
-		game->first = 0;
-		game->current_line = get_next_line(game->fd);
-		if (!game->current_line)
+		g->first = 0;
+		g->current_line = get_next_line(g->fd);
+		if (!g->current_line)
 			break ;
-		game->cur_tmp = ft_check_null(ft_strdup(game->current_line));
-		if (ft_is_line_texture(game->current_line))
+		g->cur_tmp = ft_check_null(ft_strdup(g->current_line));
+		if (ft_is_line_texture(g->current_line))
 		{
-			if (game->sprite_path[game->current_sprite])
-				ft_free(game->sprite_path[game->current_sprite]);
-			game->sprite_path[game->current_sprite] = ft_parse_lt(game->cur_tmp);
-			game->count_valid_texture++;
-			game->index_sprite_path++;
+			if (g->sprite_path[g->current_sprite])
+				ft_free(g->sprite_path[g->current_sprite]);
+			g->sprite_path[g->current_sprite] = ft_parse_lt(g->cur_tmp);
+			g->count_valid_texture++;
+			g->index_sprite_path++;
 		}
-		else if (ft_is_line_color(game->current_line))
+		else if (ft_is_line_color(g->current_line))
 		{
-			ft_parse_line_color(game, game->cur_tmp);
-			game->count_valid_color++;
+			ft_parse_line_color(g, g->cur_tmp);
+			g->count_valid_color++;
 		}
-		ft_check_map_trade_with_arg(game);
-		ft_free(game->cur_tmp);
-		ft_free(game->current_line);
+		ft_check_map_trade_with_arg(g);
+		ft_free(g->cur_tmp);
+		ft_free(g->current_line);
 	}
 }
 

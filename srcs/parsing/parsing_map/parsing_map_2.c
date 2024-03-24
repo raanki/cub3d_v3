@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:07:23 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:31:28 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:38:53 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	ft_find_last_non_whitespace_char(char *line)
 	return (i);
 }
 
-int	ft_scan_first_last_line(char *line, int line_curr, char **map, t_map *map_info)
+int	ft_scan_first_last_line(char *line, int line_curr,
+		char **map, t_map *map_info)
 {
 	int	i;
 	int	is_ws;

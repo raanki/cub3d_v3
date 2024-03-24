@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:31:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/24 17:34:18 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,15 +248,16 @@ int					ft_valid_char(char *line);
 int					ft_mapvalid(char **map, int mapHeight, int mapWidth,
 						t_game *game);
 int					ft_check_column_from_top(char **map, int mapHeight, int j);
-int					ft_check_column_from_bottom(char **map, int mapHeight, int j);
+int					ft_check_column_from_bottom(char **map,
+						int mapHeight, int j);
 int					ft_check_line_from_left(char **map, int mapWidth, int i);
 int					ft_check_line_from_right(char **map, int mapWidth, int i);
 int					ft_is_only_c_f_number(char *line);
 int					ft_str_have_three_coma(char *string);
 int					ft_is_line_bigger(char *str, int old_len);
 int					ft_find_last_non_whitespace_char(char *line);
-int					ft_scan_first_last_line(char *line, int line_curr, char **map,
-						t_map *map_info);
+int					ft_scan_first_last_line(char *line, int line_curr,
+						char **map, t_map *map_info);
 int					ft_stupid_count_one_algo(char *line, int line_curr,
 						char **map);
 void				ft_set_array_flood(t_game *game);
