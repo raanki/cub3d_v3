@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:08:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:30:33 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/25 19:51:27 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int	checklines(char **map, int mapHeight, int mapWidth)
 	i = 0;
 	while (i < mapHeight)
 	{
+		if (!ft_valid_char(map[i]))
+		{
+			return (0);
+		}
 		if (!ft_check_line_from_left(map, mapWidth, i)
 			|| !ft_check_line_from_right(map, mapWidth, i))
 		{
@@ -99,6 +103,20 @@ int	checkmap(char **map, int mapHeight, int mapWidth, t_game *game)
 
 int	ft_mapvalid(char **map, int mapHeight, int mapWidth, t_game *game)
 {
+	int	i;
+
+	i = 0;
+	while (i < mapHeight)
+	{
+		map[i][mapWidth] = '\0';
+		if (!ft_valid_char(map[i]))
+		{
+			printf("Expecting Map\n");
+			ft_free_game(game);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
 	return (checklines(map, mapHeight, mapWidth) && checkcolumns(map, mapHeight,
 			mapWidth) && checkmap(map, mapHeight, mapWidth, game));
 }
