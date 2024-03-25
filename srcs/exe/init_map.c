@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:37:26 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/25 23:10:05 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,34 @@ int	check_all_texture_is_load(void)
 		i++;
 	}
 	return (1);
+}
+
+void	ft_check_good_number(t_game *g)
+{
+	int	first;
+
+	first = 1;
+	while (g->current_line != NULL || first)
+	{
+		first = 0;
+		g->current_line = get_next_line(g->fd);
+		if (!g->current_line)
+			break ;
+		if (ft_is_line_texture(g->current_line))
+			g->count_valid_texture++;
+		else if (ft_is_line_color(g->current_line))
+			g->count_valid_color++;
+		if (g->count_valid_texture > 4 || g->count_valid_color > 2)
+		{
+			ft_free(g->current_line);
+			ft_free_game(g);
+			ft_e_str("You have to put only 4 valid textures\n");
+			exit(EXIT_FAILURE);
+		}
+		ft_free(g->current_line);
+	}
+	g->count_valid_color = 0;
+	g->count_valid_texture = 0;
 }
 
 void	ft_set_map_color_texture(t_game *g)
@@ -78,31 +106,32 @@ void	ft_check_texture_color_fetch(t_game *game, char *arg)
 	if (game->count_valid_texture != 4)
 	{
 		ft_free_game(game);
-		printf("You have to put 4 valid textures\n");
+		ft_e_str("You have to put 4 valid textures\n");
 		exit(EXIT_FAILURE);
 	}
 	if (game->count_valid_color != 2)
 	{
 		ft_free_game(game);
-		printf("You have to put 2 valid colors\n");
+		ft_e_str("You have to put 2 valid colors\n");
 		exit(EXIT_FAILURE);
 	}
 	game->map = ft_fetch_map_params(game->fd, game->map, arg, game);
 	ft_check_null(game->map);
 }
 
-//ft_replace_2d(game->map->map2d, '\n', ' ');
 void	ft_init_map(t_game *game, char *arg)
 {
 	ft_init_player_map(game);
 	game->fd = ft_open_fd(game, arg);
 	game->index_sprite_path = 0;
 	game->current_sprite = 0;
-	game->count_valid_texture = 0;
-	game->count_valid_color = 0;
 	game->first = 1;
 	ft_set_map_color_texture(game);
 	ft_check_texture_color_fetch(game, arg);
+	game->count_valid_texture = 0;
+	game->count_valid_color = 0;
+	game->fd = ft_open_fd(game, arg);
+	ft_check_good_number(game);
 	ft_set_start_angle_player(game);
 	game->map = game->map;
 	game->delta_dist_x = 0;

@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 03:59:11 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/25 23:10:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_game	*ft_game_instance(void)
 		game_instance->valid_texture[3] = 0;
 		game_instance->x_prev_mouse = 0;
 		game_instance->mouse_is_press = 0;
+		game_instance->count_valid_texture = 0;
+		game_instance->count_valid_color = 0;
 	}
 	return (game_instance);
 }
