@@ -6,9 +6,12 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:34:18 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/25 19:34:54 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 //****************************************************************
 //****************************************************************
@@ -16,14 +19,14 @@
 //****************************************************************
 //****************************************************************
 
-#include "./minilibx-linux/mlx.h"
-#include "./minilibx-linux/mlx_int.h"
-#include <fcntl.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+# include "./minilibx-linux/mlx.h"
+# include "./minilibx-linux/mlx_int.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 //****************************************************************
 //****************************************************************
@@ -31,20 +34,20 @@
 //****************************************************************
 //****************************************************************
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 400
-#define M_PI 3.14159265358979323846
-#define TILE_SIZE 64
-#define FOV 0.66
-#define PLAYER_COLOR 0xFF0000
-#define OFFSET_X 20
-#define OFFSET_Y 20
-#define EMPTY_IN_MINIMAP 0x000000
-#define WALL_OUT_MINIMAP 0xFFFFFF
-#define TILE_SIZE_MINIMAP 5
-#define COLOR_LINE_MINIMAP 0x9400D3
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 400
+# define M_PI 3.14159265358979323846
+# define TILE_SIZE 64
+# define FOV 0.66
+# define PLAYER_COLOR 0xFF0000
+# define OFFSET_X 20
+# define OFFSET_Y 20
+# define EMPTY_IN_MINIMAP 0x000000
+# define WALL_OUT_MINIMAP 0xFFFFFF
+# define TILE_SIZE_MINIMAP 5
+# define COLOR_LINE_MINIMAP 0x9400D3
 
-#include "srcs/gnl/get_next_line.h"
+# include "srcs/gnl/get_next_line.h"
 //*****************************************************************
 //*****************************************************************
 //******************************* STUCTURES ***********************
@@ -224,6 +227,7 @@ void				ft_rotate_left(int key, t_game *game);
 void				ft_rotate_right(int key, t_game *game);
 void				ft_ft_draw_minimap_direction(t_game *game);
 void				ft_calc_pos_minimap(int x, int y, int color);
+void				ft_condition_draw_line(t_game *game, int *y0, int *x0);
 
 //************************************************************
 //************************* PARSING **************************
@@ -278,3 +282,5 @@ int					ft_mouse_press(int button, int x, int y, void *game);
 int					ft_mouse_release(int button, int x, int y, void *game);
 void				ft_draw_minimap(void);
 void				ft_launch_hook(void);
+
+#endif

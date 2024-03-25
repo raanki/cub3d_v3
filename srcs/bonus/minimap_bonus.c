@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 00:07:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:31:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/25 19:34:10 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,14 @@ void	draw_line(int x0, int y0, int x1, int y1)
 	{
 		if (x0 >= game->offset_x && x0 < game->offset_x
 			+ game->map->w_map * game->tile_size_minimap
-			&& y0 >= game->offset_y && y0 < game->offset_y
+			&& y0 >= game->offset_y && y0 < SCREEN_HEIGHT
+			&& x0 < SCREEN_WIDTH && y0 < game->offset_y
 			+ game->map->h_map * game->tile_size_minimap)
 			game->buffer[y0][x0] = EMPTY_IN_MINIMAP;
 		if (x0 == x1 && y0 == y1)
 			break ;
 		game->e2 = 2 * game->err;
-		if (game->e2 >= game->dy)
-		{
-			game->err += game->dy;
-			x0 += game->sx;
-		}
-		if (game->e2 <= game->dx)
-		{
-			game->err += game->dx;
-			y0 += game->sy;
-		}
+		ft_condition_draw_line(game, &y0, &x0);
 	}
 }
 
@@ -89,7 +81,11 @@ void	ft_draw_player_minimap(t_game *game)
 	while (game->dy < game->tile_size_minimap)
 	{
 		game->dx = 0;
-		while (game->dx < game->tile_size_minimap)
+		while (game->dx < game->tile_size_minimap && (int)(game->offset_y
+			+ floor(game->player->plyr_y)
+			* game->tile_size_minimap + game->dy) < SCREEN_HEIGHT
+			&& (int)(game->offset_x + floor(game->player->plyr_x)
+			* game->tile_size_minimap + game->dx) > SCREEN_WIDTH)
 		{
 			game->buffer[(int)(game->offset_y
 					+ floor(game->player->plyr_y)

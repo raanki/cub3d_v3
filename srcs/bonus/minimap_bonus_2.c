@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 03:49:16 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:39:21 by ranki            ###   ########.fr       */
+/*   Updated: 2024/03/25 19:34:14 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_calc_pos_minimap(int x, int y, int color)
 
 	game = ft_game_instance();
 	game->dx = 0;
-	while (game->dx < game->tile_size_minimap)
+	while (game->dx < game->tile_size_minimap && (game->offset_y + y
+			* game->tile_size_minimap + game->dy) < SCREEN_HEIGHT
+		&& (game->offset_x + x * game->tile_size_minimap
+			+ game->dx) < SCREEN_WIDTH)
 	{
 		game->buffer[game->offset_y + y
 			* game->tile_size_minimap + game->dy]
@@ -43,4 +46,18 @@ void	ft_launch_hook(void)
 	mlx_hook(g->mlx->win_p, ButtonPress, ButtonPressMask, ft_mouse_press, g);
 	mlx_hook(g->mlx->win_p, ButtonRelease,
 		ButtonReleaseMask, ft_mouse_release, g);
+}
+
+void	ft_condition_draw_line(t_game *game, int *y0, int *x0)
+{
+	if (game->e2 >= game->dy)
+	{
+		game->err += game->dy;
+		*x0 += game->sx;
+	}
+	if (game->e2 <= game->dx)
+	{
+		game->err += game->dx;
+		*y0 += game->sy;
+	}
 }
