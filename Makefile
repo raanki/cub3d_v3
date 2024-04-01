@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/03/24 17:32:10 by ranki            ###   ########.fr        #
+#    Updated: 2024/04/01 17:19:05 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,15 +90,15 @@ HEADER = cub3d.h
 
 .SILENT:
 
+all: minilibx $(NAME) ascii
+
 $(NAME): $(OBJ) $(HEADER)
 	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) $(LDLIBS)
 	@echo "Compilation is complete. \nYou can run with \"./cub3d \" 😎"
 
-bonus: $(OBJ_BONUS) $(HEADER)
+bonus: minilibx $(OBJ_BONUS) $(HEADER)
 	$(CC) $(OBJ_BONUS) -o $(NAME_BONUS) $(LDFLAGS) $(LDLIBS)
 	@echo "Compilation with bonus is complete. \nYou can run with \"./cub3d_bonus \" 😎"
-
-all: $(NAME) ascii
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -112,7 +112,10 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+minilibx:
+	$(MAKE) -C minilibx-linux
+
+.PHONY: all clean fclean re bonus minilibx
 
 ASCII1 = echo "                	      .--..--..--..--..--..--. \n"\
 	"                	     .' \\  \`._   (_)     _   \\ \n"\
