@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/04/06 10:28:17 by ranki            ###   ########.fr        #
+#    Updated: 2024/04/06 14:58:40 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,11 +96,11 @@ all: minilibx $(NAME) ascii
 
 $(NAME): $(OBJ) $(HEADER)
 	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) $(LDLIBS)
-	@echo "Compilation is complete. \nYou can run with \"./cub3d \" 😎"
+	@echo "\n✅ Compilation is complete. \nYou can run with \"./cub3d \" 😎\n"
 
 bonus: minilibx $(OBJ_BONUS) $(HEADER)
 	$(CC) $(OBJ_BONUS) -o $(NAME_BONUS) $(LDFLAGS) $(LDLIBS)
-	@echo "Compilation with bonus is complete. \nYou can run with \"./cub3d_bonus \" 😎"
+	@echo "\n✅ Compilation with bonus is complete. \nYou can run with \"./cub3d_bonus \" 😎\n"
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -110,7 +110,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS)
-	@echo "Files were deleted correctly."
+	$(MAKE) -C minilibx-linux clean
+	@echo "\n✅ Files were deleted correctly."
 
 re: fclean all
 
