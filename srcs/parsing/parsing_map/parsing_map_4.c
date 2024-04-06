@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:27:53 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:30:48 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 10:50:38 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ t_map	*ft_fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 	char	*line;
 	int		width;
 	int		i;
+	int		count;
 
 	i = 0;
+	count = 0;
 	line = "";
 	width = -1;
 	while (line != NULL)
@@ -29,7 +31,14 @@ t_map	*ft_fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 			width = ft_is_line_bigger(line, width);
 			i++;
 		}
+		count++;
 		ft_free(line);
+		if (count >= 1000)
+		{
+			ft_e_str("Heigth map is superior to 1000.");
+			ft_free_game(game);
+			exit(EXIT_FAILURE);
+		}
 	}
 	close(fd);
 	map -> w_map = width - 1;
