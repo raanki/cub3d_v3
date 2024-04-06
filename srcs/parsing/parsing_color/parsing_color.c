@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 09:54:44 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:29:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 10:25:13 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ unsigned	int	ft_parse_line_color(t_game *game, char *line)
 	if (!ft_is_line_color(line))
 		return (0);
 	game->cpy_line = ft_remove_first_spaces_until_first_letter(line);
-	if (line && (line[0] == 'C'))
+	if (line && (line[ft_index_first_letter(line)] == 'C'))
 		game->is_ceilling = 1;
 	game->cpy_line = get_color_from_valid_line_color(game->cpy_line);
 	save = game->cpy_line;

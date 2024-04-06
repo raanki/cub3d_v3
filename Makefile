@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/04/01 17:23:26 by ranki            ###   ########.fr        #
+#    Updated: 2024/04/06 10:28:17 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ srcs/gnl/get_next_line_utils.c\
 srcs/parsing/parsing_color/parsing_color.c\
 \
 srcs/parsing/parsing_color/parsing_color_2.c\
+\
+srcs/parsing/parsing_color/parsing_color_3.c\
 \
 srcs/parsing/parsing_text.c\
 \

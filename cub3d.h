@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/25 19:34:54 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 10:27:26 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,10 +260,12 @@ int					ft_is_only_c_f_number(char *line);
 int					ft_str_have_three_coma(char *string);
 int					ft_is_line_bigger(char *str, int old_len);
 int					ft_find_last_non_whitespace_char(char *line);
+int					check_all_texture_is_load(void);
 int					ft_scan_first_last_line(char *line, int line_curr,
 						char **map, t_map *map_info);
 int					ft_stupid_count_one_algo(char *line, int line_curr,
 						char **map);
+int					ft_index_first_letter(char *line);
 void				ft_set_array_flood(t_game *game);
 void				ft_check_map_trade_with_arg(t_game *game);
 void				ft_free(void *ptr);

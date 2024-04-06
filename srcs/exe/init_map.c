@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/25 23:10:05 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 10:27:04 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,6 @@ void	ft_init_player_map(t_game *game)
 	game->sprite_path[1] = ft_check_null(ft_strdup("nothing but essential"));
 	game->sprite_path[2] = ft_check_null(ft_strdup("nothing but essential"));
 	game->sprite_path[3] = ft_check_null(ft_strdup("nothing but essential"));
-}
-
-int	check_all_texture_is_load(void)
-{
-	t_game	*game;
-	int		i;
-
-	game = ft_game_instance();
-	i = 0;
-	while (i < 4)
-	{
-		if (game->valid_texture[i] == 0)
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 void	ft_check_good_number(t_game *g)
