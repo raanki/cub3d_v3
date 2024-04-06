@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 11:17:21 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 12:40:36 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,12 @@ typedef struct s_game
 	int				sy;
 	int				err;
 	int				e2;
+	int				min_x;
+	int				max_x;
+	int				min_y;
+	int				max_y;
+	int				range;
+	int				msm;
 	int				is_bonus;
 	char			**sprite_path;
 	char			*cpy_line;

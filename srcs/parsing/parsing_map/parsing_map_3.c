@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:18:27 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 12:09:13 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 12:47:17 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	ft_first_check(t_game *game, char **map)
 	while (map[game->i] != NULL)
 	{
 		game->j = 0;
-		while (game->j < game->map->w_map && map[game->i][game->j] != '\0' && map[game->i][game->j] != '\n')
+		while (game->j < game->map->w_map
+			&& map[game->i][game->j] != '\0'
+			&& map[game->i][game->j] != '\n')
 			ft_check_spawn_wall_nothing_any(game, map);
 		game->i++;
 	}
