@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:07:24 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:38:23 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 13:27:39 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,22 @@ void	ft_check_up_all(t_game *game)
 	}
 }
 
+int	ft_check_last_line(t_game *game)
+{
+	while (game->line != NULL)
+	{
+		if (!ft_is_only_space(game->line))
+			return (0);
+		free(game->line);
+		game->line = get_next_line(game->fd);
+	}
+	return (1);
+}
+
 void	ft_check_island(t_game *game)
 {
 	if (game->now_is_map == 1 && (ft_is_only_space(game->line)
-			|| !ft_valid_char(game->line)))
+			|| !ft_valid_char(game->line)) && !ft_check_last_line(game))
 	{
 		if (game->save)
 			ft_free(game->save);
