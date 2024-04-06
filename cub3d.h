@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 10:27:26 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 10:56:11 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define WALL_OUT_MINIMAP 0xFFFFFF
 # define TILE_SIZE_MINIMAP 5
 # define COLOR_LINE_MINIMAP 0x9400D3
+# define MAX_HEIGHT_MAP 500
+# define MAX_WIDTH_MAP 500
 
 # include "srcs/gnl/get_next_line.h"
 //*****************************************************************
