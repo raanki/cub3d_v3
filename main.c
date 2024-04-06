@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 12:47:13 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/25 23:09:07 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/01 17:25:12 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	{
 		if (!ft_check_end_file(argv[1]))
 		{
-			ft_e_str("File is not good");
+			ft_e_str("File name is not good");
 			exit(EXIT_FAILURE);
 		}
 		game = ft_game_instance();
