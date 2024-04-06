@@ -6,7 +6,7 @@
 #    By: ranki <ranki@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 09:49:26 by ranki             #+#    #+#              #
-#    Updated: 2024/04/06 14:58:40 by ranki            ###   ########.fr        #
+#    Updated: 2024/04/06 16:26:38 by ranki            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ bonus: minilibx $(OBJ_BONUS) $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	$(MAKE) -C minilibx-linux clean
 	rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
