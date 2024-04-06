@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:01:31 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 10:27:04 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 14:48:32 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	ft_init_map(t_game *game, char *arg)
 	if (ft_mapvalid(game->map->map2d, game->map->h_map, game->map->w_map,
 			game) == 0)
 	{
-		printf("Not Close\n");
+		ft_e_str("Not Close\n");
 		ft_free_game(game);
 		exit(EXIT_FAILURE);
 	}
