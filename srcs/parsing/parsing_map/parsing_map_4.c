@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:27:53 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 10:56:02 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 11:13:21 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@ t_map	*ft_fetch_map_params(int fd, t_map *map, char *file, t_game *game)
 			i++;
 		}
 		ft_free(line);
-		if (i >= MAX_HEIGHT_MAP || width >= MAX_WIDTH_MAP)
-		{
-			ft_e_str("Map is too big.");
-			ft_free_game(game);
-			exit(EXIT_FAILURE);
-		}
+		ft_check_max_size(i, width, game);
 	}
 	close(fd);
 	map -> w_map = width - 1;

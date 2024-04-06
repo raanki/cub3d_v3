@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 10:25:25 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 10:27:34 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 11:13:28 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ int	check_all_texture_is_load(void)
 		i++;
 	}
 	return (1);
+}
+
+void	ft_check_max_size(int i, int width, t_game *game)
+{
+	if (i >= MAX_HEIGHT_MAP || width >= MAX_WIDTH_MAP)
+	{
+		ft_e_str("Map is too big.");
+		ft_free_game(game);
+		exit(EXIT_FAILURE);
+	}
 }
