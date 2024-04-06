@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 00:07:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/25 19:34:10 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 12:04:47 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,6 @@ void	ft_ft_draw_minimap_direction(t_game *game)
 		- (game->player->dir_x * 10));
 }
 
-void	ft_draw_player_minimap(t_game *game)
-{
-	if (game->is_bonus == 0)
-		return ;
-	game->dy = 0;
-	while (game->dy < game->tile_size_minimap)
-	{
-		game->dx = 0;
-		while (game->dx < game->tile_size_minimap && (int)(game->offset_y
-			+ floor(game->player->plyr_y)
-			* game->tile_size_minimap + game->dy) < SCREEN_HEIGHT
-			&& (int)(game->offset_x + floor(game->player->plyr_x)
-			* game->tile_size_minimap + game->dx) > SCREEN_WIDTH)
-		{
-			game->buffer[(int)(game->offset_y
-					+ floor(game->player->plyr_y)
-					* game->tile_size_minimap + game->dy)]
-			[(int)(game->offset_x + floor(game->player->plyr_x)
-					* game->tile_size_minimap + game->dx)] = PLAYER_COLOR;
-			game->dx++;
-		}
-		game->dy++;
-	}
-}
 
 void	ft_draw_minimap(void)
 {
@@ -104,25 +80,50 @@ void	ft_draw_minimap(void)
 	int		y;
 	int		x;
 	int		color;
+	int		min_x;
+	int		max_x;
+	int		min_y;
+	int		max_y;
+	int		range = 10; // La portée autour du joueur à dessiner
+	int     minimap_size_min = 20; // Taille minimale pour la minimap (par exemple, 20x20)
 
 	game = ft_game_instance();
 	game->tile_size_minimap = TILE_SIZE_MINIMAP;
 	game->offset_x = OFFSET_X;
 	game->offset_y = OFFSET_Y;
-	y = -1;
-	while (++y < game->map->h_map)
+
+	min_x = (int)fmax(game->player->plyr_x - range, 0);
+	max_x = (int)fmin(game->player->plyr_x + range, game->map->w_map);
+	min_y = (int)fmax(game->player->plyr_y - range, 0);
+	max_y = (int)fmin(game->player->plyr_y + range, game->map->h_map);
+
+    // Ajustez min_x et min_y si la taille calculée est inférieure à la taille minimale de la minimap
+    if ((max_x - min_x) < minimap_size_min)
+    {
+        min_x = fmax(min_x - ((minimap_size_min - (max_x - min_x)) / 2), 0);
+        max_x = fmin(max_x + ((minimap_size_min - (max_x - min_x)) / 2), game->map->w_map);
+    }
+    if ((max_y - min_y) < minimap_size_min)
+    {
+        min_y = fmax(min_y - ((minimap_size_min - (max_y - min_y)) / 2), 0);
+        max_y = fmin(max_y + ((minimap_size_min - (max_y - min_y)) / 2), game->map->h_map);
+    }
+	
+	y = min_y;
+	while (y < max_y)
 	{
-		x = 0;
-		while (x < game->map->w_map)
+		x = min_x;
+		while (x < max_x)
 		{
-			color = WALL_OUT_MINIMAP;
+			color = (x == (int)game->player->plyr_x && y == (int)game->player->plyr_y) ? PLAYER_COLOR : WALL_OUT_MINIMAP;
 			if (game->map->map2d[y][x] == '1')
 				color = EMPTY_IN_MINIMAP;
-			game->dy = 0;
-			while (game->dy < game->tile_size_minimap)
-				ft_calc_pos_minimap(x, y, color);
+				
+			ft_calc_pos_minimap(x - min_x, y - min_y, color);
 			x++;
 		}
+		y++;
 	}
-	ft_draw_player_minimap(game);
 }
+
+

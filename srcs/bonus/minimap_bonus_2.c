@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 03:49:16 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/25 19:34:14 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 11:53:55 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,35 @@
 
 void	ft_calc_pos_minimap(int x, int y, int color)
 {
-	t_game	*game;
+    t_game  *game;
+    int     pixel_x;
+    int     pixel_y;
+    int     dx;
+    int     dy;
 
-	game = ft_game_instance();
-	game->dx = 0;
-	while (game->dx < game->tile_size_minimap && (game->offset_y + y
-			* game->tile_size_minimap + game->dy) < SCREEN_HEIGHT
-		&& (game->offset_x + x * game->tile_size_minimap
-			+ game->dx) < SCREEN_WIDTH)
-	{
-		game->buffer[game->offset_y + y
-			* game->tile_size_minimap + game->dy]
-		[game->offset_x + x * game->tile_size_minimap
-			+ game->dx] = color;
-		game->dx++;
-	}
-	game->dy++;
+    game = ft_game_instance();
+
+    // Convertissez les coordonnées de la grille de la carte en coordonnées pixel sur l'écran
+    pixel_x = game->offset_x + x * game->tile_size_minimap;
+    pixel_y = game->offset_y + y * game->tile_size_minimap;
+
+    dy = 0;
+    while (dy < game->tile_size_minimap)
+    {
+        dx = 0;
+        while (dx < game->tile_size_minimap)
+        {
+            // Vérifiez que la position absolue + dx/dy est dans les limites de l'écran avant de dessiner
+            if (pixel_x + dx < SCREEN_WIDTH && pixel_y + dy < SCREEN_HEIGHT)
+            {
+                game->buffer[pixel_y + dy][pixel_x + dx] = color;
+            }
+            dx++;
+        }
+        dy++;
+    }
 }
+
 
 void	ft_launch_hook(void)
 {
