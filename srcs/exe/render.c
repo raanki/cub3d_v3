@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 18:57:37 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 11:57:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 13:03:40 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_hook_draw_sprite(t_game *game, int x)
 	game->i = game->draw_start;
 	if (game->is_bonus == 1)
 		ft_draw_minimap();
-	//ft_ft_draw_minimap_direction(game);
+	ft_draw_minimap_direction(game);
 	while (game->i < game->draw_end)
 	{
 		tex_y = (int)game->tex_pos & (TILE_SIZE - 1);

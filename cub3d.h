@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 00:16:07 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 12:40:36 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 13:04:28 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ void				ft_free_mlx(t_game *game);
 void				ft_free_map(t_game *game, int *i);
 void				ft_rotate_left(int key, t_game *game);
 void				ft_rotate_right(int key, t_game *game);
-void				ft_ft_draw_minimap_direction(t_game *game);
+void				ft_draw_minimap_direction(t_game *game);
 void				ft_calc_pos_minimap(int x, int y, int color);
 void				ft_condition_draw_line(t_game *game, int *y0, int *x0);
 

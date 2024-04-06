@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 00:07:41 by ranki             #+#    #+#             */
-/*   Updated: 2024/04/06 12:45:35 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/06 13:03:52 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_draw_line_init(int x0, int y0, int x1, int y1)
 	game->err = game->dx + game->dy;
 }
 
-void	draw_line(int x0, int y0, int x1, int y1)
+void	ft_draw_line(int x0, int y0, int x1, int y1)
 {
 	t_game	*game;
 
@@ -49,7 +49,7 @@ void	draw_line(int x0, int y0, int x1, int y1)
 	}
 }
 
-void	ft_ft_draw_minimap_direction(t_game *game)
+void	ft_draw_minimap_direction(t_game *game)
 {
 	int	player_minimap_x;
 	int	player_minimap_y;
@@ -57,15 +57,15 @@ void	ft_ft_draw_minimap_direction(t_game *game)
 	if (game->is_bonus == 0)
 		return ;
 	player_minimap_x = game->offset_x
-		+ floor(game->player->plyr_x) * game->tile_size_minimap;
+		+ floor(game->player->plyr_x - game->min_x) * game->tile_size_minimap;
 	player_minimap_y = game->offset_y
-		+ floor(game->player->plyr_y) * game->tile_size_minimap;
-	draw_line(player_minimap_x + 2, player_minimap_y + 2,
+		+ floor(game->player->plyr_y - game->min_y) * game->tile_size_minimap;
+	ft_draw_line(player_minimap_x + 2, player_minimap_y + 2,
 		player_minimap_x + (game->player->dir_x * 50)
 		+ (-game->player->dir_y * 10),
 		player_minimap_y + (game->player->dir_y * 50)
 		+ (game->player->dir_x * 10));
-	draw_line(player_minimap_x + 2,
+	ft_draw_line(player_minimap_x + 2,
 		player_minimap_y + 2,
 		player_minimap_x + (game->player->dir_x * 50)
 		- (-game->player->dir_y * 10),
