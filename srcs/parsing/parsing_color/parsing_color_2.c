@@ -6,7 +6,7 @@
 /*   By: ranki <ranki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:34:29 by ranki             #+#    #+#             */
-/*   Updated: 2024/03/24 17:30:40 by ranki            ###   ########.fr       */
+/*   Updated: 2024/04/07 19:15:55 by ranki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,20 @@ int	ft_str_have_three_coma(char *string)
 {
 	int	i;
 	int	count;
+	int	count_not_zero;
 
 	i = 0;
 	count = 0;
+	count_not_zero = 0;
 	while (string && string[i])
 	{
-		if (string[i] == ',' && string[i + 1] != ',')
+		if (string[i] == ',')
 			count++;
+		if (string[i] == ',' && string[i + 1] != ',')
+			count_not_zero++;
 		i++;
 	}
-	if (count == 2)
+	if (count == 2 && count_not_zero != 2)
 		return (1);
 	return (0);
 }
